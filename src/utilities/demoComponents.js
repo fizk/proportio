@@ -1,3 +1,4 @@
+import React from 'react';
 import ComponentElement from '../components/componentElement';
 
 const demoComponents = [

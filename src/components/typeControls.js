@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import { typeFontFamilyState, typeFontWeightState } from '../states/typography';
-import FontPicker from 'font-picker-react';
+// import FontPicker from 'font-picker-react';
 
 const TypeControls = (props) => {
   const [activeFontFamily, setActiveFontFamily] =
@@ -31,14 +31,14 @@ const TypeControls = (props) => {
             className="apply-font-main"
             style={{ width: 'calc(100% - 120px)' }}
           >
-            <FontPicker
+            {/* <FontPicker
               ariaLabelledBy="fontFamilyLabel"
               pickerId="main"
               apiKey="AIzaSyC4_gemFBE-Ep1knNI5zgWnz7ZirQrqOnw"
               limit={500}
               activeFontFamily={activeFontFamily}
               onChange={(nextFont) => setActiveFontFamily(nextFont.family)}
-            />
+            /> */}
           </span>
         </div>
         <div className="formGroup">
