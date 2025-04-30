@@ -89,29 +89,10 @@ import buildArray from './buildArray';
 import buildShiftedArray from './buildShiftedArray';
 import round from './round';
 
-function getObjectKey(obj, value) {
-  return Object.keys(obj).find((key) => obj[key] === value);
-}
-
-const findReferenceToken = (value, referenceArray, referenceKey) => {
-  if (!Array.isArray(referenceArray)) {
-    console.log(referenceArray);
-  }
-  let tokensArray = {};
-  const tokenNames = referenceArray.map((tokens) => {
-    return Object.keys(tokens)[0];
-  });
-  referenceArray.map((token, i) => {
-    tokensArray[`${tokenNames[i]}`] = `${token[tokenNames[i]].value}`;
-  });
-
-  return getObjectKey(tokensArray, value)
-    ? `{${referenceKey}.${getObjectKey(tokensArray, value)}}`
-    : value;
-};
-
 const createTokens = () => {
+  
   const [baseSize, setBaseSize] = useRecoilState(baseSizeState);
+  
   const [baseMobileScaleFactor, setBaseMobileScaleFactor] = useRecoilState(
     baseMobileScaleFactorState,
   );
@@ -122,6 +103,7 @@ const createTokens = () => {
   const [componentLineHeight, setComponentLineHeight] = useRecoilState(
     componentLineHeightState,
   );
+  
   const [componentSmallQuantity, setComponentSmallQuantity] = useRecoilState(
     componentSmallQuantityState,
   );
@@ -251,7 +233,7 @@ const createTokens = () => {
     useRecoilState(typeFontFamilyState);
   const [typeFontWeight, setTypeFontWeight] =
     useRecoilState(typeFontWeightState);
-
+    
   /** TOKEN KEYS */
   const typeKey = 'typography';
   const iconsKey = 'iconography';
@@ -262,8 +244,22 @@ const createTokens = () => {
   const componentKey = 'component';
   const containerKey = 'container';
 
+
   /** TYPOGRAPHY TOKENS */
-  let typographyArray = [];
+  let typographyObject = {
+    'text-lineheight': {
+      $value: `${typeScale}`,
+      $type: 'number'
+    },
+    'text-base': {
+      $value: `${baseSize}px`,
+      $type: 'dimension'
+    },
+    'text-weight': {
+      $value: `${typeFontWeight}`,
+      $type: 'number'
+    },
+  };
   const smallType = new Array(typeSmallQuantity).fill(0);
   const largeType = new Array(typeLargeQuantity).fill(0);
 
@@ -277,12 +273,13 @@ const createTokens = () => {
       baseScaleUnit === 'px'
         ? `${size}${baseScaleUnit}`
         : `${round(size / baseSize, 3)}${baseScaleUnit}`;
-    typographyArray.push({
-      [name]: {
-        value: `${value}`,
-        type: 'dimension',
-      },
-    });
+      typographyObject = {
+        ...typographyObject,
+        [name]: {
+          $value: `${value}`,
+          $type: 'dimension',
+        },
+      }
   });
   largeType.map((e, i) => {
     const size = Math.round(
@@ -293,16 +290,17 @@ const createTokens = () => {
       baseScaleUnit === 'px'
         ? `${size}${baseScaleUnit}`
         : `${round(size / baseSize, 3)}${baseScaleUnit}`;
-    typographyArray.push({
+    typographyObject = {
+      ...typographyObject,
       [name]: {
-        value: `${value}`,
-        type: 'dimension',
+        $value: `${value}`,
+        $type: 'dimension',
       },
-    });
+    };
   });
 
   /** ICONOGRAPHY TOKENS */
-  let iconsArray = [];
+  let iconsObject = {};
   const smallIcons = new Array(iconSmallQuantity).fill(0);
   const largeIcons = new Array(iconLargeQuantity).fill(0);
 
@@ -317,12 +315,13 @@ const createTokens = () => {
         ? `${size}${baseScaleUnit}`
         : `${round(size / baseSize, 3)}${baseScaleUnit}`;
 
-    iconsArray.push({
+    iconsObject = {
+      ...iconsObject,
       [name]: {
-        value: `${value}`,
-        type: 'dimension',
+        $value: `${value}`,
+        $type: 'dimension',
       },
-    });
+    };
   });
   largeIcons.map((e, i) => {
     const size = Math.round(
@@ -334,16 +333,17 @@ const createTokens = () => {
         ? `${size}${baseScaleUnit}`
         : `${round(size / baseSize, 3)}${baseScaleUnit}`;
 
-    iconsArray.push({
+    iconsObject = {
+      ...iconsObject,
       [name]: {
-        value: `${value}`,
-        type: 'dimension',
+        $value: `${value}`,
+        $type: 'dimension',
       },
-    });
+    };
   });
 
   /** SPACING TOKENS */
-  let spacingArray = [];
+  let spacingObject = {};
   const smallSpacing = new Array(spacingSmallQuantity).fill(0);
   const largeSpacing = new Array(spacingLargeQuantity).fill(0);
 
@@ -358,12 +358,14 @@ const createTokens = () => {
         ? `${size}${baseScaleUnit}`
         : `${round(size / baseSize, 3)}${baseScaleUnit}`;
 
-    spacingArray.push({
+    spacingObject = {
+      ...spacingObject,
       [name]: {
-        value: `${value}`,
-        type: 'dimension',
+        $value: `${value}`,
+        $type: 'dimension',
       },
-    });
+    }
+    
   });
   largeSpacing.map((e, i) => {
     const size = Math.round(
@@ -375,16 +377,17 @@ const createTokens = () => {
         ? `${size}${baseScaleUnit}`
         : `${round(size / baseSize, 3)}${baseScaleUnit}`;
 
-    spacingArray.push({
+    spacingObject = {
+      ...spacingObject,
       [name]: {
-        value: `${value}`,
-        type: 'dimension',
+        $value: `${value}`,
+        $type: 'dimension',
       },
-    });
+    };
   });
 
   /** RADIUS TOKENS */
-  let radiusArray = [];
+  let radiusObject = [];
   const radiusQuantity = buildArray(radiusSmallQuantity, radiusLargeQuantity);
   const radiusSizes = radiusQuantity.map((i) => {
     return calculateScale(
@@ -400,16 +403,17 @@ const createTokens = () => {
       baseScaleUnit === 'px'
         ? `${size}${baseScaleUnit}`
         : `${round(size / baseSize, 3)}${baseScaleUnit}`;
-    radiusArray.push({
+    radiusObject = {
+      ...radiusObject,
       [name]: {
-        value: `${value}`,
-        type: 'dimension',
+        $value: `${value}`,
+        $type: 'dimension',
       },
-    });
+    };
   });
 
   /** ELEVATION TOKENS */
-  let elevationArray = [];
+  let elevationObject = [];
   const elevationQuantity = buildArray(
     elevationSmallQuantity,
     elevationLargeQuantity,
@@ -437,18 +441,20 @@ const createTokens = () => {
         ? `${size}${baseScaleUnit}`
         : `${round(size / baseSize, 3)}${baseScaleUnit}`;
 
-    elevationArray.push({
+    elevationObject = {
+      ...elevationObject,
       [nameX]: {
-        value: `${valueX}`,
-        type: 'dimension',
+        $value: `${valueX}`,
+        $type: 'dimension',
       },
-    });
-    elevationArray.push({
+    }
+    elevationObject = {
+      ...elevationObject,
       [nameY]: {
-        value: `${valueY}`,
-        type: 'dimension',
+        $value: `${valueY}`,
+        $type: 'dimension',
       },
-    });
+    }
   });
 
   /** ---------------------------------------- */
@@ -456,7 +462,7 @@ const createTokens = () => {
   /** ---------------------------------------- */
 
   /** TEXT + ICON PAIRING */
-  let textIconGapArray = [];
+  let textIconGapObject = {};
   const gapScale =
     textIconGapScaleFormula === 'typeScale'
       ? typeScale
@@ -473,7 +479,7 @@ const createTokens = () => {
   let smallTextIconSizes = new Array(typeSmallQuantity).fill(0);
   let largeTextIconSizes = new Array(typeLargeQuantity).fill(0);
   const gapArray =
-    textIconGapScaleFormula === 'typeScale' ? typographyArray : spacingArray;
+    textIconGapScaleFormula === 'typeScale' ? typographyObject : spacingObject;
   const gapReference =
     textIconGapScaleFormula === 'typeScale' ? typeKey : spacingKey;
 
@@ -489,12 +495,13 @@ const createTokens = () => {
         : `${round(gapSize / baseSize, 3)}${baseScaleUnit}`;
 
     const tokenName = `text-icon-gap-${100 + (1 + i) * -1 * 10}`;
-    textIconGapArray.push({
+    textIconGapObject = {
+      ...textIconGapObject,
       [tokenName]: {
-        value: findReferenceToken(gapValue, gapArray, gapReference),
-        type: 'dimension',
+        $value: gapValue,
+        $type: 'dimension',
       },
-    });
+    };
   });
 
   largeTextIconSizes.map((e, i) => {
@@ -510,16 +517,17 @@ const createTokens = () => {
 
     const tokenName = `text-icon-gap-${100 * (i + 1)}`;
 
-    textIconGapArray.push({
+    textIconGapObject = {
+      ...textIconGapObject,
       [tokenName]: {
-        value: findReferenceToken(gapValue, gapArray, gapReference),
-        type: 'dimension',
+        $value: gapValue,
+        $type: 'dimension',
       },
-    });
+    };
   });
 
   /** COMPONENT TOKENS */
-  let componentsArray = [];
+  let componentsObject = {};
   const sizeArray = buildArray(componentSmallQuantity, componentLargeQuantity);
   const densityArray = buildArray(
     componentDensitySmallQuantity,
@@ -653,19 +661,30 @@ const createTokens = () => {
         gapIndexArray[increment],
         componentGapMethod,
       );
-
+      
+      const gapValue = baseScaleUnit === 'px'
+        ? `${gapSize}${baseScaleUnit}`
+        : `${round(gapSize / baseSize, 3)}${baseScaleUnit}`;
+        
       const paddingX = calculateScale(
         baseSize,
         componentPaddingScale,
         paddingXIndexArray[increment],
         componentPaddingMethodFormula,
       );
+      const paddingXValue = baseScaleUnit === 'px'
+        ? `${paddingX}${baseScaleUnit}`
+        : `${round(paddingX / baseSize, 3)}${baseScaleUnit}`;
+
       const paddingY = calculateScale(
         baseSize,
         componentPaddingScale,
         paddingYIndexArray[increment],
         componentPaddingMethodFormula,
       );
+      const paddingYValue = baseScaleUnit === 'px'
+        ? `${paddingY}${baseScaleUnit}`
+        : `${round(paddingY / baseSize, 3)}${baseScaleUnit}`;
 
       const typeSize = calculateScale(
         baseSize,
@@ -673,6 +692,9 @@ const createTokens = () => {
         textSizeIndexArray[increment],
         typeScaleFormula,
       );
+      const typeSizeValue = baseScaleUnit === 'px'
+        ? `${typeSize}${baseScaleUnit}`
+        : `${round(typeSize / baseSize, 3)}${baseScaleUnit}`;
 
       const iconSize = calculateScale(
         baseSize,
@@ -680,6 +702,9 @@ const createTokens = () => {
         iconSizeIndexArray[increment],
         iconScaleFormula,
       );
+      const iconSizeValue = baseScaleUnit === 'px'
+        ? `${iconSize}${baseScaleUnit}`
+        : `${round(iconSize / baseSize, 3)}${baseScaleUnit}`;
 
       const componentMinHeight = calculateScale(
         baseSize,
@@ -687,105 +712,93 @@ const createTokens = () => {
         componentMinHeightIndexArray[increment],
         componentScaleMethodFormula,
       );
+      const componentMinHeightValue = baseScaleUnit === 'px'
+        ? `${componentMinHeight}${baseScaleUnit}`
+        : `${round(componentMinHeight / baseSize, 3)}${baseScaleUnit}`;
+
       const scaledComponentRadius = calculateScale(
         baseRadiusSize,
         radiusScaleFactor,
         componentRadiusIndexArray[increment],
         radiusScaleFormula,
       );
+      const scaledComponentRadiusValue = baseScaleUnit === 'px'
+        ? `${scaledComponentRadius}${baseScaleUnit}`
+        : `${round(scaledComponentRadius / baseSize, 3)}${baseScaleUnit}`;
 
-      componentsArray.push({
+      componentsObject = {
+        ...componentsObject,
         [`${newTokenNamePrefix}-gap`]: {
-          value: findReferenceToken(
-            `${Math.round(gapSize)}${baseScaleUnit}`,
-            textIconGapScaleFormula === 'typeScale'
-              ? typographyArray
-              : spacingArray,
-            textIconGapScaleFormula === 'typeScale' ? typeKey : spacingKey,
-          ),
-          type: 'dimension',
+          $value: gapValue,
+          $type: 'dimension',
         },
-      });
-      componentsArray.push({
-        [`${newTokenNamePrefix}-padding-left`]: {
-          value: findReferenceToken(
-            `${Math.round(paddingX)}${baseScaleUnit}`,
-            componentPaddingMethodOption === 'typeScale'
-              ? typographyArray
-              : spacingArray,
-            componentPaddingMethodOption === 'typeScale' ? typeKey : spacingKey,
-          ),
-          type: 'dimension',
+      };
+
+      componentsObject = {
+        ...componentsObject,
+        [`${newTokenNamePrefix}-left`]: {
+          $value: paddingXValue,
+          $type: 'dimension',
         },
-      });
-      componentsArray.push({
-        [`${newTokenNamePrefix}-padding-right`]: {
-          value: findReferenceToken(
-            `${Math.round(paddingX)}${baseScaleUnit}`,
-            componentPaddingMethodOption === 'typeScale'
-              ? typographyArray
-              : spacingArray,
-            componentPaddingMethodOption === 'typeScale' ? typeKey : spacingKey,
-          ),
-          type: 'dimension',
+      };
+
+      componentsObject = {
+        ...componentsObject,
+        [`${newTokenNamePrefix}-right`]: {
+          $value: paddingXValue,
+          $type: 'dimension',
         },
-      });
-      componentsArray.push({
+      };
+
+      componentsObject = {
+        ...componentsObject,
         [`${newTokenNamePrefix}-top`]: {
-          value: findReferenceToken(
-            `${Math.round(paddingY)}${baseScaleUnit}`,
-            componentPaddingMethodOption === 'typeScale'
-              ? typographyArray
-              : spacingArray,
-            componentPaddingMethodOption === 'typeScale' ? typeKey : spacingKey,
-          ),
-          type: 'dimension',
+          $value: paddingYValue,
+          $type: 'dimension',
         },
-      });
-      componentsArray.push({
+      };
+
+      componentsObject = {
+        ...componentsObject,
         [`${newTokenNamePrefix}-bottom`]: {
-          value: findReferenceToken(
-            `${Math.round(paddingY)}${baseScaleUnit}`,
-            componentPaddingMethodOption === 'typeScale'
-              ? typographyArray
-              : spacingArray,
-            componentPaddingMethodOption === 'typeScale' ? typeKey : spacingKey,
-          ),
-          type: 'dimension',
+          $value: paddingYValue,
+          $type: 'dimension',
         },
-      });
-      componentsArray.push({
+      };
+
+      componentsObject = {
+        ...componentsObject,
         [`${newTokenNamePrefix}-text-size`]: {
-          value: findReferenceToken(
-            `${Math.round(typeSize)}${baseScaleUnit}`,
-            typographyArray,
-            typeKey,
-          ),
-          type: 'dimension',
+          $value: typeSizeValue,
+          $type: 'dimension',
         },
-      });
-      componentsArray.push({
+      };
+
+      componentsObject = {
+        ...componentsObject,
         [`${newTokenNamePrefix}-icon-size`]: {
-          value: findReferenceToken(
-            `${Math.round(iconSize)}${baseScaleUnit}`,
-            iconsArray,
-            iconsKey,
-          ),
-          type: 'dimension',
+          $value: iconSizeValue,
+          $type: 'dimension',
         },
-      });
-      componentsArray.push({
+      };
+
+      componentsObject = {
+        ...componentsObject,
         [`${newTokenNamePrefix}-min-height`]: {
-          value: `${Math.round(componentMinHeight)}${baseScaleUnit}`,
-          type: 'dimension',
+          $value: componentMinHeightValue,
+          $type: 'dimension',
         },
-      });
-      componentsArray.push({
+      };
+
+      componentsObject = {
+        ...componentsObject,
         [`${newTokenNamePrefix}-radius`]: {
-          value: `${Math.round(scaledComponentRadius)}${baseScaleUnit}`,
-          type: 'dimension',
+          $value: scaledComponentRadiusValue,
+          $type: 'dimension',
         },
-      });
+      };
+
+
     });
   });
 
@@ -793,13 +806,13 @@ const createTokens = () => {
 
   /** RETURN TOKENS */
   return {
-    [typeKey]: typographyArray,
-    [iconsKey]: iconsArray,
-    [spacingKey]: spacingArray,
-    [radiusKey]: radiusArray,
-    [elevationKey]: elevationArray,
-    [textIconKey]: textIconGapArray,
-    [componentKey]: componentsArray,
+    [typeKey]: typographyObject,
+    [iconsKey]: iconsObject,
+    [spacingKey]: spacingObject,
+    [radiusKey]: radiusObject,
+    [elevationKey]: elevationObject,
+    [textIconKey]: textIconGapObject,
+    [componentKey]: componentsObject,
     // [containerKey]: containersArray
   };
 };

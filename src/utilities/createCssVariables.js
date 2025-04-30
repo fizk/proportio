@@ -1,39 +1,27 @@
 const createCssVariables = (tokens) => {
-  const classifications = Object.keys(tokens);
-  let CssTokensArray = [];
-  classifications.forEach((classifications) => {
-    const tokenNames = tokens[classifications].map((tokens) => {
-      return Object.keys(tokens)[0];
-    });
-    const tokenPairs = tokens[classifications].map((token, i) => {
-      const value = token[tokenNames[i]].value.includes('px')
-        ? `${token[tokenNames[i]].value}`
-        : `var(--${token[tokenNames[i]].value
-            .replaceAll('{', '')
-            .replaceAll('}', '')
-            .replace('typography.', '')
-            .replace('icons.', '')
-            .replace('spacing.', '')
-            .replace('radius.', '')
-            .replace('elevation', '')})`;
-      CssTokensArray.push({ [`--${tokenNames[i]}`]: value });
-      return document.documentElement.style.setProperty(
-        `--${tokenNames[i]}`,
-        value,
-      );
-    });
-    return tokenPairs;
-  });
-  const formattedCssTokens = JSON.stringify(CssTokensArray)
-    .replaceAll('[', '')
-    .replaceAll(']', '')
-    .replaceAll('{', '')
-    .replaceAll('},', ';\n')
-    .replaceAll('}', '')
-    .replaceAll(':', ': ')
-    .replaceAll('"', '');
+  const CssTokensArray = Object.entries(tokens).reduce((previous, [_, categoryValue]) => {
+    return [
+      ...previous,
+      ...Object.entries(categoryValue).reduce((previous, [variableName, variableValue]) => {
+        return [
+          ...previous,
+          [variableName, variableValue.$type === 'color' ? variableValue.$value.hex: variableValue.$value]
+        ]
+      }, [])
+    ]
+  }, []);
 
-  return formattedCssTokens;
+  CssTokensArray.forEach(([name, value]) => {
+    document.documentElement.style.setProperty(
+      `--${name}`, value
+    );
+  });
+
+  const formattedCssTokens = CssTokensArray.map(([name, value]) => {
+    return `--${name}: ${value};`
+  });
+
+  return formattedCssTokens.join('\n');
 };
 
 export default createCssVariables;
