@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import ComponentControls from '../components/componentControls';
-import ComponentSpecs from '../components/componentSpecs';
-import Panel from '../components/panel';
+import ComponentControls from '../components/ComponentControls';
+import ComponentSpecs from '../components/ComponentSpecs';
+import Panel from '../components/Panel';
 import '../styles/tabs.css';
 
 export default function ComponentsView() {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Panel from '../components/panel';
-import ContainerControls from '../components/containerControls';
-import Containers from '../components/containers';
+import Panel from '../components/Panel';
+import ContainerControls from '../components/ContainerControls';
+import Containers from '../components/Containers';
 
 export default function ContainerView ()  {
     const [showSpecs, setShowSpecs] = useState(true);

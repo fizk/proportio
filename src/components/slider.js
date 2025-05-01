@@ -1,5 +1,6 @@
 import React from "react";
-const Slider = (props) => {
+
+export default function Slider (props) {
   const step = props.step;
   const min = props.min;
   const max = props.max;
@@ -29,5 +30,3 @@ const Slider = (props) => {
     </div>
   );
 };
-
-export default Slider;

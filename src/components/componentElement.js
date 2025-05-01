@@ -1,10 +1,10 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import createSvgIcon from '../utilities/createSvgIcon';
-import '../styles/component.css';
 import { iconState, iconStrokeState } from '../states/iconography';
 import { baseScaleUnitState, baseSizeState } from '../states/base';
 import round from '../utilities/round';
+import '../styles/component.css';
 
 const ComponentElement = (props) => {
   const [icon, setIcon] = useRecoilState(iconState);
@@ -82,7 +82,7 @@ const ComponentElement = (props) => {
           baseScaleUnit === 'px'
             ? round(computedHeight)
             : round(computedHeight / baseSize, 3)
-        }${baseScaleUnit} 
+        }${baseScaleUnit}
         \n (Min: ${
           baseScaleUnit === 'px'
             ? round(componentMinHeight)

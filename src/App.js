@@ -5,9 +5,8 @@ import TypographyView from './views/TypographyView';
 import ShapesView from './views/ShapesView';
 import Components from './views/ComponentsView';
 import Header from './components/header';
-import ExportDialog from './components/exportDialog';
+import ExportDialog from './components/ExportDialog';
 import ContainerView from './views/ContainerView';
-import BuyMeCoffee from './components/buyMeCoffee';
 
 import './styles/app.css';
 import './styles/formElements.css';
@@ -45,7 +44,6 @@ function App() {
                         <ContainerView />
                     </TabPanel>
 
-                    <BuyMeCoffee />
                 </Tabs>
             </div>
         </RecoilRoot>

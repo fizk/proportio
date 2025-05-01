@@ -1,82 +1,71 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import SpacingElement from './spacingElement';
+import SpacingElement from './SpacingElement';
 import calculateScale from '../utilities/calculateScale';
-import '../styles/spacing.css';
 import { baseScaleUnitState, baseSizeState } from '../states/base';
 import {
-  spacingScaleFactorState,
-  spacingSmallQuantityState,
-  spacingLargeQuantityState,
-  spacingFormulaState,
+    spacingScaleFactorState,
+    spacingSmallQuantityState,
+    spacingLargeQuantityState,
+    spacingFormulaState,
 } from '../states/spacing';
 import round from '../utilities/round';
+import '../styles/spacing.css';
 
-const Spacing = (props) => {
-  const [baseSize, setBaseSize] = useRecoilState(baseSizeState);
-  const [spacingScaleFactor, setSpacingScaleFactor] = useRecoilState(
-    spacingScaleFactorState,
-  );
-  const [spacingSmallQuantity, setSpacingSmallQuantity] = useRecoilState(
-    spacingSmallQuantityState,
-  );
-  const [spacingLargeQuantity, setSpacingLargeQuantity] = useRecoilState(
-    spacingLargeQuantityState,
-  );
-  const [spacingFormula, setSpacingFormula] =
-    useRecoilState(spacingFormulaState);
-  const [baseScaleUnit, setBaseScaleUnit] = useRecoilState(baseScaleUnitState);
+export default function Spacing({spacerLineHeight}) {
+    const [baseSize, setBaseSize] = useRecoilState(baseSizeState);
+    const [spacingScaleFactor, setSpacingScaleFactor] = useRecoilState(spacingScaleFactorState,);
+    const [spacingSmallQuantity, setSpacingSmallQuantity] = useRecoilState(spacingSmallQuantityState,);
+    const [spacingLargeQuantity, setSpacingLargeQuantity] = useRecoilState(spacingLargeQuantityState,);
+    const [spacingFormula, setSpacingFormula] = useRecoilState(spacingFormulaState);
+    const [baseScaleUnit, setBaseScaleUnit] = useRecoilState(baseScaleUnitState);
 
-  const spacerLineHeight = props.spacerLineHeight;
+    let smallSizeArray = new Array(spacingSmallQuantity).fill(0);
+    let largeSizeArray = new Array(spacingLargeQuantity).fill(0);
 
-  let smallSizeArray = new Array(spacingSmallQuantity).fill(0);
-  let largeSizeArray = new Array(spacingLargeQuantity).fill(0);
+    smallSizeArray = smallSizeArray.map((e, i) => {
+        let increment = (i + 1) * -1;
+        const size = Math.round(
+            calculateScale(baseSize, spacingScaleFactor, increment, spacingFormula),
+        );
+        const name = `spacing-${100 + increment * 10}`;
+        const value = baseScaleUnit === 'px' ? size : round(size / baseSize, 3);
 
-  smallSizeArray = smallSizeArray.map((e, i) => {
-    let increment = (i + 1) * -1;
-    const size = Math.round(
-      calculateScale(baseSize, spacingScaleFactor, increment, spacingFormula),
-    );
-    const name = `spacing-${100 + increment * 10}`;
-    const value = baseScaleUnit === 'px' ? size : round(size / baseSize, 3);
+        return size;
+    });
+    smallSizeArray = smallSizeArray.reverse();
+    largeSizeArray = largeSizeArray.map((e, i) => {
+        const size = Math.round(
+            calculateScale(baseSize, spacingScaleFactor, i, spacingFormula),
+        );
+        const name = `spacing-${100 * (i + 1)}`;
+        const value = baseScaleUnit === 'px' ? size : round(size / baseSize, 3);
 
-    return size;
-  });
-  smallSizeArray = smallSizeArray.reverse();
-  largeSizeArray = largeSizeArray.map((e, i) => {
-    const size = Math.round(
-      calculateScale(baseSize, spacingScaleFactor, i, spacingFormula),
-    );
-    const name = `spacing-${100 * (i + 1)}`;
-    const value = baseScaleUnit === 'px' ? size : round(size / baseSize, 3);
+        const object = {
+            [name]: {
+                value: `${value}${baseScaleUnit}`,
+                type: 'dimension',
+            },
+        };
+        return calculateScale(baseSize, spacingScaleFactor, i, spacingFormula);
+    });
 
-    const object = {
-      [name]: {
-        value: `${value}${baseScaleUnit}`,
-        type: 'dimension',
-      },
-    };
-    return calculateScale(baseSize, spacingScaleFactor, i, spacingFormula);
-  });
+    const spacingSizes = smallSizeArray.concat(largeSizeArray);
 
-  const spacingSizes = smallSizeArray.concat(largeSizeArray);
+    const spacingElements = spacingSizes.map((size, i) => {
+        return (
+            <SpacingElement
+                key={`spacing-${size}-${i}`}
+                size={size}
+                spacerLineHeight={spacerLineHeight}
+            />
+        );
+    });
 
-  const spacingElements = spacingSizes.map((size, i) => {
     return (
-      <SpacingElement
-        key={`spacing-${size}-${i}`}
-        size={size}
-        spacerLineHeight={spacerLineHeight}
-      />
+        <div className="column">
+            <h3>Spacing</h3>
+            <div id="spacingWrapper">{spacingElements}</div>
+        </div>
     );
-  });
-
-  return (
-    <div className="column">
-      <h3>Spacing</h3>
-      <div id="spacingWrapper">{spacingElements}</div>
-    </div>
-  );
 };
-
-export default Spacing;

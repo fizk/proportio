@@ -1,71 +1,56 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import calculateScale from '../utilities/calculateScale';
-import '../styles/elevation.css';
 import buildArray from '../utilities/buildArray';
-import ElevationElement from './elevationElement';
+import ElevationElement from './ElevationElement';
 import {
-  baseElevationSizeState,
-  elevationScaleFactorState,
-  elevationSmallQuantityState,
-  elevationLargeQuantityState,
-  elevationScaleFormulaState,
-  elevationOffsetYState,
+    baseElevationSizeState,
+    elevationScaleFactorState,
+    elevationSmallQuantityState,
+    elevationLargeQuantityState,
+    elevationScaleFormulaState,
+    elevationOffsetYState,
 } from '../states/elevation';
 import { baseScaleUnitState, baseSizeState } from '../states/base';
-import round from '../utilities/round';
+import '../styles/elevation.css';
 
-const Elevation = (props) => {
-  const [baseSize, setBaseSize] = useRecoilState(baseSizeState);
-  const [baseScaleUnit, setBaseScaleUnit] = useRecoilState(baseScaleUnitState);
-  const [baseElevationSize, setBaseElevationSize] = useRecoilState(
-    baseElevationSizeState,
-  );
-  const [elevationScaleFactor, setElevationScaleFactor] = useRecoilState(
-    elevationScaleFactorState,
-  );
-  const [elevationSmallQuantity, setElevationSmallQuantity] = useRecoilState(
-    elevationSmallQuantityState,
-  );
-  const [elevationLargeQuantity, setElevationLargeQuantity] = useRecoilState(
-    elevationLargeQuantityState,
-  );
-  const [elevationScaleFormula, setElevationScaleFormula] = useRecoilState(
-    elevationScaleFormulaState,
-  );
-  const [elevationOffsetY, setElevationOffsetY] = useRecoilState(
-    elevationOffsetYState,
-  );
+export default function Elevation() {
+    const [baseSize, setBaseSize] = useRecoilState(baseSizeState);
+    const [baseScaleUnit, setBaseScaleUnit] = useRecoilState(baseScaleUnitState);
+    const [baseElevationSize, setBaseElevationSize] = useRecoilState(baseElevationSizeState,);
+    const [elevationScaleFactor, setElevationScaleFactor] = useRecoilState(elevationScaleFactorState,);
+    const [elevationSmallQuantity, setElevationSmallQuantity] = useRecoilState(elevationSmallQuantityState,);
+    const [elevationLargeQuantity, setElevationLargeQuantity] = useRecoilState(elevationLargeQuantityState,);
+    const [elevationScaleFormula, setElevationScaleFormula] = useRecoilState(elevationScaleFormulaState,);
+    const [elevationOffsetY, setElevationOffsetY] = useRecoilState(elevationOffsetYState,);
 
-  let sizeArray = buildArray(elevationSmallQuantity, elevationLargeQuantity);
-  const sizes = sizeArray.map((i) => {
-    return calculateScale(
-      baseElevationSize,
-      elevationScaleFactor,
-      i,
-      elevationScaleFormula,
-    );
-  });
-  const offsets = sizes.map((size) => {
-    return size * (elevationOffsetY / 100);
-  });
+    let sizeArray = buildArray(elevationSmallQuantity, elevationLargeQuantity);
+    const sizes = sizeArray.map((i) => {
+        return calculateScale(
+            baseElevationSize,
+            elevationScaleFactor,
+            i,
+            elevationScaleFormula,
+        );
+    });
+    const offsets = sizes.map((size) => {
+        return size * (elevationOffsetY / 100);
+    });
 
-  const elevationElements = sizes.map((size, i) => {
+    const elevationElements = sizes.map((size, i) => {
+        return (
+            <ElevationElement
+                key={`elevation-${i}}`}
+                offsetY={offsets[i]}
+                elevation={size}
+            />
+        );
+    });
+
     return (
-      <ElevationElement
-        key={`elevation-${i}}`}
-        offsetY={offsets[i]}
-        elevation={size}
-      />
+        <div className="column">
+            <h3>Elevation</h3>
+            <div id="elevationWrapper">{elevationElements}</div>
+        </div>
     );
-  });
-
-  return (
-    <div className="column">
-      <h3>Elevation</h3>
-      <div id="elevationWrapper">{elevationElements}</div>
-    </div>
-  );
 };
-
-export default Elevation;
