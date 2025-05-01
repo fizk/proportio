@@ -2,10 +2,9 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require('path');
 
-
 module.exports = {
     entry: {
-        home: './src/index.js',
+        app: './src/index.js',
     },
     mode: 'development',
     module: {
@@ -19,24 +18,35 @@ module.exports = {
                 test: /\.css$/i,
                 use: [MiniCssExtractPlugin.loader, "css-loader"],
             },
+            {
+                test: /\.png/,
+                type: 'asset/resource',
+                generator: { filename: '[name][ext]' },
+            },
+            {
+                test: /\.svg/,
+                type: 'asset/resource',
+                generator: { filename: '[name][ext]' },
+            },
+            {
+                test: /\.json/,
+                type: 'asset/resource',
+                generator: { filename: '[name][ext]' },
+            },
         ],
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Electronic Dashboard',
+            title: 'Proportio.app',
             template: './src/index.html',
-            // publicPath: '/electronic/',
             scriptLoading: 'defer',
             minify: true,
             hash: true,
             xhtml: true,
         }),
-        new MiniCssExtractPlugin({filename: 'app.css'}),
+        new MiniCssExtractPlugin({ filename: 'app.css' }),
     ],
     devServer: {
-        // static: {
-        //     directory: path.join(__dirname, 'public'),
-        // },
         compress: true,
         port: 9000,
     },
