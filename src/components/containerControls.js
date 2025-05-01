@@ -58,6 +58,7 @@ export default function ContainerControls ({containerElevation, setContainerElev
                             onInput={(e) => setContainerSmallSizes(Number(e.target.value))}
                             step="1"
                             min="0"
+                            max="9"
                             defaultValue={containerSmallSizes}
                         />
                     </div>
@@ -68,7 +69,8 @@ export default function ContainerControls ({containerElevation, setContainerElev
                             type="number"
                             onInput={(e) => setContainerLargeSizes(Number(e.target.value))}
                             step="1"
-                            min="0"
+                            min="1"
+                            max="10"
                             defaultValue={containerLargeSizes}
                         />
                     </div>
