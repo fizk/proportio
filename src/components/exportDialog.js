@@ -4,6 +4,7 @@ import JSONPretty from 'react-json-pretty';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import createCssVariables from '../utilities/createCssVariables';
 import createTokens from '../utilities/createTokens';
+import formatForFigma from '../utilities/figma';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import '../styles/modal.css';
 
@@ -48,6 +49,7 @@ export default function ExportDialog(props) {
                 <TabList>
                     <Tab>W3C tokens</Tab>
                     <Tab>CSS variables</Tab>
+                    <Tab>Figma</Tab>
                 </TabList>
                 <TabPanel className="codeOutput">
                     <div
@@ -93,6 +95,29 @@ export default function ExportDialog(props) {
                         }}
                     >
                         <button>{ButtonTextCssVars}</button>
+                    </CopyToClipboard>
+                </TabPanel>
+                <TabPanel className="codeOutput">
+                    <div
+                        style={{
+                            width: '490px',
+                            overflow: 'auto',
+                            position: 'relative',
+                            maxHeight: 'calc(100vh - 340px)',
+                        }}
+                    >
+                        <JSONPretty data={formatForFigma(tokens)} theme={myTheme} />
+                    </div>
+                    <CopyToClipboard
+                        text={JSON.stringify(formatForFigma(tokens))}
+                        onCopy={() => {
+                            setCopiedTokens(true);
+                            setTimeout(() => {
+                                setCopiedTokens(false);
+                            }, 2000);
+                        }}
+                    >
+                        <button>{ButtonTextTokens}</button>
                     </CopyToClipboard>
                 </TabPanel>
             </Tabs>

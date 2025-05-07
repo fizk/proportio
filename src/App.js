@@ -7,6 +7,7 @@ import Components from './views/ComponentsView';
 import Header from './components/header';
 import ExportDialog from './components/ExportDialog';
 import ContainerView from './views/ContainerView';
+import ColorView from './views/ColorView';
 
 import './styles/app.css';
 import './styles/formElements.css';
@@ -28,6 +29,7 @@ function App() {
                             <Tab className="App_tab">Shape</Tab>
                             <Tab className="App_tab">Components</Tab>
                             <Tab className="App_tab">Containers</Tab>
+                            <Tab className="App_tab">Color</Tab>
                         </TabList>
                     </Header>
 
@@ -42,6 +44,9 @@ function App() {
                     </TabPanel>
                     <TabPanel className="App_tabPanel">
                         <ContainerView />
+                    </TabPanel>
+                    <TabPanel className="App_tabPanel">
+                        <ColorView />
                     </TabPanel>
 
                 </Tabs>

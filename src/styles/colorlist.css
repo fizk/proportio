@@ -1,0 +1,44 @@
+.colorlist {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+}
+
+.colorlist__item {
+    flex-basis: auto;
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.colorlist__color {
+    flex-grow: 1;
+    display: flex;
+    align-items: anchor-center;
+    justify-content: center;
+}
+.colorlist__color--light {
+    color: black;
+}
+.colorlist__color--dark {
+    color: white;
+}
+
+.colorlist__shades {
+    flex-grow: 1;
+
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.colorlist__shade-item {
+    flex-grow: 1;
+}

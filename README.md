@@ -39,10 +39,6 @@ Future additions:
 - [ ] URL sharing option
 - [ ] Mobile friendly design
 
-## Development
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ### Available Scripts
 
 In the project directory, you can run:
@@ -62,3 +58,10 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
+
+### Deploy
+
+```sh
+npm run build; \
+scp -r ~/workspace/proportio/dist/* server:/var/www/token.einarvalur.co/
+ ```
