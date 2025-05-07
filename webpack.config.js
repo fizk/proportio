@@ -4,15 +4,15 @@ const path = require('path');
 
 module.exports = {
     entry: {
-        app: './src/index.js',
+        app: './src/index.tsx',
     },
     mode: 'development',
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
+                test: /\.tsx?$/,
+                use: 'ts-loader',
                 exclude: /node_modules/,
-                use: ['babel-loader'],
             },
             {
                 test: /\.css$/i,
@@ -34,6 +34,9 @@ module.exports = {
                 generator: { filename: '[name][ext]' },
             },
         ],
+    },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js'],
     },
     plugins: [
         new HtmlWebpackPlugin({
