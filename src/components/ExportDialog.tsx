@@ -55,7 +55,7 @@ export default function ExportDialog(props: Props) {
                 <TabList>
                     <Tab>W3C tokens</Tab>
                     <Tab>CSS variables</Tab>
-                    {/* <Tab>Figma</Tab> */}
+                    <Tab>Figma</Tab>
                 </TabList>
                 <TabPanel className="codeOutput">
                     <div
@@ -103,7 +103,7 @@ export default function ExportDialog(props: Props) {
                         <button>{ButtonTextCssVars}</button>
                     </CopyToClipboard>
                 </TabPanel>
-                {/* <TabPanel className="codeOutput">
+                <TabPanel className="codeOutput">
                     <div
                         style={{
                             width: '490px',
@@ -125,7 +125,7 @@ export default function ExportDialog(props: Props) {
                     >
                         <button>{ButtonTextTokens}</button>
                     </CopyToClipboard>
-                </TabPanel> */}
+                </TabPanel>
             </Tabs>
         </ReactModal>
     );

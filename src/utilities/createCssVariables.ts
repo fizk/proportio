@@ -1,27 +1,56 @@
-import {type W3cDesignToken } from './createTokens'
+import {
+    type W3cDesignToken,
+    type Modules
+} from './createTokens'
+
+
+const getValue = (value: Modules): string => {
+    switch (value.$type) {
+        case 'cubicBezier': {
+            return value.$value.join(' ')
+        } break;
+        case 'duration': {
+            return `${value.$value.value}${value.$value.unit}`
+        }; break;
+        case 'fontFamily': {
+            return Array.isArray(value.$value) ? value.$value.join(' ') : value.$value ;
+        }; break;
+        case 'color': {
+            return value.$value.hex;
+        } break;
+        case 'dimension': {
+            return `${value.$value.value}${value.$value.unit}`
+        } break;
+        case 'number': {
+            return String(value.$value)
+        } break;
+        default: {
+            return ''
+        }
+    }
+}
 
 const createCssVariables = (tokens: W3cDesignToken) => {
     //@ts-ignore
-    const CssTokensArray: Array<[string, string]> = Object.entries(tokens).reduce((previous, [_, categoryValue]) => {
+    const CssTokensArray: any = Object.entries(tokens).reduce((previous, [_, categoryValue]) => {
         return [
             ...previous,
-            //@ts-ignore
-            ...Object.entries(categoryValue).reduce((previous, [variableName, variableValue]) => {
+            ...Object.entries(categoryValue).reduce<[string, string|number][]>((previous, [variableName, variableValue]) => {
                 return [
                     ...previous,
-                    [variableName, variableValue.$type === 'color' ? variableValue.$value.hex : variableValue.$value]
+                    [variableName, getValue(variableValue)]
                 ]
             }, [])
         ]
     }, []);
 
-    CssTokensArray.forEach(([name, value]) => {
+    (CssTokensArray as [string, string][]).forEach(([name, value]) => {
         document.documentElement.style.setProperty(
             `--${name}`, value
         );
     });
 
-    const formattedCssTokens = CssTokensArray.map(([name, value]) => {
+    const formattedCssTokens = (CssTokensArray as [string, string][]).map(([name, value]) => {
         return `--${name}: ${value};`
     });
 

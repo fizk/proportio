@@ -1,3 +1,6 @@
+import { type W3cDesignToken, NumberModule, DimensionModule, ColorModule } from './createTokens'
+
+type Module = NumberModule | DimensionModule | ColorModule;
 
 // // //
 // //
@@ -7,37 +10,19 @@ const $COLLECTION_NAME = 'Collection 2';
 // //
 // // //
 
-type ColorValue =
-{
-    $value: {
-        alpha: number
-        components: number[]
-    }
-    $type: 'color'
-} |
-{
-    $value: string
-    $type: 'dimension'
-} |
-{
-    $value: string
-    $type: 'number'
-}
-
-function remToPx(value: string, base = 14) {
-
-    const result = value.match(/(?<value>[0-9\.]+)(?<unit>[a-z]+)/);
-    switch (result?.groups?.unit) {
-        case 'rem': {
-            return base * parseFloat(result?.groups?.value);
+function normaliseValue(value: DimensionModule, base: number = 14) {
+    switch (value.$value.unit) {
+        case 'px': {
+            return value.$value.value
         } break;
-        default:
-            return parseFloat(result?.groups?.value || '0');
-            break;
+        case 'rem': {
+            return base * value.$value.value;
+        } break;
+        default: return value.$value.value;
     }
 }
 
-function formatValue(name: string, value: ColorValue) {
+function formatValue(name: string, value: Module) {
     switch (value.$type) {
         case 'color': {
             return {
@@ -81,7 +66,7 @@ function formatValue(name: string, value: ColorValue) {
                 resolvedValuesByMode: {
                     "311:0": {
                         alias: null,
-                        resolvedValue: remToPx(value.$value)
+                        resolvedValue: normaliseValue(value)
                     }
                 },
                 scopes: [
@@ -89,7 +74,7 @@ function formatValue(name: string, value: ColorValue) {
                 ],
                 type: "FLOAT",
                 valuesByMode: {
-                    "311:0": remToPx(value.$value)
+                    "311:0": normaliseValue(value)
                 }
             }
         } break;
@@ -103,7 +88,7 @@ function formatValue(name: string, value: ColorValue) {
                 resolvedValuesByMode: {
                     "311:0": {
                         alias: null,
-                        resolvedValue: parseFloat(value.$value)
+                        resolvedValue: value.$value
                     }
                 },
                 scopes: [
@@ -111,7 +96,7 @@ function formatValue(name: string, value: ColorValue) {
                 ],
                 type: "FLOAT",
                 valuesByMode: {
-                    "311:0": parseFloat(value.$value)
+                    "311:0": value.$value
                 }
             }
         } break;

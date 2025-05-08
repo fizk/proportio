@@ -169,9 +169,9 @@ const createTokens = (): W3cDesignToken => {
 
 
     /** TYPOGRAPHY TOKENS */
-    let typographyObject: { [key: string]: DimensionModule | NumberModule} = {
+    let typographyObject: { [key: string]: DimensionModule | NumberModule | FontWeightModule } = {
         'text-lineheight': {
-            $value: `${typeScale}`,
+            $value: typeScale,
             $type: 'number'
         },
         'text-base': {
@@ -182,8 +182,8 @@ const createTokens = (): W3cDesignToken => {
             }
         },
         'text-weight': {
-            $value: `${typeFontWeight}`,
-            $type: 'number'
+            $value: typeFontWeight,
+            $type: 'fontWeight'
         },
     };
     const smallType = new Array(typeSmallQuantity).fill(0);
@@ -197,8 +197,8 @@ const createTokens = (): W3cDesignToken => {
         const name = `text-size-${100 + increment * 10}`;
         const value =
             baseScaleUnit === 'px'
-                ? `${size}${baseScaleUnit}`
-                : `${round(size / baseSize, 3)}${baseScaleUnit}`;
+                ? size
+                : round(size / baseSize, 3)
         typographyObject = {
             ...typographyObject,
             [name]: {
@@ -217,8 +217,8 @@ const createTokens = (): W3cDesignToken => {
         const name = `text-size-${100 * (i + 1)}`;
         const value =
             baseScaleUnit === 'px'
-                ? `${size}${baseScaleUnit}`
-                : `${round(size / baseSize, 3)}${baseScaleUnit}`;
+                ? size
+                : round(size / baseSize, 3);
         typographyObject = {
             ...typographyObject,
             [name]: {
@@ -232,7 +232,7 @@ const createTokens = (): W3cDesignToken => {
     });
 
     /** ICONOGRAPHY TOKENS */
-    let iconsObject = {};
+    let iconsObject: {[key: string]: DimensionModule} = {};
     const smallIcons = new Array(iconSmallQuantity).fill(0);
     const largeIcons = new Array(iconLargeQuantity).fill(0);
 
@@ -244,13 +244,13 @@ const createTokens = (): W3cDesignToken => {
         const name = `icon-size-${100 + increment * 10}`;
         const value =
             baseScaleUnit === 'px'
-                ? `${size}${baseScaleUnit}`
-                : `${round(size / baseSize, 3)}${baseScaleUnit}`;
+                ? size
+                : round(size / baseSize, 3);
 
         iconsObject = {
             ...iconsObject,
             [name]: {
-                $value: `${value}`,
+                $value: {value, unit: baseScaleUnit},
                 $type: 'dimension',
             },
         };
@@ -262,20 +262,20 @@ const createTokens = (): W3cDesignToken => {
         const name = `icon-size-${100 * (i + 1)}`;
         const value =
             baseScaleUnit === 'px'
-                ? `${size}${baseScaleUnit}`
-                : `${round(size / baseSize, 3)}${baseScaleUnit}`;
+                ? size
+                : round(size / baseSize, 3);
 
         iconsObject = {
             ...iconsObject,
             [name]: {
-                $value: `${value}`,
+                $value: {value, unit: baseScaleUnit},
                 $type: 'dimension',
             },
         };
     });
 
     /** SPACING TOKENS */
-    let spacingObject = {};
+    let spacingObject: {[key: string]: DimensionModule} = {};
     const smallSpacing = new Array(spacingSmallQuantity).fill(0);
     const largeSpacing = new Array(spacingLargeQuantity).fill(0);
 
@@ -287,13 +287,13 @@ const createTokens = (): W3cDesignToken => {
         const name = `spacing-${100 + increment * 10}`;
         const value =
             baseScaleUnit === 'px'
-                ? `${size}${baseScaleUnit}`
-                : `${round(size / baseSize, 3)}${baseScaleUnit}`;
+                ? size
+                : round(size / baseSize, 3);
 
         spacingObject = {
             ...spacingObject,
             [name]: {
-                $value: `${value}`,
+                $value: {value, unit: baseScaleUnit},
                 $type: 'dimension',
             },
         }
@@ -306,13 +306,13 @@ const createTokens = (): W3cDesignToken => {
         const name = `spacing-${100 * (i + 1)}`;
         const value =
             baseScaleUnit === 'px'
-                ? `${size}${baseScaleUnit}`
-                : `${round(size / baseSize, 3)}${baseScaleUnit}`;
+                ? size
+                : round(size / baseSize, 3);
 
         spacingObject = {
             ...spacingObject,
             [name]: {
-                $value: `${value}`,
+                $value: {value, unit: baseScaleUnit},
                 $type: 'dimension',
             },
         };
@@ -333,8 +333,8 @@ const createTokens = (): W3cDesignToken => {
         const name = `radius-${100 * (i + 1)}`;
         const value =
             baseScaleUnit === 'px'
-                ? `${size}${baseScaleUnit}`
-                : `${round(size / baseSize, 3)}${baseScaleUnit}`;
+                ? size
+                : round(size / baseSize, 3);
         radiusObject = {
             ...radiusObject,
             [name]: {
@@ -369,12 +369,12 @@ const createTokens = (): W3cDesignToken => {
         const nameY = `elevation-${100 * (i + 1)}-blur`;
         const valueX =
             baseScaleUnit === 'px'
-                ? `${offsets[i]}${baseScaleUnit}`
-                : `${round(offsets[i] / baseSize, 3)}${baseScaleUnit}`;
+                ? offsets[i]
+                : round(offsets[i] / baseSize, 3);
         const valueY =
             baseScaleUnit === 'px'
-                ? `${size}${baseScaleUnit}`
-                : `${round(size / baseSize, 3)}${baseScaleUnit}`;
+                ? size
+                : round(size / baseSize, 3);
 
         elevationObject = {
             ...elevationObject,
@@ -403,7 +403,7 @@ const createTokens = (): W3cDesignToken => {
     /** ---------------------------------------- */
 
     /** TEXT + ICON PAIRING */
-    let textIconGapObject = {};
+    let textIconGapObject: {[key: string]: DimensionModule} = {};
     const gapScale =
         textIconGapScaleFormula === 'typeScale'
             ? typeScale
@@ -432,14 +432,14 @@ const createTokens = (): W3cDesignToken => {
 
         const gapValue =
             baseScaleUnit === 'px'
-                ? `${gapSize}${baseScaleUnit}`
-                : `${round(gapSize / baseSize, 3)}${baseScaleUnit}`;
+                ? gapSize
+                : round(gapSize / baseSize, 3);
 
         const tokenName = `text-icon-gap-${100 + (1 + i) * -1 * 10}`;
         textIconGapObject = {
             ...textIconGapObject,
             [tokenName]: {
-                $value: gapValue,
+                $value: {value: gapValue, unit: baseScaleUnit},
                 $type: 'dimension',
             },
         };
@@ -453,22 +453,22 @@ const createTokens = (): W3cDesignToken => {
 
         const gapValue =
             baseScaleUnit === 'px'
-                ? `${gapSize}${baseScaleUnit}`
-                : `${round(gapSize / baseSize, 3)}${baseScaleUnit}`;
+                ? gapSize
+                : round(gapSize / baseSize, 3);
 
         const tokenName = `text-icon-gap-${100 * (i + 1)}`;
 
         textIconGapObject = {
             ...textIconGapObject,
             [tokenName]: {
-                $value: gapValue,
+                $value: {value: gapValue, unit: baseScaleUnit},
                 $type: 'dimension',
             },
         };
     });
 
     /** COMPONENT TOKENS */
-    let componentsObject = {};
+    let componentsObject: {[key: string]: DimensionModule} = {};
     const sizeArray = buildArray(componentSmallQuantity, componentLargeQuantity);
     const densityArray = buildArray(
         componentDensitySmallQuantity,
@@ -598,8 +598,8 @@ const createTokens = (): W3cDesignToken => {
             );
 
             const gapValue = baseScaleUnit === 'px'
-                ? `${gapSize}${baseScaleUnit}`
-                : `${round(gapSize / baseSize, 3)}${baseScaleUnit}`;
+                ? gapSize
+                : round(gapSize / baseSize, 3);
 
             const paddingX = calculateScale(
                 baseSize,
@@ -608,8 +608,8 @@ const createTokens = (): W3cDesignToken => {
                 componentPaddingMethodFormula,
             );
             const paddingXValue = baseScaleUnit === 'px'
-                ? `${paddingX}${baseScaleUnit}`
-                : `${round(paddingX / baseSize, 3)}${baseScaleUnit}`;
+                ? paddingX
+                : round(paddingX / baseSize, 3);
 
             const paddingY = calculateScale(
                 baseSize,
@@ -618,8 +618,8 @@ const createTokens = (): W3cDesignToken => {
                 componentPaddingMethodFormula,
             );
             const paddingYValue = baseScaleUnit === 'px'
-                ? `${paddingY}${baseScaleUnit}`
-                : `${round(paddingY / baseSize, 3)}${baseScaleUnit}`;
+                ? paddingY
+                : round(paddingY / baseSize, 3);
 
             const typeSize = calculateScale(
                 baseSize,
@@ -628,8 +628,8 @@ const createTokens = (): W3cDesignToken => {
                 typeScaleFormula,
             );
             const typeSizeValue = baseScaleUnit === 'px'
-                ? `${typeSize}${baseScaleUnit}`
-                : `${round(typeSize / baseSize, 3)}${baseScaleUnit}`;
+                ? typeSize
+                : round(typeSize / baseSize, 3);
 
             const iconSize = calculateScale(
                 baseSize,
@@ -638,8 +638,8 @@ const createTokens = (): W3cDesignToken => {
                 iconScaleFormula,
             );
             const iconSizeValue = baseScaleUnit === 'px'
-                ? `${iconSize}${baseScaleUnit}`
-                : `${round(iconSize / baseSize, 3)}${baseScaleUnit}`;
+                ? iconSize
+                : round(iconSize / baseSize, 3);
 
             const componentMinHeight = calculateScale(
                 baseSize,
@@ -648,8 +648,8 @@ const createTokens = (): W3cDesignToken => {
                 componentScaleMethodFormula,
             );
             const componentMinHeightValue = baseScaleUnit === 'px'
-                ? `${componentMinHeight}${baseScaleUnit}`
-                : `${round(componentMinHeight / baseSize, 3)}${baseScaleUnit}`;
+                ? componentMinHeight
+                : round(componentMinHeight / baseSize, 3);
 
             const scaledComponentRadius = calculateScale(
                 baseRadiusSize,
@@ -658,13 +658,16 @@ const createTokens = (): W3cDesignToken => {
                 radiusScaleFormula,
             );
             const scaledComponentRadiusValue = baseScaleUnit === 'px'
-                ? `${scaledComponentRadius}${baseScaleUnit}`
-                : `${round(scaledComponentRadius / baseSize, 3)}${baseScaleUnit}`;
+                ? scaledComponentRadius
+                : round(scaledComponentRadius / baseSize, 3);
 
             componentsObject = {
                 ...componentsObject,
                 [`${newTokenNamePrefix}-gap`]: {
-                    $value: gapValue,
+                    $value: {
+                        value: gapValue,
+                        unit: baseScaleUnit
+                    },
                     $type: 'dimension',
                 },
             };
@@ -672,7 +675,10 @@ const createTokens = (): W3cDesignToken => {
             componentsObject = {
                 ...componentsObject,
                 [`${newTokenNamePrefix}-left`]: {
-                    $value: paddingXValue,
+                    $value: {
+                        value: paddingXValue,
+                        unit: baseScaleUnit
+                    },
                     $type: 'dimension',
                 },
             };
@@ -680,7 +686,10 @@ const createTokens = (): W3cDesignToken => {
             componentsObject = {
                 ...componentsObject,
                 [`${newTokenNamePrefix}-right`]: {
-                    $value: paddingXValue,
+                    $value: {
+                        value: paddingXValue,
+                        unit: baseScaleUnit
+                    },
                     $type: 'dimension',
                 },
             };
@@ -688,7 +697,10 @@ const createTokens = (): W3cDesignToken => {
             componentsObject = {
                 ...componentsObject,
                 [`${newTokenNamePrefix}-top`]: {
-                    $value: paddingYValue,
+                    $value: {
+                        value: paddingYValue,
+                        unit: baseScaleUnit
+                    },
                     $type: 'dimension',
                 },
             };
@@ -696,7 +708,10 @@ const createTokens = (): W3cDesignToken => {
             componentsObject = {
                 ...componentsObject,
                 [`${newTokenNamePrefix}-bottom`]: {
-                    $value: paddingYValue,
+                    $value: {
+                        value: paddingYValue,
+                        unit: baseScaleUnit
+                    },
                     $type: 'dimension',
                 },
             };
@@ -704,7 +719,10 @@ const createTokens = (): W3cDesignToken => {
             componentsObject = {
                 ...componentsObject,
                 [`${newTokenNamePrefix}-text-size`]: {
-                    $value: typeSizeValue,
+                    $value: {
+                        value: typeSizeValue,
+                        unit: baseScaleUnit
+                    },
                     $type: 'dimension',
                 },
             };
@@ -712,7 +730,10 @@ const createTokens = (): W3cDesignToken => {
             componentsObject = {
                 ...componentsObject,
                 [`${newTokenNamePrefix}-icon-size`]: {
-                    $value: iconSizeValue,
+                    $value: {
+                        value: iconSizeValue,
+                        unit: baseScaleUnit
+                    },
                     $type: 'dimension',
                 },
             };
@@ -720,7 +741,10 @@ const createTokens = (): W3cDesignToken => {
             componentsObject = {
                 ...componentsObject,
                 [`${newTokenNamePrefix}-min-height`]: {
-                    $value: componentMinHeightValue,
+                    $value: {
+                        value: componentMinHeightValue,
+                        unit: baseScaleUnit
+                    },
                     $type: 'dimension',
                 },
             };
@@ -728,7 +752,10 @@ const createTokens = (): W3cDesignToken => {
             componentsObject = {
                 ...componentsObject,
                 [`${newTokenNamePrefix}-radius`]: {
-                    $value: scaledComponentRadiusValue,
+                    $value: {
+                        value: scaledComponentRadiusValue,
+                        unit: baseScaleUnit
+                    },
                     $type: 'dimension',
                 },
             };
@@ -739,7 +766,7 @@ const createTokens = (): W3cDesignToken => {
 
     /** CONTAINER TOKENS */
 
-    let containersObject = {};
+    let containersObject: {[key: string]: DimensionModule} = {};
 
     const containerPaddingMethod =
     containerPaddingMethodOption === 'typeScale'
@@ -822,37 +849,37 @@ const createTokens = (): W3cDesignToken => {
         );
         const paddingX =
             baseScaleUnit === 'px'
-                ? `${round(paddingXvalue)}${baseScaleUnit}`
-                : `${round(paddingXvalue / baseSize, 3)}${baseScaleUnit}`;
+                ? round(paddingXvalue)
+                : round(paddingXvalue / baseSize, 3);
         const paddingY =
             baseScaleUnit === 'px'
-                ? `${round(paddingYvalue)}${baseScaleUnit}`
-                : `${round(paddingYvalue / baseSize, 3)}${baseScaleUnit}`;
+                ? round(paddingYvalue)
+                : round(paddingYvalue / baseSize, 3);
         const radius =
             baseScaleUnit === 'px'
-                ? `${radiusValue}${baseScaleUnit}`
-                : `${round(radiusValue / baseSize, 3)}${baseScaleUnit}`;
+                ? radiusValue
+                : round(radiusValue / baseSize, 3);
 
         containersObject = {
             ...containersObject,
             [`${name}-${sizeLabel}-left`]: {
-                $value: paddingX,
+                $value: {value: paddingX, unit: baseScaleUnit},
                 $type: 'dimension',
             },
             [`${name}-${sizeLabel}-right`]: {
-                $value: paddingX,
+                $value: {value: paddingX, unit: baseScaleUnit},
                 $type: 'dimension',
             },
             [`${name}-${sizeLabel}-top`]: {
-                $value: paddingY,
+                $value: {value: paddingY, unit: baseScaleUnit},
                 $type: 'dimension',
             },
             [`${name}-${sizeLabel}-bottom`]: {
-                $value: paddingY,
+                $value: {value: paddingY, unit: baseScaleUnit},
                 $type: 'dimension',
             },
             [`${name}-${sizeLabel}-radius`]: {
-                $value: radius,
+                $value: {value: radius, unit: baseScaleUnit},
                 $type: 'dimension',
             },
         };
@@ -860,21 +887,21 @@ const createTokens = (): W3cDesignToken => {
         if (/*containerElevation*/ true) {
             const blurY =
                 baseScaleUnit === 'px'
-                    ? `${elevation}${baseScaleUnit}`
-                    : `${round((elevation ||  1) / baseSize, 3)}${baseScaleUnit}`;
+                    ? elevation || 1
+                    : round((elevation ||  1) / baseSize, 3);
             const elevationY =
                 baseScaleUnit === 'px'
-                    ? `${offset}${baseScaleUnit}`
-                    : `${round(offset / baseSize, 3)}${baseScaleUnit}`;
+                    ? offset
+                    : round(offset / baseSize, 3);
 
             containersObject = {
                 ...containersObject,
                 [`${name}-${sizeLabel}-elevation-blur`]: {
-                    $value: blurY,
+                    $value: {value: blurY, unit: baseScaleUnit},
                     $type: 'dimension',
                 },
                 [`${name}-${sizeLabel}-elevation-offsetY`]: {
-                    $value: elevationY,
+                    $value: {value: elevationY, unit: baseScaleUnit},
                     $type: 'dimension',
                 },
             };
@@ -883,7 +910,7 @@ const createTokens = (): W3cDesignToken => {
 
 
     /** COLOR TOKENS */
-    let colorsObject = {};
+    let colorsObject: {[key: string]: ColorModule} = {};
     // let colorsObject = {
     //     "color-red-50": {
     //         "$type": "color",
@@ -3405,7 +3432,7 @@ const createTokens = (): W3cDesignToken => {
                         "colorSpace": "srgb",
                         "components": hex2rgb(shadedColor!),
                         "alpha": 1,
-                        "hex": shadedColor
+                        "hex": shadedColor!
                     }
                 }
             }
@@ -3429,18 +3456,61 @@ const createTokens = (): W3cDesignToken => {
 
 };
 
-type NumberModule = {
-    $type: 'number'
-    $value: number | string
+export type FontWeightModule = {
+    $type: 'fontWeight'
+    $value: number |
+        'thin' |
+        'hairline' |
+        'extra-light' |
+        'ultra-light' |
+        'light' |
+        'normal' |
+        'regular' |
+        'book' |
+        'medium' |
+        'semi-bold' |
+        'demi-bold' |
+        'bold' |
+        'extra-bold' |
+        'ultra-bold' |
+        'black' |
+        'heavy' |
+        'extra-black' |
+        'ultra-black'
 }
-type DimensionModule = {
-    $type: 'dimension'
+
+export type FontFamilyModule = {
+    $type: 'fontFamily'
+    $value: string | string[]
+}
+
+export type DurationModule = {
+    $type: 'duration'
     $value: {
-        value: number | string
+        value: number
         unit: string
     }
 }
-type ColorModule = {
+
+export type CubicBezierModule = {
+    $type: 'cubicBezier'
+    $value: [number, number, number, number]
+}
+
+export type NumberModule = {
+    $type: 'number'
+    $value: number
+}
+
+export type DimensionModule = {
+    $type: 'dimension'
+    $value: {
+        value: number
+        unit: string
+    }
+}
+
+export type ColorModule = {
     $type: 'color'
     $value: {
         colorSpace: 'srgb',
@@ -3450,9 +3520,21 @@ type ColorModule = {
     }
 }
 
+export type Modules = CubicBezierModule
+    | DurationModule
+    | FontFamilyModule
+    | FontWeightModule
+    | NumberModule
+    | DimensionModule
+    | ColorModule;
+
 export interface W3cDesignToken {
     [key: string]: {
-        [key: string]: NumberModule | DimensionModule | ColorModule
+        [key: string]: Modules
+        // $description?: string
+        // $type?: string
+        // $deprecated?: string
+        // $extensions?: Record<string, string>
     }
 }
 
