@@ -5,10 +5,10 @@ interface Props {
     size: number
 }
 
-export default function Logo(props: Props) {
-    const color = props.color;
-    const size = props.size;
-
+export default function Logo({
+    color,
+    size,
+}: Props) {
     return (
         <svg
             width={size}

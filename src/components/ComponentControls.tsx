@@ -1,37 +1,63 @@
 import React, { FormEvent, MouseEvent } from 'react';
-import { useRecoilState } from 'recoil';
 import capitalize from '../utilities/capitalize';
 import scaleMethodOptions from '../utilities/scaleMethodOptions';
-import {
-    baseComponentSizeIndexState,
-    componentLineHeightState,
-    componentSmallQuantityState,
-    componentLargeQuantityState,
-    componentMinHeightMethodOptionState,
-    componentPaddingMethodOptionState,
-    baseComponentPaddingXIndexState,
-    baseComponentPaddingYIndexState,
-    scaleComponentRadiusState,
-    baseComponentRadiusState,
-    componentDensitySmallQuantityState,
-    componentDensityLargeQuantityState,
-    componentDensityScaleFactorState,
-} from '../states/components';
 
-export default function ComponentControls() {
-    const [baseComponentSizeIndex, setBaseComponentSizeIndex] = useRecoilState(baseComponentSizeIndexState,);
-    const [componentLineHeight, setComponentLineHeight] = useRecoilState(componentLineHeightState,);
-    const [componentSmallQuantity, setComponentSmallQuantity] = useRecoilState(componentSmallQuantityState,);
-    const [componentLargeQuantity, setComponentLargeQuantity] = useRecoilState(componentLargeQuantityState,);
-    const [componentMinHeightMethodOption, setComponentMinHeightMethodOption] = useRecoilState(componentMinHeightMethodOptionState);
-    const [componentPaddingMethodOption, setComponentPaddingMethodOption] = useRecoilState(componentPaddingMethodOptionState);
-    const [baseComponentPaddingXIndex, setBaseComponentPaddingXIndex] = useRecoilState(baseComponentPaddingXIndexState);
-    const [baseComponentPaddingYIndex, setBaseComponentPaddingYIndex] = useRecoilState(baseComponentPaddingYIndexState);
-    const [scaleComponentRadius, setScaleComponentRadius] = useRecoilState(scaleComponentRadiusState,);
-    const [baseComponentRadius, setBaseComponentRadius] = useRecoilState(baseComponentRadiusState,);
-    const [componentDensitySmallQuantity, setComponentDensitySmallQuantity] = useRecoilState(componentDensitySmallQuantityState);
-    const [componentDensityLargeQuantity, setComponentDensityLargeQuantity] = useRecoilState(componentDensityLargeQuantityState);
-    const [componentDensityScaleFactor, setComponentDensityScaleFactor] = useRecoilState(componentDensityScaleFactorState);
+interface Props {
+    baseComponentSizeIndex: number
+    setBaseComponentSizeIndex: (value: number) => void
+    componentLineHeight: number
+    setComponentLineHeight: (value: number) => void
+    componentSmallQuantity: number
+    setComponentSmallQuantity: (value: number) => void
+    componentLargeQuantity: number
+    setComponentLargeQuantity: (value: number) => void
+    componentMinHeightMethodOption: string
+    setComponentMinHeightMethodOption: (value: string) => void
+    componentPaddingMethodOption: string
+    setComponentPaddingMethodOption: (value: string) => void
+    baseComponentPaddingXIndex: number
+    setBaseComponentPaddingXIndex: (value: number) => void
+    baseComponentPaddingYIndex: number
+    setBaseComponentPaddingYIndex: (value: number) => void
+    scaleComponentRadius: boolean
+    setScaleComponentRadius: (value: boolean) => void
+    baseComponentRadius: number
+    setBaseComponentRadius: (value: number) => void
+    componentDensitySmallQuantity: number
+    setComponentDensitySmallQuantity: (value: number) => void
+    componentDensityLargeQuantity: number
+    setComponentDensityLargeQuantity: (value: number) => void
+    componentDensityScaleFactor: number
+    setComponentDensityScaleFactor: (value: number) => void
+}
+
+export default function ComponentControls({
+    baseComponentSizeIndex,
+    setBaseComponentSizeIndex,
+    componentLineHeight,
+    setComponentLineHeight,
+    componentSmallQuantity,
+    setComponentSmallQuantity,
+    componentLargeQuantity,
+    setComponentLargeQuantity,
+    componentMinHeightMethodOption,
+    setComponentMinHeightMethodOption,
+    componentPaddingMethodOption,
+    setComponentPaddingMethodOption,
+    baseComponentPaddingXIndex,
+    setBaseComponentPaddingXIndex,
+    baseComponentPaddingYIndex,
+    setBaseComponentPaddingYIndex,
+    scaleComponentRadius,
+    setScaleComponentRadius,
+    baseComponentRadius,
+    setBaseComponentRadius,
+    componentDensitySmallQuantity,
+    setComponentDensitySmallQuantity,
+    componentDensityLargeQuantity,
+    setComponentDensityLargeQuantity,
+    componentDensityScaleFactor,
+    setComponentDensityScaleFactor,}: Props) {
 
     const componentScalingMethodInputs = scaleMethodOptions.map((method) => {
         return (

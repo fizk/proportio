@@ -1,19 +1,26 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
-import { useRecoilState } from 'recoil';
-import {
-    spacingScaleFactorState,
-    spacingSmallQuantityState,
-    spacingLargeQuantityState,
-    spacingFormulaState,
-} from '../states/spacing';
+import React, { FormEvent, useState } from 'react';
 import typeScaleOptions from '../utilities/typeScaleOptions';
 import Dropdown, {Option, Group} from 'react-dropdown';
 
-export default function SpacingControls() {
-    const [spacingScaleFactor, setSpacingScaleFactor] = useRecoilState(spacingScaleFactorState,);
-    const [spacingSmallQuantity, setSpacingSmallQuantity] = useRecoilState(spacingSmallQuantityState,);
-    const [spacingLargeQuantity, setSpacingLargeQuantity] = useRecoilState(spacingLargeQuantityState,);
-    const [spacingFormula] = useRecoilState(spacingFormulaState);
+interface Props {
+    spacingScaleFactor: number
+    setSpacingScaleFactor: (value: number) => void
+    spacingSmallQuantity: number
+    setSpacingSmallQuantity: (value: number) => void
+    spacingLargeQuantity: number
+    setSpacingLargeQuantity: (value: number) => void
+    spacingFormula: string
+}
+
+export default function SpacingControls({
+    spacingScaleFactor,
+    setSpacingScaleFactor,
+    spacingSmallQuantity,
+    setSpacingSmallQuantity,
+    spacingLargeQuantity,
+    setSpacingLargeQuantity,
+    spacingFormula,
+}: Props) {
 
     const [scaleInput, setScaleInput] = useState(spacingScaleFactor);
 

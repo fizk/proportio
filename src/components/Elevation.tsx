@@ -1,26 +1,26 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
 import calculateScale from '../utilities/calculateScale';
 import buildArray from '../utilities/buildArray';
-import ElevationElement from './ElevationElement';
-import {
-    baseElevationSizeState,
-    elevationScaleFactorState,
-    elevationSmallQuantityState,
-    elevationLargeQuantityState,
-    elevationScaleFormulaState,
-    elevationOffsetYState,
-} from '../states/elevation';
+import ElevationElement from '../elements/ElevationElement';
 import '../styles/elevation.css';
 
-export default function Elevation() {
-    const [baseElevationSize] = useRecoilState(baseElevationSizeState,);
-    const [elevationScaleFactor] = useRecoilState(elevationScaleFactorState,);
-    const [elevationSmallQuantity] = useRecoilState(elevationSmallQuantityState,);
-    const [elevationLargeQuantity] = useRecoilState(elevationLargeQuantityState,);
-    const [elevationScaleFormula] = useRecoilState(elevationScaleFormulaState,);
-    const [elevationOffsetY] = useRecoilState(elevationOffsetYState,);
+interface Props {
+    baseElevationSize: number
+    elevationScaleFactor: number
+    elevationSmallQuantity: number
+    elevationLargeQuantity: number
+    elevationScaleFormula: string
+    elevationOffsetY: number
+}
 
+export default function Elevation({
+    baseElevationSize,
+    elevationScaleFactor,
+    elevationSmallQuantity,
+    elevationLargeQuantity,
+    elevationScaleFormula,
+    elevationOffsetY,
+}: Props) {
     let sizeArray = buildArray(elevationSmallQuantity, elevationLargeQuantity);
     const sizes = sizeArray.map((i) => {
         return calculateScale(

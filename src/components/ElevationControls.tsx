@@ -1,24 +1,37 @@
 import React, { FormEvent, MouseEvent } from 'react';
-import { useRecoilState } from 'recoil';
 import capitalize from '../utilities/capitalize';
-import {
-    baseElevationSizeState,
-    elevationScaleFactorState,
-    elevationSmallQuantityState,
-    elevationLargeQuantityState,
-    elevationScaleFormulaState,
-    elevationOffsetYState,
-} from '../states/elevation';
 import scaleMethodOptions from '../utilities/scaleFormulas';
-import Slider from './Slider';
+import Slider from '../elements/Slider';
 
-export default function ElevationControls() {
-    const [baseElevationSize, setBaseElevationSize] = useRecoilState(baseElevationSizeState,);
-    const [elevationScaleFactor, setElevationScaleFactor] = useRecoilState(elevationScaleFactorState,);
-    const [elevationSmallQuantity, setElevationSmallQuantity] = useRecoilState(elevationSmallQuantityState,);
-    const [elevationLargeQuantity, setElevationLargeQuantity] = useRecoilState(elevationLargeQuantityState,);
-    const [elevationScaleFormula, setElevationScaleFormula] = useRecoilState(elevationScaleFormulaState,);
-    const [elevationOffsetY, setElevationOffsetY] = useRecoilState(elevationOffsetYState,);
+interface Props {
+    baseElevationSize: number
+    setBaseElevationSize: (value: number) => void
+    elevationScaleFactor: number
+    setElevationScaleFactor: (value: number) => void
+    elevationSmallQuantity: number
+    setElevationSmallQuantity: (value: number) => void
+    elevationLargeQuantity: number
+    setElevationLargeQuantity: (value: number) => void
+    elevationScaleFormula: string
+    setElevationScaleFormula: (value: string) => void
+    elevationOffsetY: number
+    setElevationOffsetY: (value: number) => void
+}
+
+export default function ElevationControls({
+    baseElevationSize,
+    setBaseElevationSize,
+    elevationScaleFactor,
+    setElevationScaleFactor,
+    elevationSmallQuantity,
+    setElevationSmallQuantity,
+    elevationLargeQuantity,
+    setElevationLargeQuantity,
+    elevationScaleFormula,
+    setElevationScaleFormula,
+    elevationOffsetY,
+    setElevationOffsetY,
+}: Props) {
 
     const inputs = scaleMethodOptions.map((method) => {
         return (

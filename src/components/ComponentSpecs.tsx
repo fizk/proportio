@@ -1,5 +1,4 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
 import buildArray from '../utilities/buildArray';
 import buildShiftedArray from '../utilities/buildShiftedArray';
 import calculateScale from '../utilities/calculateScale';
@@ -9,41 +8,8 @@ import {
     densityNamesIncrement,
     densityNamesDecrement,
 } from '../utilities/names';
-import { typeScaleFormulaState, typeScaleState } from '../states/typography';
-import {
-    spacingFormulaState,
-    spacingScaleFactorState,
-} from '../states/spacing';
-import {
-    componentMinHeightMethodOptionState,
-    componentSmallQuantityState,
-    componentLargeQuantityState,
-    baseComponentTextSizeIndexState,
-    baseComponentSizeIndexState,
-    scaleComponentRadiusState,
-    baseComponentRadiusState,
-    componentLineHeightState,
-    componentPaddingMethodOptionState,
-    baseComponentPaddingXIndexState,
-    baseComponentPaddingYIndexState,
-    componentDensitySmallQuantityState,
-    componentDensityLargeQuantityState,
-    componentDensityScaleFactorState,
-} from '../states/components';
-import {
-    baseRadiusSizeState,
-    radiusScaleFormulaState,
-    radiusScaleFactorState,
-} from '../states/radius';
-import { iconScaleFormulaState, iconPaddingState } from '../states/iconography';
-import {
-    textIconGapIndexState,
-    textIconIconSizeIndexState,
-    textIconGapScaleFormulaState,
-} from '../states/textIconPair';
 import demoComponents from '../utilities/demoComponents';
-// @ts-ignore
-import Sizes from './Sizes';
+import Sizes from '../elements/Sizes';
 import '../styles/iconography.css';
 import { type ScaleFormulaType } from '../utilities/scaleFormulas';
 
@@ -51,41 +17,64 @@ interface Props {
     showSpecs: boolean
     showComponentIcon: boolean
     showComponentText: boolean
+    componentPaddingMethodOption: string
+    typeScale: number
+    spacingScaleFactor: number
+    spacingFormula: string
+    typeScaleFormula: string
+    componentMinHeightMethodOption: string
+    componentSmallQuantity: number
+    componentLargeQuantity: number
+    baseComponentPaddingXIndex: number
+    baseComponentPaddingYIndex: number
+    baseComponentTextSizeIndex: number
+    baseComponentSizeIndex: number
+    scaleComponentRadius: boolean
+    baseComponentRadius: number
+    componentLineHeight: number
+    baseRadiusSize: number
+    radiusScaleFormula: string
+    radiusScaleFactor: number
+    iconScaleFormula: string
+    iconPadding: number
+    textIconGapIndex: number
+    textIconIconSizeIndex: number
+    textIconGapScaleFormula: string
+    componentDensitySmallQuantity: number
+    componentDensityLargeQuantity: number
+    componentDensityScaleFactor: number
 }
 
-export default function ComponentSpecs(props: Props) {
-    const [componentPaddingMethodOption] = useRecoilState(componentPaddingMethodOptionState);
-    const [typeScale] = useRecoilState(typeScaleState);
-    const [spacingScaleFactor] = useRecoilState(spacingScaleFactorState,);
-    const [spacingFormula] = useRecoilState(spacingFormulaState);
-    const [typeScaleFormula] = useRecoilState(typeScaleFormulaState,);
-    const [componentMinHeightMethodOption] = useRecoilState(componentMinHeightMethodOptionState);
-    const [componentSmallQuantity] = useRecoilState(componentSmallQuantityState,);
-    const [componentLargeQuantity] = useRecoilState(componentLargeQuantityState,);
-    const [baseComponentPaddingXIndex] = useRecoilState(baseComponentPaddingXIndexState);
-    const [baseComponentPaddingYIndex] = useRecoilState(baseComponentPaddingYIndexState);
-    // Should get rid of these two. Customizing adds unnecessary complexity
-    const [baseComponentTextSizeIndex] = useRecoilState(baseComponentTextSizeIndexState);
-
-    const [baseComponentSizeIndex] = useRecoilState(baseComponentSizeIndexState,);
-    const [scaleComponentRadius] = useRecoilState(scaleComponentRadiusState,);
-    const [baseComponentRadius] = useRecoilState(baseComponentRadiusState,);
-    const [componentLineHeight] = useRecoilState(componentLineHeightState,);
-    const [baseRadiusSize] = useRecoilState(baseRadiusSizeState);
-    const [radiusScaleFormula] = useRecoilState(radiusScaleFormulaState,);
-    const [radiusScaleFactor] = useRecoilState(radiusScaleFactorState,);
-    const [iconScaleFormula] = useRecoilState(iconScaleFormulaState,);
-    const [iconPadding] = useRecoilState(iconPaddingState);
-    const [textIconGapIndex] = useRecoilState(textIconGapIndexState,);
-    const [textIconIconSizeIndex] = useRecoilState(textIconIconSizeIndexState,);
-    const [textIconGapScaleFormula] = useRecoilState(textIconGapScaleFormulaState,);
-    const [componentDensitySmallQuantity] = useRecoilState(componentDensitySmallQuantityState);
-    const [componentDensityLargeQuantity] = useRecoilState(componentDensityLargeQuantityState);
-    const [componentDensityScaleFactor] = useRecoilState(componentDensityScaleFactorState);
-
-    const showSpecs = props.showSpecs;
-    const showComponentIcon = props.showComponentIcon;
-    const showComponentText = props.showComponentText;
+export default function ComponentSpecs({
+    showSpecs,
+    showComponentIcon,
+    showComponentText,
+    componentPaddingMethodOption,
+    typeScale,
+    spacingScaleFactor,
+    spacingFormula,
+    typeScaleFormula,
+    componentMinHeightMethodOption,
+    componentSmallQuantity,
+    componentLargeQuantity,
+    baseComponentPaddingXIndex,
+    baseComponentPaddingYIndex,
+    baseComponentTextSizeIndex,
+    baseComponentSizeIndex,
+    scaleComponentRadius,
+    baseComponentRadius,
+    componentLineHeight,
+    baseRadiusSize,
+    radiusScaleFormula,
+    radiusScaleFactor,
+    iconScaleFormula,
+    iconPadding,
+    textIconGapIndex,
+    textIconIconSizeIndex,
+    textIconGapScaleFormula,
+    componentDensitySmallQuantity,
+    componentDensityLargeQuantity,
+    componentDensityScaleFactor,}: Props) {
 
     const rowClassName = showSpecs ? 'row row--comfortable' : 'row row--spacious';
 

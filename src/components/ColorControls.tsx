@@ -1,11 +1,19 @@
 import React from "react";
-import { useRecoilState } from 'recoil';
-import { colorState, colorShadesState } from '../states/color';
 import { random } from '../utilities/color';
 
-export default function ColorControls () {
-    const [colorArray, setColorArray] = useRecoilState(colorState);
-    const [colorShades, setColorShades] = useRecoilState(colorShadesState);
+interface Props {
+    colorArray: any[]
+    setColorArray: (value: any[]) => void
+    colorShades: boolean
+    setColorShades: (value: boolean) => void
+}
+
+export default function ColorControls ({
+    colorArray,
+    setColorArray,
+    colorShades,
+    setColorShades,
+}: Props) {
 
     const handleAddItem = () => {
         setColorArray([

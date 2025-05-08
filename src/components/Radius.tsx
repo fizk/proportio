@@ -1,23 +1,24 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
 import calculateScale from '../utilities/calculateScale';
 import buildArray from '../utilities/buildArray';
-import RadiusElement from './RadiusElement';
-import {
-    baseRadiusSizeState,
-    radiusScaleFactorState,
-    radiusSmallQuantityState,
-    radiusLargeQuantityState,
-    radiusScaleFormulaState,
-} from '../states/radius';
+import RadiusElement from '../elements/RadiusElement';
 import '../styles/radius.css';
 
-export default function Radius() {
-    const [baseRadiusSize] = useRecoilState(baseRadiusSizeState);
-    const [radiusScaleFactor] = useRecoilState(radiusScaleFactorState,);
-    const [radiusSmallQuantity] = useRecoilState(radiusSmallQuantityState,);
-    const [radiusLargeQuantity] = useRecoilState(radiusLargeQuantityState,);
-    const [radiusScaleFormula] = useRecoilState(radiusScaleFormulaState,);
+interface Props {
+    baseRadiusSize: number
+    radiusScaleFactor: number
+    radiusSmallQuantity: number
+    radiusLargeQuantity: number
+    radiusScaleFormula: string
+}
+
+export default function Radius({
+    baseRadiusSize,
+    radiusScaleFactor,
+    radiusSmallQuantity,
+    radiusLargeQuantity,
+    radiusScaleFormula,
+}: Props) {
 
     let sizeArray = buildArray(radiusSmallQuantity, radiusLargeQuantity);
     const sizes = sizeArray.map((i) => {

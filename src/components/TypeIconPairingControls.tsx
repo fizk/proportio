@@ -1,18 +1,24 @@
 import React, { FormEvent, MouseEvent } from 'react';
-import { useRecoilState } from 'recoil';
 import capitalize from '../utilities/capitalize';
-import {
-    textIconGapIndexState,
-    textIconIconSizeIndexState,
-    textIconGapScaleFormulaState,
-} from '../states/textIconPair';
 import scaleMethodOptions from '../utilities/scaleMethodOptions';
 
-export default function TypeIconPairingControls() {
-    const [textIconGapIndex, setTextIconGapIndex] = useRecoilState(textIconGapIndexState,);
-    const [textIconIconSizeIndex, setTextIconIconSizeIndex] = useRecoilState(textIconIconSizeIndexState,);
-    const [textIconGapScaleFormula, setTextIconGapScaleFormula] = useRecoilState(textIconGapScaleFormulaState,);
+interface Props {
+    textIconGapIndex: number
+    setTextIconGapIndex: (value: number) => void
+    textIconIconSizeIndex: number
+    setTextIconIconSizeIndex: (value: number) => void
+    textIconGapScaleFormula: string
+    setTextIconGapScaleFormula: (value: string) => void
+}
 
+export default function TypeIconPairingControls({
+    textIconGapIndex,
+    setTextIconGapIndex,
+    textIconIconSizeIndex,
+    setTextIconIconSizeIndex,
+    textIconGapScaleFormula,
+    setTextIconGapScaleFormula,
+}: Props) {
     const inputs = scaleMethodOptions.map((method) => {
         return (
             <div className="radioGroup" key={`typeIconPiar${method}`}>

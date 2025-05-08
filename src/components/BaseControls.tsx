@@ -1,30 +1,36 @@
 import React, { ChangeEvent, FormEvent, MouseEvent, useState } from 'react';
-import { useRecoilState } from 'recoil';
-import { baseSizeState } from '../states/base';
-import {
-    typeScaleFormulaState,
-    typeScaleState,
-    typeSmallQuantityState,
-    typeLargeQuantityState,
-} from '../states/typography';
 import Dropdown from 'react-dropdown';
 import typeScaleOptions from '../utilities/typeScaleOptions';
-import {
-    iconLargeQuantityState,
-    iconScaleState,
-    iconSmallQuantityState,
-} from '../states/iconography';
 
-export default function BaseControls () {
+interface Props {
+    baseSize: number
+    setBaseSize: (value: number) => void
+    typeScale: number
+    setTypeScale: (value: number) => void
+    typeScaleFormula: string
+    typeSmallQuantity: number
+    setTypeSmallQuantity: (value: number) => void
+    typeLargeQuantity: number
+    setTypeLargeQuantity: (value: number) => void
+    setIconScale: (value: number) => void
+    setIconSmallQuantity: (value: number) => void
+    setIconLargeQuantity: (value: number) => void
+}
 
-    const [baseSize, setBaseSize] = useRecoilState(baseSizeState);
-    const [typeScale, setTypeScale] = useRecoilState(typeScaleState);
-    const [typeScaleFormula, setTypeScaleFormula] = useRecoilState(typeScaleFormulaState,);
-    const [typeSmallQuantity, setTypeSmallQuantity] = useRecoilState(typeSmallQuantityState,);
-    const [typeLargeQuantity, setTypeLargeQuantity] = useRecoilState(typeLargeQuantityState,);
-    const [iconScale, setIconScale] = useRecoilState(iconScaleState);
-    const [iconSmallQuantity, setIconSmallQuantity] = useRecoilState(iconSmallQuantityState,);
-    const [iconLargeQuantity, setIconLargeQuantity] = useRecoilState(iconLargeQuantityState,);
+export default function BaseControls ({
+    baseSize,
+    setBaseSize,
+    typeScale,
+    setTypeScale,
+    typeScaleFormula,
+    typeSmallQuantity,
+    setTypeSmallQuantity,
+    typeLargeQuantity,
+    setTypeLargeQuantity,
+    setIconScale,
+    setIconSmallQuantity,
+    setIconLargeQuantity,
+}: Props) {
 
     const [scaleInput, setScaleInput] = useState(typeScale);
 

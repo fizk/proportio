@@ -1,22 +1,32 @@
 import React, { FormEvent, MouseEvent } from 'react';
-import { useRecoilState } from 'recoil';
 import capitalize from '../utilities/capitalize';
 import scaleMethodOptions from '../utilities/scaleFormulas';
-import {
-    baseRadiusSizeState,
-    radiusScaleFactorState,
-    radiusSmallQuantityState,
-    radiusLargeQuantityState,
-    radiusScaleFormulaState,
-} from '../states/radius';
 
-export default function RadiusControls() {
-    const [baseRadiusSize, setBaseRadiusSize] = useRecoilState(baseRadiusSizeState);
-    const [radiusScaleFactor, setRadiusScaleFactor] = useRecoilState(radiusScaleFactorState,);
-    const [radiusSmallQuantity, setRadiusSmallQuantity] = useRecoilState(radiusSmallQuantityState,);
-    const [radiusLargeQuantity, setRadiusLargeQuantity] = useRecoilState(radiusLargeQuantityState,);
-    const [radiusScaleFormula, setRadiusScaleFormula] = useRecoilState(radiusScaleFormulaState,);
+interface Props {
+    baseRadiusSize: number
+    setBaseRadiusSize: (value: number) => void
+    radiusScaleFactor: number
+    setRadiusScaleFactor: (value: number) => void
+    radiusSmallQuantity: number
+    setRadiusSmallQuantity: (value: number) => void
+    radiusLargeQuantity: number
+    setRadiusLargeQuantity: (value: number) => void
+    radiusScaleFormula: string
+    setRadiusScaleFormula: (value: string) => void
+}
 
+export default function RadiusControls({
+    baseRadiusSize,
+    setBaseRadiusSize,
+    radiusScaleFactor,
+    setRadiusScaleFactor,
+    radiusSmallQuantity,
+    setRadiusSmallQuantity,
+    radiusLargeQuantity,
+    setRadiusLargeQuantity,
+    radiusScaleFormula,
+    setRadiusScaleFormula,
+}: Props) {
     const inputs = scaleMethodOptions.map((method) => {
         return (
             <div className="radioGroup" key={`radius${method}`}>

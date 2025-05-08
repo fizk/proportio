@@ -1,34 +1,52 @@
 import React, { FormEvent, MouseEvent } from 'react';
-import {
-    containerSmallSizesState,
-    containerLargeSizesState,
-    containerBaseRadiusIndexState,
-    containerBaseElevationIndexState,
-    containerRadiusScaleFactorState,
-    containerPaddingScaleFactorState,
-    containerPaddingMethodOptionState,
-    containerBasePaddingXIndexState,
-    containerBasePaddingYIndexState,
-} from '../states/containers';
-import { useRecoilState } from 'recoil';
 import scaleMethodOptions from '../utilities/scaleMethodOptions';
 import capitalize from '../utilities/capitalize';
 
 interface Props {
     containerElevation: boolean,
     setContainerElevation: (value: boolean) => void
+    containerSmallSizes: number
+    setContainerSmallSizes: (value: number) => void
+    containerLargeSizes: number
+    setContainerLargeSizes: (value: number) => void
+    containerBaseRadiusIndex: number
+    setContainerBaseRadiusIndex: (value: number) => void
+    containerBaseElevationIndex: number
+    setContainerBaseElevationIndex: (value: number) => void
+    containerRadiusScaleFactor: number
+    setContainerRadiusScaleFactor: (value: number) => void
+    containerBasePaddingXIndex: number
+    setContainerBasePaddingXIndex: (value: number) => void
+    containerBasePaddingYIndex: number
+    setContainerBasePaddingYIndex: (value: number) => void
+    containerPaddingScaleFactor: number
+    setContainerPaddingScaleFactor: (value: number) => void
+    containerPaddingMethodOption: string
+    setContainerPaddingMethodOption: (value: string) => void
 }
 
-export default function ContainerControls ({containerElevation, setContainerElevation}: Props) {
-    const [containerSmallSizes, setContainerSmallSizes] = useRecoilState(containerSmallSizesState,);
-    const [containerLargeSizes, setContainerLargeSizes] = useRecoilState(containerLargeSizesState,);
-    const [containerBaseRadiusIndex, setContainerBaseRadiusIndex] = useRecoilState(containerBaseRadiusIndexState);
-    const [containerBaseElevationIndex, setContainerBaseElevationIndex] = useRecoilState(containerBaseElevationIndexState);
-    const [containerRadiusScaleFactor, setContainerRadiusScaleFactor] = useRecoilState(containerRadiusScaleFactorState);
-    const [containerBasePaddingXIndex, setContainerBasePaddingXIndex] = useRecoilState(containerBasePaddingXIndexState);
-    const [containerBasePaddingYIndex, setContainerBasePaddingYIndex] = useRecoilState(containerBasePaddingYIndexState);
-    const [containerPaddingScaleFactor, setContainerPaddingScaleFactor] = useRecoilState(containerPaddingScaleFactorState);
-    const [containerPaddingMethodOption, setContainerPaddingMethodOption] = useRecoilState(containerPaddingMethodOptionState);
+export default function ContainerControls ({
+    containerElevation,
+    setContainerElevation,
+    containerSmallSizes,
+    setContainerSmallSizes,
+    containerLargeSizes,
+    setContainerLargeSizes,
+    containerBaseRadiusIndex,
+    setContainerBaseRadiusIndex,
+    containerBaseElevationIndex,
+    setContainerBaseElevationIndex,
+    containerRadiusScaleFactor,
+    setContainerRadiusScaleFactor,
+    containerBasePaddingXIndex,
+    setContainerBasePaddingXIndex,
+    containerBasePaddingYIndex,
+    setContainerBasePaddingYIndex,
+    containerPaddingScaleFactor,
+    setContainerPaddingScaleFactor,
+    containerPaddingMethodOption,
+    setContainerPaddingMethodOption,
+}: Props) {
 
     const containerPaddingMethodInputs = scaleMethodOptions.map((method) => {
         return (

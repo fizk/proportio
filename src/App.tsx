@@ -4,8 +4,8 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import TypographyView from './views/TypographyView';
 import ShapesView from './views/ShapesView';
 import ComponentsView from './views/ComponentsView';
-import Header from './components/Header';
-import ExportDialog from './components/ExportDialog';
+import Header from './elements/Header';
+import ExportDialog from './elements/ExportDialog';
 import ContainerView from './views/ContainerView';
 import ColorView from './views/ColorView';
 

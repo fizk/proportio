@@ -1,74 +1,67 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
 import calculateScale from '../utilities/calculateScale';
 import buildArray from '../utilities/buildArray';
-import ContainerElement from './ContainerElement';
-import {
-    spacingFormulaState,
-    spacingScaleFactorState,
-} from '../states/spacing';
+import ContainerElement from '../elements/ContainerElement';
 import { sizeNamesIncrement, sizeNamesDecrement } from '../utilities/names';
-import { typeScaleFormulaState, typeScaleState } from '../states/typography';
-import {
-    baseElevationSizeState,
-    elevationScaleFactorState,
-    elevationScaleFormulaState,
-    elevationOffsetYState,
-} from '../states/elevation';
-import {
-    containerSmallSizesState,
-    containerLargeSizesState,
-    containerBaseRadiusIndexState,
-    containerBaseElevationIndexState,
-    containerRadiusScaleFactorState,
-    containerPaddingMethodOptionState,
-    containerBasePaddingXIndexState,
-    containerBasePaddingYIndexState,
-    containerPaddingScaleFactorState,
-} from '../states/containers';
-import { baseScaleUnitState, baseSizeState } from '../states/base';
 import round from '../utilities/round';
 import buildShiftedArray from '../utilities/buildShiftedArray';
-import {
-    baseRadiusSizeState,
-    radiusScaleFactorState,
-    radiusScaleFormulaState,
-} from '../states/radius';
-import '../styles/elevation.css';
 import { type ScaleMethodType } from '../utilities/scaleMethodOptions';
 import { type ScaleFormulaType } from '../utilities/scaleFormulas';
+import '../styles/elevation.css';
 
 interface Props {
     showSpecs: boolean
     containerElevation: boolean
+    baseSize: number
+    baseScaleUnit: string
+    baseElevationSize: number
+    elevationScaleFactor: number
+    elevationScaleFormula: string
+    elevationOffsetY: number
+    containerSmallSizes: number
+    containerLargeSizes: number
+    containerBaseRadiusIndex: number
+    containerBaseElevationIndex: number
+    containerRadiusScaleFactor: number
+    containerPaddingMethodOption: string
+    containerBasePaddingXIndex: number
+    containerBasePaddingYIndex: number
+    containerPaddingScaleFactor: number
+    baseRadiusSize: number
+    radiusScaleFactor: number
+    radiusScaleFormula: string
+    spacingFormula: string
+    typeScaleFormula: string
+    typeScale: number
+    spacingScaleFactor: number
 }
 
-export default function Containers(props: Props) {
-    const [baseSize] = useRecoilState(baseSizeState);
-    const [baseScaleUnit] = useRecoilState(baseScaleUnitState);
-    const [baseElevationSize] = useRecoilState(baseElevationSizeState,);
-    const [elevationScaleFactor] = useRecoilState(elevationScaleFactorState,);
-    const [elevationScaleFormula] = useRecoilState(elevationScaleFormulaState,);
-    const [elevationOffsetY] = useRecoilState(elevationOffsetYState,);
-    const [containerSmallSizes] = useRecoilState(containerSmallSizesState,);
-    const [containerLargeSizes] = useRecoilState(containerLargeSizesState,);
-    const [containerBaseRadiusIndex] = useRecoilState(containerBaseRadiusIndexState);
-    const [containerBaseElevationIndex] = useRecoilState(containerBaseElevationIndexState);
-    const [containerRadiusScaleFactor] = useRecoilState(containerRadiusScaleFactorState);
-    const [containerPaddingMethodOption] = useRecoilState(containerPaddingMethodOptionState);
-    const [containerBasePaddingXIndex] = useRecoilState(containerBasePaddingXIndexState);
-    const [containerBasePaddingYIndex] = useRecoilState(containerBasePaddingYIndexState);
-    const [containerPaddingScaleFactor] = useRecoilState(containerPaddingScaleFactorState);
-    const [baseRadiusSize] = useRecoilState(baseRadiusSizeState);
-    const [radiusScaleFactor] = useRecoilState(radiusScaleFactorState,);
-    const [radiusScaleFormula] = useRecoilState(radiusScaleFormulaState,);
-    const [spacingFormula] = useRecoilState(spacingFormulaState);
-    const [typeScaleFormula] = useRecoilState(typeScaleFormulaState,);
-    const [typeScale] = useRecoilState(typeScaleState);
-    const [spacingScaleFactor] = useRecoilState(spacingScaleFactorState,);
-    const showSpecs = props.showSpecs;
-    const containerElevation = props.containerElevation;
-
+export default function Containers({
+    showSpecs,
+    containerElevation,
+    baseSize,
+    baseScaleUnit,
+    baseElevationSize,
+    elevationScaleFactor,
+    elevationScaleFormula,
+    elevationOffsetY,
+    containerSmallSizes,
+    containerLargeSizes,
+    containerBaseRadiusIndex,
+    containerBaseElevationIndex,
+    containerRadiusScaleFactor,
+    containerPaddingMethodOption,
+    containerBasePaddingXIndex,
+    containerBasePaddingYIndex,
+    containerPaddingScaleFactor,
+    baseRadiusSize,
+    radiusScaleFactor,
+    radiusScaleFormula,
+    spacingFormula,
+    typeScaleFormula,
+    typeScale,
+    spacingScaleFactor,
+}: Props) {
     const containerPaddingMethod =
         containerPaddingMethodOption === 'typeScale'
             ? typeScale

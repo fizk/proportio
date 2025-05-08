@@ -1,28 +1,26 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
-import SpacingElement from './SpacingElement';
+import SpacingElement from '../elements/SpacingElement';
 import calculateScale from '../utilities/calculateScale';
-import { baseScaleUnitState, baseSizeState } from '../states/base';
-import {
-    spacingScaleFactorState,
-    spacingSmallQuantityState,
-    spacingLargeQuantityState,
-    spacingFormulaState,
-} from '../states/spacing';
 import round from '../utilities/round';
 import '../styles/spacing.css';
 
 interface Props {
-    spacerLineHeight: number
+    baseSize: number
+    spacingScaleFactor: number
+    spacingSmallQuantity: number
+    spacingLargeQuantity: number
+    spacingFormula: string
+    baseScaleUnit: string
 }
 
-export default function Spacing({spacerLineHeight}: Props) {
-    const [baseSize] = useRecoilState(baseSizeState);
-    const [spacingScaleFactor] = useRecoilState(spacingScaleFactorState,);
-    const [spacingSmallQuantity] = useRecoilState(spacingSmallQuantityState,);
-    const [spacingLargeQuantity] = useRecoilState(spacingLargeQuantityState,);
-    const [spacingFormula] = useRecoilState(spacingFormulaState);
-    const [baseScaleUnit] = useRecoilState(baseScaleUnitState);
+export default function Spacing({
+    baseSize,
+    spacingScaleFactor,
+    spacingSmallQuantity,
+    spacingLargeQuantity,
+    spacingFormula,
+    baseScaleUnit,
+}: Props) {
 
     let smallSizeArray = new Array(spacingSmallQuantity).fill(0);
     let largeSizeArray = new Array(spacingLargeQuantity).fill(0);

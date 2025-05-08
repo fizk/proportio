@@ -1,14 +1,18 @@
 import React, { FormEvent } from 'react';
-import { useRecoilState } from 'recoil';
-import { typeFontFamilyState, typeFontWeightState } from '../states/typography';
 
 interface Props {
     setSampleText: (value: string) => void
     sampleText: string
+    typeFontWeight: number
+    setTypeFontWeight: (value: number) => void
 }
 
-export default function TypeControls({setSampleText, sampleText}: Props) {
-    const [typeFontWeight, setTypeFontWeight] = useRecoilState(typeFontWeightState);
+export default function TypeControls({
+    setSampleText,
+    sampleText,
+    typeFontWeight,
+    setTypeFontWeight
+}: Props) {
 
     return (
         <fieldset>

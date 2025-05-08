@@ -4,29 +4,25 @@ import { baseScaleUnitState, baseSizeState } from '../states/base';
 import round from '../utilities/round';
 
 interface Props {
-    size: number
+    radius: number
 }
 
-export default function SpacingElement(props: Props) {
-    const size = props.size;
+export default function RadiusElement({radius}: Props) {
     const [baseScaleUnit] = useRecoilState(baseScaleUnitState);
     const [baseSize] = useRecoilState(baseSizeState);
     const value =
-        baseScaleUnit === 'px' ? round(size) : round(size / baseSize, 3);
+        baseScaleUnit === 'px' ? round(radius) : round(radius / baseSize, 3);
 
     return (
-        <div className="spacingItem">
+        <div className="radiusItem">
             <span className="specs">
                 {' '}
                 {value}
                 {baseScaleUnit}{' '}
             </span>
             <div
-                className="spacing"
-                style={{
-                    width: `${size}px`,
-                    height: `${size}px`,
-                }}
+                className="radius"
+                style={{ borderTopLeftRadius: `${radius}px` }}
             ></div>
         </div>
     );

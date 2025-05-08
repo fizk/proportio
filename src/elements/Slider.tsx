@@ -7,18 +7,18 @@ interface Props {
     defaultValue: string | number
     onInput: (value: number) => void
     unit: string
-    id: string
+    id?: string
 }
 
-export default function Slider(props: Props) {
-    const step = props.step;
-    const min = props.min;
-    const max = props.max;
-    const defaultValue = props.defaultValue;
-    const onInput = props.onInput;
-    const unit = props.unit;
-    const id = props.id ? props.id : '';
-
+export default function Slider({
+    step,
+    min,
+    max,
+    defaultValue,
+    onInput,
+    unit,
+    id = '',
+}: Props) {
     return (
         <div className="slider">
             <input

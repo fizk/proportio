@@ -1,23 +1,30 @@
 import React, { MouseEvent } from 'react';
-import { useRecoilState } from 'recoil';
 import capitalize from '../utilities/capitalize';
 import scaleMethodOptions from '../utilities/scaleFormulas';
-import {
-    iconScaleFormulaState,
-    iconState,
-    iconStrokeState,
-} from '../states/iconography';
 import Dropdown from 'react-dropdown';
-import Slider from './Slider';
+import Slider from '../elements/Slider';
 
 const feather = require('feather-icons');
 
-export default function IconControls () {
-    const [iconScaleFormula, setIconScaleFormula] = useRecoilState(iconScaleFormulaState,);
-    const [iconStroke, setIconStroke] = useRecoilState(iconStrokeState);
+interface Props {
+    iconScaleFormula: string
+    setIconScaleFormula: (value: string) => void
+    iconStroke: number
+    setIconStroke: (value: number) => void
+    icon: any
+    setIcon: (value: any) => void
+}
+
+export default function IconControls ({
+    iconScaleFormula,
+    setIconScaleFormula,
+    iconStroke,
+    setIconStroke,
+    icon,
+    setIcon,
+}: Props) {
 
     const availableIcons = Object.keys(feather.icons);
-    const [icon, setIcon] = useRecoilState(iconState);
 
     const inputs = scaleMethodOptions.map((method) => {
         return (

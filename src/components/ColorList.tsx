@@ -1,14 +1,17 @@
 import React from "react";
-import { colorState, colorShadesState } from '../states/color';
 import { luminosity } from '../utilities/color';
-import { useRecoilState } from 'recoil';
 import { pSBC } from '../utilities/pSBC';
 import '../styles/colorlist.css';
 
+interface Props {
+    colorArray: any[]
+    colorShades: boolean
+}
 
-export default function ColorList () {
-    const [colorArray] = useRecoilState(colorState);
-    const [colorShades] = useRecoilState(colorShadesState);
+export default function ColorList ({
+    colorArray,
+    colorShades,
+}: Props) {
     const index = [
         -.8, -.6, -.4, -.2, 0, .2, .4, .6, .8,
     ]

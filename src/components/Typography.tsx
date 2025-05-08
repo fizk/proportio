@@ -1,14 +1,6 @@
 import React from 'react';
-import TypeElement from './TypeElement';
-import { useRecoilState } from 'recoil';
-import {
-    typeScaleState,
-    typeSmallQuantityState,
-    typeLargeQuantityState,
-    typeScaleFormulaState,
-} from '../states/typography';
+import TypeElement from '../elements/TypeElement';
 import calculateScale from '../utilities/calculateScale';
-import { baseScaleUnitState, baseSizeState } from '../states/base';
 import round from '../utilities/round';
 import '../styles/typography.css';
 
@@ -16,16 +8,25 @@ interface Props {
     sampleText: string
 }
 
-export default function Typography (props: Props) {
-    const [baseSize] = useRecoilState(baseSizeState);
-    const [typeScale] = useRecoilState(typeScaleState);
-    const [typeSmallQuantity] = useRecoilState(typeSmallQuantityState,);
-    const [typeLargeQuantity] = useRecoilState(typeLargeQuantityState,);
-    const [typeScaleFormula] = useRecoilState(typeScaleFormulaState,);
-    const [baseScaleUnit] = useRecoilState(baseScaleUnitState);
+interface Props {
+    sampleText: string
+    baseSize: number
+    typeScale: number
+    typeSmallQuantity: number
+    typeLargeQuantity: number
+    typeScaleFormula: string
+    baseScaleUnit: string
+}
 
-    const sampleText = props.sampleText;
-
+export default function Typography ({
+    sampleText,
+    baseSize,
+    typeScale,
+    typeSmallQuantity,
+    typeLargeQuantity,
+    typeScaleFormula,
+    baseScaleUnit,
+}: Props) {
     let smallSizeArray = new Array(typeSmallQuantity).fill(0);
     let largeSizeArray = new Array(typeLargeQuantity).fill(0);
 

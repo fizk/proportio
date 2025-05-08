@@ -1,25 +1,26 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
-import IconElement from './IconElement';
-import { baseScaleUnitState, baseSizeState } from '../states/base';
-import {
-    iconScaleState,
-    iconSmallQuantityState,
-    iconLargeQuantityState,
-    iconScaleFormulaState,
-    iconPaddingState,
-} from '../states/iconography';
+import IconElement from '../elements/IconElement';
 import calculateScale from '../utilities/calculateScale';
 import round from '../utilities/round';
 import '../styles/iconography.css';
 
-export default function Iconography() {
-    const [baseSize] = useRecoilState(baseSizeState);
-    const [iconScale] = useRecoilState(iconScaleState);
-    const [iconSmallQuantity] = useRecoilState(iconSmallQuantityState,);
-    const [iconLargeQuantity] = useRecoilState(iconLargeQuantityState,);
-    const [iconScaleFormula] = useRecoilState(iconScaleFormulaState,);
-    const [baseScaleUnit] = useRecoilState(baseScaleUnitState);
+interface Props {
+    baseSize: number
+    iconScale: number
+    iconSmallQuantity: number
+    iconLargeQuantity: number
+    iconScaleFormula: string
+    baseScaleUnit: string
+}
+
+export default function Iconography({
+    baseSize,
+    iconScale,
+    iconSmallQuantity,
+    iconLargeQuantity,
+    iconScaleFormula,
+    baseScaleUnit,
+}: Props) {
 
     let smallSizeArray = new Array(iconSmallQuantity).fill(0);
     let largeSizeArray = new Array(iconLargeQuantity).fill(0);
