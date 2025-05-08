@@ -5,13 +5,12 @@ import round from '../utilities/round';
 
 interface Props {
     size: number
-    spacerLineHeight: number
 }
 
 export default function SpacingElement(props: Props) {
     const size = props.size;
-    const [baseScaleUnit, setBaseScaleUnit] = useRecoilState(baseScaleUnitState);
-    const [baseSize, setBaseSize] = useRecoilState(baseSizeState);
+    const [baseScaleUnit] = useRecoilState(baseScaleUnitState);
+    const [baseSize] = useRecoilState(baseSizeState);
     const value =
         baseScaleUnit === 'px' ? round(size) : round(size / baseSize, 3);
 

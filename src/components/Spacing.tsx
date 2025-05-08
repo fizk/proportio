@@ -17,12 +17,12 @@ interface Props {
 }
 
 export default function Spacing({spacerLineHeight}: Props) {
-    const [baseSize, setBaseSize] = useRecoilState(baseSizeState);
-    const [spacingScaleFactor, setSpacingScaleFactor] = useRecoilState(spacingScaleFactorState,);
-    const [spacingSmallQuantity, setSpacingSmallQuantity] = useRecoilState(spacingSmallQuantityState,);
-    const [spacingLargeQuantity, setSpacingLargeQuantity] = useRecoilState(spacingLargeQuantityState,);
-    const [spacingFormula, setSpacingFormula] = useRecoilState(spacingFormulaState);
-    const [baseScaleUnit, setBaseScaleUnit] = useRecoilState(baseScaleUnitState);
+    const [baseSize] = useRecoilState(baseSizeState);
+    const [spacingScaleFactor] = useRecoilState(spacingScaleFactorState,);
+    const [spacingSmallQuantity] = useRecoilState(spacingSmallQuantityState,);
+    const [spacingLargeQuantity] = useRecoilState(spacingLargeQuantityState,);
+    const [spacingFormula] = useRecoilState(spacingFormulaState);
+    const [baseScaleUnit] = useRecoilState(baseScaleUnitState);
 
     let smallSizeArray = new Array(spacingSmallQuantity).fill(0);
     let largeSizeArray = new Array(spacingLargeQuantity).fill(0);
@@ -61,7 +61,6 @@ export default function Spacing({spacerLineHeight}: Props) {
             <SpacingElement
                 key={`spacing-${size}-${i}`}
                 size={size}
-                spacerLineHeight={spacerLineHeight}
             />
         );
     });

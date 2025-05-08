@@ -66,7 +66,6 @@ export default function IconControls () {
                     <label htmlFor="iconStroke">Stroke</label>
                     <Slider
                         id="iconStroke"
-                        type="range"
                         onInput={setIconStroke}
                         step="0.25"
                         min="0.25"

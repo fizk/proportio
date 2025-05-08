@@ -13,17 +13,14 @@ interface Props {
     size: number
     showValue?: boolean
     textSize?: number
-
-    i: number
-
 }
 
 export default function IconElement (props: Props) {
-    const [baseSize, setBaseSize] = useRecoilState(baseSizeState);
-    const [iconPadding, setIconPadding] = useRecoilState(iconPaddingState);
-    const [icon, setIcon] = useRecoilState(iconState);
-    const [iconStroke, setIconStroke] = useRecoilState(iconStrokeState);
-    const [baseScaleUnit, setBaseScaleUnit] = useRecoilState(baseScaleUnitState);
+    const [baseSize] = useRecoilState(baseSizeState);
+    const [iconPadding] = useRecoilState(iconPaddingState);
+    const [icon] = useRecoilState(iconState);
+    const [iconStroke] = useRecoilState(iconStrokeState);
+    const [baseScaleUnit] = useRecoilState(baseScaleUnitState);
 
     const size = round(props.size);
 

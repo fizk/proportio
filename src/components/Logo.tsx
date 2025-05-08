@@ -3,7 +3,6 @@ import React from 'react';
 interface Props {
     color: string
     size: number
-    strokeWidth: number
 }
 
 export default function Logo(props: Props) {

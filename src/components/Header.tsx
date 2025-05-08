@@ -10,7 +10,6 @@ import '../styles/header.css';
 
 interface Props {
     children: ReactNode
-    showModal: boolean
     setShowModal: (value: boolean) => void
 }
 
@@ -40,7 +39,7 @@ export default function Header(props: Props) {
         <header>
             <div className="header--left">
                 <div className="logoLockup">
-                    <Logo color="var(--logoColor)" size={32} strokeWidth={2.5} />
+                    <Logo color="var(--logoColor)" size={32} />
                     <h4 className="logo">Proportio</h4>
                 </div>
                 {props.children}

@@ -17,12 +17,12 @@ interface Props {
 }
 
 export default function Typography (props: Props) {
-    const [baseSize, setBaseSize] = useRecoilState(baseSizeState);
-    const [typeScale, setTypeScale] = useRecoilState(typeScaleState);
-    const [typeSmallQuantity, setTypeSmallQuantity] = useRecoilState(typeSmallQuantityState,);
-    const [typeLargeQuantity, setTypeLargeQuantity] = useRecoilState(typeLargeQuantityState,);
-    const [typeScaleFormula, setTypeScaleFormula] = useRecoilState(typeScaleFormulaState,);
-    const [baseScaleUnit, setBaseScaleUnit] = useRecoilState(baseScaleUnitState);
+    const [baseSize] = useRecoilState(baseSizeState);
+    const [typeScale] = useRecoilState(typeScaleState);
+    const [typeSmallQuantity] = useRecoilState(typeSmallQuantityState,);
+    const [typeLargeQuantity] = useRecoilState(typeLargeQuantityState,);
+    const [typeScaleFormula] = useRecoilState(typeScaleFormulaState,);
+    const [baseScaleUnit] = useRecoilState(baseScaleUnitState);
 
     const sampleText = props.sampleText;
 

@@ -4,7 +4,6 @@ interface Props {
     step: string
     min: string
     max: string
-    type: string
     defaultValue: string | number
     onInput: (value: number) => void
     unit: string

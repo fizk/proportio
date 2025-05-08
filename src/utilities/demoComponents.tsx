@@ -1,5 +1,5 @@
 import React from 'react';
-import ComponentElement from '../components/componentElement';
+import ComponentElement from '../components/ComponentElement';
 
 const demoComponents = [
   {

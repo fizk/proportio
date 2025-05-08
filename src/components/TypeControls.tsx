@@ -8,7 +8,6 @@ interface Props {
 }
 
 export default function TypeControls({setSampleText, sampleText}: Props) {
-    const [activeFontFamily, setActiveFontFamily] = useRecoilState(typeFontFamilyState);
     const [typeFontWeight, setTypeFontWeight] = useRecoilState(typeFontWeightState);
 
     return (

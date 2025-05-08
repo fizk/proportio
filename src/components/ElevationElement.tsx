@@ -11,8 +11,8 @@ interface Props {
 export default function ElevationElement(props: Props) {
     const elevation = props.elevation;
     const offsetY = props.offsetY;
-    const [baseScaleUnit, setBaseScaleUnit] = useRecoilState(baseScaleUnitState);
-    const [baseSize, setBaseSize] = useRecoilState(baseSizeState);
+    const [baseScaleUnit] = useRecoilState(baseScaleUnitState);
+    const [baseSize] = useRecoilState(baseSizeState);
 
     const value =
         baseScaleUnit === 'px' ? round(elevation) : round(elevation / baseSize, 3);

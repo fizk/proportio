@@ -14,13 +14,12 @@ import round from '../utilities/round';
 import '../styles/iconography.css';
 
 export default function Iconography() {
-    const [baseSize, setBaseSize] = useRecoilState(baseSizeState);
-    const [iconScale, setIconScale] = useRecoilState(iconScaleState);
-    const [iconSmallQuantity, setIconSmallQuantity] = useRecoilState(iconSmallQuantityState,);
-    const [iconLargeQuantity, setIconLargeQuantity] = useRecoilState(iconLargeQuantityState,);
-    const [iconScaleFormula, setIconScaleFormula] = useRecoilState(iconScaleFormulaState,);
-    const [iconPadding, setIconPadding] = useRecoilState(iconPaddingState);
-    const [baseScaleUnit, setBaseScaleUnit] = useRecoilState(baseScaleUnitState);
+    const [baseSize] = useRecoilState(baseSizeState);
+    const [iconScale] = useRecoilState(iconScaleState);
+    const [iconSmallQuantity] = useRecoilState(iconSmallQuantityState,);
+    const [iconLargeQuantity] = useRecoilState(iconLargeQuantityState,);
+    const [iconScaleFormula] = useRecoilState(iconScaleFormulaState,);
+    const [baseScaleUnit] = useRecoilState(baseScaleUnitState);
 
     let smallSizeArray = new Array(iconSmallQuantity).fill(0);
     let largeSizeArray = new Array(iconLargeQuantity).fill(0);
@@ -36,7 +35,6 @@ export default function Iconography() {
         return (
             <IconElement
                 key={`${iconScale}-neg${i}`}
-                i={increment}
                 size={size}
                 showValue
             />
@@ -52,7 +50,7 @@ export default function Iconography() {
         const value = baseScaleUnit === 'px' ? size : round(size / baseSize, 3);
 
         return (
-            <IconElement key={`${iconScale}-${i}`} i={i} size={size} showValue />
+            <IconElement key={`${iconScale}-${i}`} size={size} showValue />
         );
     });
 

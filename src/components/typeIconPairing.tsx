@@ -28,29 +28,28 @@ import round from '../utilities/round';
 import '../styles/typography.css';
 import '../styles/iconography.css';
 import '../styles/typeIconPair.css';
-import { ScaleFormulaType } from '../utilities/scaleFormulas';
 
 interface Props {
     sampleText: string
 }
 
 export default function TypeIconPairing (props: Props) {
-    const [baseSize, setBaseSize] = useRecoilState(baseSizeState);
-    const [spacingScaleFactor, setSpacingScaleFactor] = useRecoilState(spacingScaleFactorState,);
-    const [spacingFormula, setSpacingFormula] =useRecoilState(spacingFormulaState);
+    const [baseSize] = useRecoilState(baseSizeState);
+    const [spacingScaleFactor] = useRecoilState(spacingScaleFactorState,);
+    const [spacingFormula] =useRecoilState(spacingFormulaState);
 
-    const [typeScale, setTypeScale] = useRecoilState(typeScaleState);
-    const [typeSmallQuantity, setTypeSmallQuantity] = useRecoilState(typeSmallQuantityState,);
-    const [typeLargeQuantity, setTypeLargeQuantity] = useRecoilState(typeLargeQuantityState,);
-    const [typeScaleFormula, setTypeScaleFormula] = useRecoilState(typeScaleFormulaState,);
+    const [typeScale] = useRecoilState(typeScaleState);
+    const [typeSmallQuantity] = useRecoilState(typeSmallQuantityState,);
+    const [typeLargeQuantity] = useRecoilState(typeLargeQuantityState,);
+    const [typeScaleFormula] = useRecoilState(typeScaleFormulaState,);
 
-    const [textIconGapIndex, setTextIconGapIndex] = useRecoilState(textIconGapIndexState,);
-    const [textIconIconSizeIndex, setTextIconIconSizeIndex] = useRecoilState(textIconIconSizeIndexState,);
-    const [textIconGapScaleFormula, setTextIconGapScaleFormula] = useRecoilState(textIconGapScaleFormulaState,);
+    const [textIconGapIndex] = useRecoilState(textIconGapIndexState,);
+    const [textIconIconSizeIndex] = useRecoilState(textIconIconSizeIndexState,);
+    const [textIconGapScaleFormula] = useRecoilState(textIconGapScaleFormulaState,);
 
-    const [iconScale, setIconScale] = useRecoilState(iconScaleState);
-    const [iconScaleFormula, setIconScaleFormula] = useRecoilState(iconScaleFormulaState,);
-    const [baseScaleUnit, setBaseScaleUnit] = useRecoilState(baseScaleUnitState);
+    const [iconScale] = useRecoilState(iconScaleState);
+    const [iconScaleFormula] = useRecoilState(iconScaleFormulaState,);
+    const [baseScaleUnit] = useRecoilState(baseScaleUnitState);
 
     let smallSizeArray = new Array(typeSmallQuantity).fill(0);
     let largeSizeArray = new Array(typeLargeQuantity).fill(0);
@@ -116,7 +115,6 @@ export default function TypeIconPairing (props: Props) {
                 <div className="typeIconPair" key={`typeIcon-neg${i}`}>
                     <IconElement
                         key={`typeIcon-icon-${iconScale}-neg${i}`}
-                        i={(iconIncrement + 1) * -1}
                         size={iconSize}
                     />
                     <span
@@ -180,7 +178,6 @@ export default function TypeIconPairing (props: Props) {
                         key={`typeIcon-icon-${iconScale}-${i}`}
                         size={iconSize}
                         textSize={textSize}
-                        i={iconIncrement}
                     />
                     <span
                         style={{
@@ -192,11 +189,9 @@ export default function TypeIconPairing (props: Props) {
                     ></span>
                     <TypeElement
                         key={`typeIcon-text-${typeScale}-${i}`}
-                        baseSize={baseSize}
                         scale={typeScale}
                         i={i}
                         content={sampleText}
-                        scaleMethod={typeScaleFormula as ScaleFormulaType}
                         size={textSize}
                     />
                 </div>

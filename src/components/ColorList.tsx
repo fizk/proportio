@@ -7,8 +7,8 @@ import '../styles/colorlist.css';
 
 
 export default function ColorList () {
-    const [colorArray, setColorArray] = useRecoilState(colorState);
-    const [colorShades, setColorShades] = useRecoilState(colorShadesState);
+    const [colorArray] = useRecoilState(colorState);
+    const [colorShades] = useRecoilState(colorShadesState);
     const index = [
         -.8, -.6, -.4, -.2, 0, .2, .4, .6, .8,
     ]

@@ -13,7 +13,7 @@ export default function SpacingControls() {
     const [spacingScaleFactor, setSpacingScaleFactor] = useRecoilState(spacingScaleFactorState,);
     const [spacingSmallQuantity, setSpacingSmallQuantity] = useRecoilState(spacingSmallQuantityState,);
     const [spacingLargeQuantity, setSpacingLargeQuantity] = useRecoilState(spacingLargeQuantityState,);
-    const [spacingFormula, setSpacingFormula] = useRecoilState(spacingFormulaState);
+    const [spacingFormula] = useRecoilState(spacingFormulaState);
 
     const [scaleInput, setScaleInput] = useState(spacingScaleFactor);
 

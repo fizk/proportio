@@ -100,7 +100,6 @@ export default function ElevationControls() {
                     <label htmlFor="shadowDistance">Shadow distance</label>
                     <Slider
                         id="shadowDistance"
-                        type="number"
                         onInput={setElevationOffsetY}
                         step="1"
                         min="0"

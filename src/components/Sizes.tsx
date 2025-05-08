@@ -74,7 +74,6 @@ export default function Sizes (props: Props) {
         return (
             <ComponentSizeColumn
                 key={`${sizeName}-${decrementIndex}`}
-                size={size}
                 density={densityName}
                 sizeName={sizeName}
                 increment={increment}

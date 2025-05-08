@@ -8,38 +8,36 @@ export default function ContainerView ()  {
     const [containerElevation, setContainerElevation] = useState<boolean>(true);
 
     return (
-        <>
-            <div className="splitView">
-                <Panel direction="column">
-                    <ContainerControls
-                        containerElevation={containerElevation}
-                        setContainerElevation={setContainerElevation}
-                    />
-                </Panel>
+        <div className="splitView">
+            <Panel direction="column">
+                <ContainerControls
+                    containerElevation={containerElevation}
+                    setContainerElevation={setContainerElevation}
+                />
+            </Panel>
 
-                <main className="demoRow demoRow--compact apply-font-main">
-                    <div className="tabs_action">
-                        <fieldset>
-                            <div className="checkboxGroup">
-                                <input
-                                    type="checkbox"
-                                    name="showComponentSpecs"
-                                    id="showComponentSpecs"
-                                    onClick={(event: MouseEvent<HTMLInputElement>) => (
-                                        setShowSpecs(event.currentTarget.checked)
-                                    )}
-                                    defaultChecked={showSpecs}
-                                />
-                                <label htmlFor="showComponentSpecs">Show container specs</label>
-                            </div>
-                        </fieldset>
-                    </div>
-                    <Containers
-                        showSpecs={showSpecs}
-                        containerElevation={containerElevation}
-                    />
-                </main>
-            </div>
-        </>
+            <main className="demoRow demoRow--compact apply-font-main">
+                <div className="tabs_action">
+                    <fieldset>
+                        <div className="checkboxGroup">
+                            <input
+                                type="checkbox"
+                                name="showComponentSpecs"
+                                id="showComponentSpecs"
+                                onClick={(event: MouseEvent<HTMLInputElement>) => (
+                                    setShowSpecs(event.currentTarget.checked)
+                                )}
+                                defaultChecked={showSpecs}
+                            />
+                            <label htmlFor="showComponentSpecs">Show container specs</label>
+                        </div>
+                    </fieldset>
+                </div>
+                <Containers
+                    showSpecs={showSpecs}
+                    containerElevation={containerElevation}
+                />
+            </main>
+        </div>
     );
 };

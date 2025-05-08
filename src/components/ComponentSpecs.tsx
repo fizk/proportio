@@ -54,34 +54,34 @@ interface Props {
 }
 
 export default function ComponentSpecs(props: Props) {
-    const [componentPaddingMethodOption, setComponentPaddingMethodOption] = useRecoilState(componentPaddingMethodOptionState);
-    const [typeScale, setTypeScale] = useRecoilState(typeScaleState);
-    const [spacingScaleFactor, setSpacingScaleFactor] = useRecoilState(spacingScaleFactorState,);
-    const [spacingFormula, setSpacingFormula] = useRecoilState(spacingFormulaState);
-    const [typeScaleFormula, setTypeScaleFormula] = useRecoilState(typeScaleFormulaState,);
-    const [componentMinHeightMethodOption, setComponentMinHeightMethodOption] = useRecoilState(componentMinHeightMethodOptionState);
-    const [componentSmallQuantity, setComponentSmallQuantity] = useRecoilState(componentSmallQuantityState,);
-    const [componentLargeQuantity, setComponentLargeQuantity] = useRecoilState(componentLargeQuantityState,);
-    const [baseComponentPaddingXIndex, setBaseComponentPaddingXIndex] = useRecoilState(baseComponentPaddingXIndexState);
-    const [baseComponentPaddingYIndex, setBaseComponentPaddingYIndex] = useRecoilState(baseComponentPaddingYIndexState);
+    const [componentPaddingMethodOption] = useRecoilState(componentPaddingMethodOptionState);
+    const [typeScale] = useRecoilState(typeScaleState);
+    const [spacingScaleFactor] = useRecoilState(spacingScaleFactorState,);
+    const [spacingFormula] = useRecoilState(spacingFormulaState);
+    const [typeScaleFormula] = useRecoilState(typeScaleFormulaState,);
+    const [componentMinHeightMethodOption] = useRecoilState(componentMinHeightMethodOptionState);
+    const [componentSmallQuantity] = useRecoilState(componentSmallQuantityState,);
+    const [componentLargeQuantity] = useRecoilState(componentLargeQuantityState,);
+    const [baseComponentPaddingXIndex] = useRecoilState(baseComponentPaddingXIndexState);
+    const [baseComponentPaddingYIndex] = useRecoilState(baseComponentPaddingYIndexState);
     // Should get rid of these two. Customizing adds unnecessary complexity
-    const [baseComponentTextSizeIndex, setBaseComponentTextSizeIndex] = useRecoilState(baseComponentTextSizeIndexState);
+    const [baseComponentTextSizeIndex] = useRecoilState(baseComponentTextSizeIndexState);
 
-    const [baseComponentSizeIndex, setBaseComponentSizeIndex] = useRecoilState(baseComponentSizeIndexState,);
-    const [scaleComponentRadius, setScaleComponentRadiusState] = useRecoilState(scaleComponentRadiusState,);
-    const [baseComponentRadius, setBaseComponentRadiusState] = useRecoilState(baseComponentRadiusState,);
-    const [componentLineHeight, setComponentLineHeightState] = useRecoilState(componentLineHeightState,);
-    const [baseRadiusSize, setBaseRadiusSize] = useRecoilState(baseRadiusSizeState);
-    const [radiusScaleFormula, setRadiusScaleFormula] = useRecoilState(radiusScaleFormulaState,);
-    const [radiusScaleFactor, setRadiusScaleFactor] = useRecoilState(radiusScaleFactorState,);
-    const [iconScaleFormula, setIconScaleFormula] = useRecoilState(iconScaleFormulaState,);
-    const [iconPadding, setIconPadding] = useRecoilState(iconPaddingState);
-    const [textIconGapIndex, setTextIconGapIndex] = useRecoilState(textIconGapIndexState,);
-    const [textIconIconSizeIndex, setTextIconIconSizeIndex] = useRecoilState(textIconIconSizeIndexState,);
-    const [textIconGapScaleFormula, setTextIconGapScaleFormula] = useRecoilState(textIconGapScaleFormulaState,);
-    const [componentDensitySmallQuantity, setComponentDensitySmallQuantity] = useRecoilState(componentDensitySmallQuantityState);
-    const [componentDensityLargeQuantity, setComponentDensityLargeQuantity] = useRecoilState(componentDensityLargeQuantityState);
-    const [componentDensityScaleFactor, setComponentDensityScaleFactor] = useRecoilState(componentDensityScaleFactorState);
+    const [baseComponentSizeIndex] = useRecoilState(baseComponentSizeIndexState,);
+    const [scaleComponentRadius] = useRecoilState(scaleComponentRadiusState,);
+    const [baseComponentRadius] = useRecoilState(baseComponentRadiusState,);
+    const [componentLineHeight] = useRecoilState(componentLineHeightState,);
+    const [baseRadiusSize] = useRecoilState(baseRadiusSizeState);
+    const [radiusScaleFormula] = useRecoilState(radiusScaleFormulaState,);
+    const [radiusScaleFactor] = useRecoilState(radiusScaleFactorState,);
+    const [iconScaleFormula] = useRecoilState(iconScaleFormulaState,);
+    const [iconPadding] = useRecoilState(iconPaddingState);
+    const [textIconGapIndex] = useRecoilState(textIconGapIndexState,);
+    const [textIconIconSizeIndex] = useRecoilState(textIconIconSizeIndexState,);
+    const [textIconGapScaleFormula] = useRecoilState(textIconGapScaleFormulaState,);
+    const [componentDensitySmallQuantity] = useRecoilState(componentDensitySmallQuantityState);
+    const [componentDensityLargeQuantity] = useRecoilState(componentDensityLargeQuantityState);
+    const [componentDensityScaleFactor] = useRecoilState(componentDensityScaleFactorState);
 
     const showSpecs = props.showSpecs;
     const showComponentIcon = props.showComponentIcon;

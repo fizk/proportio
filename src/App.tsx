@@ -14,10 +14,6 @@ import './styles/formElements.css';
 
 export default function App() {
 
-     /* Just to align icon examples with typography */
-    const iconLineHeight = 1.375;
-    const spacerLineHeight = iconLineHeight;
-
     const [showModal, setShowModal] = useState<boolean>(false);
 
     return (
@@ -25,7 +21,7 @@ export default function App() {
             <div className="App">
                 <ExportDialog showModal={showModal} setShowModal={setShowModal} />
                 <Tabs className="App_tabs">
-                    <Header showModal={showModal} setShowModal={setShowModal}>
+                    <Header setShowModal={setShowModal}>
                         <TabList className="App_tabsList">
                             <Tab className="App_tab">Typography</Tab>
                             <Tab className="App_tab">Shape</Tab>
@@ -36,13 +32,13 @@ export default function App() {
                     </Header>
 
                     <TabPanel className="App_tabPanel">
-                        <TypographyView iconLineHeight={iconLineHeight} />
+                        <TypographyView />
                     </TabPanel>
                     <TabPanel className="App_tabPanel">
-                        <ShapesView spacerLineHeight={spacerLineHeight} />
+                        <ShapesView />
                     </TabPanel>
                     <TabPanel className="App_tabPanel">
-                        <ComponentsView iconLineHeight={iconLineHeight} />
+                        <ComponentsView />
                     </TabPanel>
                     <TabPanel className="App_tabPanel">
                         <ContainerView />

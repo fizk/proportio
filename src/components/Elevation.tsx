@@ -11,18 +11,15 @@ import {
     elevationScaleFormulaState,
     elevationOffsetYState,
 } from '../states/elevation';
-import { baseScaleUnitState, baseSizeState } from '../states/base';
 import '../styles/elevation.css';
 
 export default function Elevation() {
-    const [baseSize, setBaseSize] = useRecoilState(baseSizeState);
-    const [baseScaleUnit, setBaseScaleUnit] = useRecoilState(baseScaleUnitState);
-    const [baseElevationSize, setBaseElevationSize] = useRecoilState(baseElevationSizeState,);
-    const [elevationScaleFactor, setElevationScaleFactor] = useRecoilState(elevationScaleFactorState,);
-    const [elevationSmallQuantity, setElevationSmallQuantity] = useRecoilState(elevationSmallQuantityState,);
-    const [elevationLargeQuantity, setElevationLargeQuantity] = useRecoilState(elevationLargeQuantityState,);
-    const [elevationScaleFormula, setElevationScaleFormula] = useRecoilState(elevationScaleFormulaState,);
-    const [elevationOffsetY, setElevationOffsetY] = useRecoilState(elevationOffsetYState,);
+    const [baseElevationSize] = useRecoilState(baseElevationSizeState,);
+    const [elevationScaleFactor] = useRecoilState(elevationScaleFactorState,);
+    const [elevationSmallQuantity] = useRecoilState(elevationSmallQuantityState,);
+    const [elevationLargeQuantity] = useRecoilState(elevationLargeQuantityState,);
+    const [elevationScaleFormula] = useRecoilState(elevationScaleFormulaState,);
+    const [elevationOffsetY] = useRecoilState(elevationOffsetYState,);
 
     let sizeArray = buildArray(elevationSmallQuantity, elevationLargeQuantity);
     const sizes = sizeArray.map((i) => {

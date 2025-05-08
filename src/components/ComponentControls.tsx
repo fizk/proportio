@@ -18,14 +18,7 @@ import {
     componentDensityScaleFactorState,
 } from '../states/components';
 
-interface Props {
-    showComponentIcon: boolean
-    setShowComponentIcon: (value: boolean) => void
-    showComponentText: boolean
-    setShowComponentText: (value: boolean) => void
-}
-
-export default function ComponentControls(props: Props) {
+export default function ComponentControls() {
     const [baseComponentSizeIndex, setBaseComponentSizeIndex] = useRecoilState(baseComponentSizeIndexState,);
     const [componentLineHeight, setComponentLineHeight] = useRecoilState(componentLineHeightState,);
     const [componentSmallQuantity, setComponentSmallQuantity] = useRecoilState(componentSmallQuantityState,);

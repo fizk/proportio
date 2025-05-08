@@ -14,19 +14,18 @@ interface Props {
     containerElevation: boolean
     paddingY: number
     paddingX: number
-    gapSize: number
 }
 
 export default function ContainerElement(props: Props) {
+    const containerElevation = props.containerElevation;
+    const [baseScaleUnit] = useRecoilState(baseScaleUnitState);
+    const [baseSize] = useRecoilState(baseSizeState);
+
     const elevation = props.elevation;
     const radius = props.radius;
     const offsetY = props.offsetY;
     const spec = props.spec;
     const sizeName = props.sizeName;
-    const containerElevation = props.containerElevation;
-    const [baseScaleUnit, setBaseScaleUnit] = useRecoilState(baseScaleUnitState);
-    const [baseSize, setBaseSize] = useRecoilState(baseSizeState);
-
     const paddingY = props.paddingY;
     const paddingX = props.paddingX;
     const margin = elevation > 0 ? elevation : 4;

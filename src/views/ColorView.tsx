@@ -7,15 +7,13 @@ import '../styles/toolbar.css';
 
 export default function ColorView() {
     return (
-        <>
-            <div className="splitView">
-                <Panel direction="column">
-                    <ColorControls />
-                </Panel>
-                <main className="">
-                    <ColorList />
-                </main>
-            </div>
-        </>
+        <div className="splitView">
+            <Panel direction="column">
+                <ColorControls />
+            </Panel>
+            <main className="">
+                <ColorList />
+            </main>
+        </div>
     );
 };

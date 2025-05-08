@@ -1,7 +1,7 @@
 import React from 'react';
 import calculateScale from '../utilities/calculateScale';
 import capitalize from '../utilities/capitalize';
-import ComponentElement from './componentElement';
+import ComponentElement from './ComponentElement';
 import { useRecoilState } from 'recoil';
 import { baseSizeState } from '../states/base';
 import { typeScaleFormulaState, typeScaleState } from '../states/typography';
@@ -11,7 +11,6 @@ import { type ScaleFormulaType } from '../utilities/scaleFormulas';
 
 interface Props {
     density: string
-    size: number
     sizeName: string
     componentPaddingScale: number
     paddingXIndexArray: number[]
@@ -41,12 +40,10 @@ interface Props {
 }
 
 export default function ComponentSizeColumn (props: Props)  {
-    const [baseSize, setBaseSize] = useRecoilState(baseSizeState);
-    const [typeScaleFormula, setTypeScaleFormula] = useRecoilState(
-        typeScaleFormulaState,
-    );
-    const [typeScale, setTypeScale] = useRecoilState(typeScaleState);
-    const [iconScale, setIconScale] = useRecoilState(iconScaleState);
+    const [baseSize] = useRecoilState(baseSizeState);
+    const [typeScaleFormula] = useRecoilState(typeScaleFormulaState,);
+    const [typeScale] = useRecoilState(typeScaleState);
+    const [iconScale] = useRecoilState(iconScaleState);
 
     const density = props.density;
     const sizeName = props.sizeName;

@@ -9,11 +9,7 @@ import Elevation from '../components/Elevation';
 import '../styles/tabs.css';
 import '../styles/toolbar.css';
 
-interface Props {
-    spacerLineHeight: number
-}
-
-export default function ShapesView({}: Props) {
+export default function ShapesView() {
     const spacerLineHeight = 8;
 
     return (

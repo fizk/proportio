@@ -44,28 +44,28 @@ interface Props {
 }
 
 export default function Containers(props: Props) {
-    const [baseSize, setBaseSize] = useRecoilState(baseSizeState);
-    const [baseScaleUnit, setBaseScaleUnit] = useRecoilState(baseScaleUnitState);
-    const [baseElevationSize, setBaseElevationSize] = useRecoilState(baseElevationSizeState,);
-    const [elevationScaleFactor, setElevationScaleFactor] = useRecoilState(elevationScaleFactorState,);
-    const [elevationScaleFormula, setElevationScaleFormula] = useRecoilState(elevationScaleFormulaState,);
-    const [elevationOffsetY, setElevationOffsetY] = useRecoilState(elevationOffsetYState,);
-    const [containerSmallSizes, setContainerSmallSizes] = useRecoilState(containerSmallSizesState,);
-    const [containerLargeSizes, setContainerLargeSizes] = useRecoilState(containerLargeSizesState,);
-    const [containerBaseRadiusIndex, setContainerBaseRadiusIndex] = useRecoilState(containerBaseRadiusIndexState);
-    const [containerBaseElevationIndex, setContainerBaseElevationIndex] = useRecoilState(containerBaseElevationIndexState);
-    const [containerRadiusScaleFactor, setContainerRadiusScaleFactor] = useRecoilState(containerRadiusScaleFactorState);
-    const [containerPaddingMethodOption, setContainerPaddingMethodOption] = useRecoilState(containerPaddingMethodOptionState);
-    const [containerBasePaddingXIndex, setContainerBasePaddingXIndexState] = useRecoilState(containerBasePaddingXIndexState);
-    const [containerBasePaddingYIndex, setContainerBasePaddingYIndexState] = useRecoilState(containerBasePaddingYIndexState);
-    const [containerPaddingScaleFactor, setContainerPaddingScaleFactor] = useRecoilState(containerPaddingScaleFactorState);
-    const [baseRadiusSize, setBaseRadiusSize] = useRecoilState(baseRadiusSizeState);
-    const [radiusScaleFactor, setRadiusScaleFactor] = useRecoilState(radiusScaleFactorState,);
-    const [radiusScaleFormula, setRadiusScaleFormula] = useRecoilState(radiusScaleFormulaState,);
-    const [spacingFormula, setSpacingFormula] = useRecoilState(spacingFormulaState);
-    const [typeScaleFormula, setTypeScaleFormula] = useRecoilState(typeScaleFormulaState,);
-    const [typeScale, setTypeScale] = useRecoilState(typeScaleState);
-    const [spacingScaleFactor, setSpacingScaleFactor] = useRecoilState(spacingScaleFactorState,);
+    const [baseSize] = useRecoilState(baseSizeState);
+    const [baseScaleUnit] = useRecoilState(baseScaleUnitState);
+    const [baseElevationSize] = useRecoilState(baseElevationSizeState,);
+    const [elevationScaleFactor] = useRecoilState(elevationScaleFactorState,);
+    const [elevationScaleFormula] = useRecoilState(elevationScaleFormulaState,);
+    const [elevationOffsetY] = useRecoilState(elevationOffsetYState,);
+    const [containerSmallSizes] = useRecoilState(containerSmallSizesState,);
+    const [containerLargeSizes] = useRecoilState(containerLargeSizesState,);
+    const [containerBaseRadiusIndex] = useRecoilState(containerBaseRadiusIndexState);
+    const [containerBaseElevationIndex] = useRecoilState(containerBaseElevationIndexState);
+    const [containerRadiusScaleFactor] = useRecoilState(containerRadiusScaleFactorState);
+    const [containerPaddingMethodOption] = useRecoilState(containerPaddingMethodOptionState);
+    const [containerBasePaddingXIndex] = useRecoilState(containerBasePaddingXIndexState);
+    const [containerBasePaddingYIndex] = useRecoilState(containerBasePaddingYIndexState);
+    const [containerPaddingScaleFactor] = useRecoilState(containerPaddingScaleFactorState);
+    const [baseRadiusSize] = useRecoilState(baseRadiusSizeState);
+    const [radiusScaleFactor] = useRecoilState(radiusScaleFactorState,);
+    const [radiusScaleFormula] = useRecoilState(radiusScaleFormulaState,);
+    const [spacingFormula] = useRecoilState(spacingFormulaState);
+    const [typeScaleFormula] = useRecoilState(typeScaleFormulaState,);
+    const [typeScale] = useRecoilState(typeScaleState);
+    const [spacingScaleFactor] = useRecoilState(spacingScaleFactorState,);
     const showSpecs = props.showSpecs;
     const containerElevation = props.containerElevation;
 
@@ -158,7 +158,6 @@ export default function Containers(props: Props) {
                 elevation={elevation!}
                 paddingX={paddingX}
                 paddingY={paddingY}
-                gapSize={baseSize}
                 radius={radius}
                 spec={showSpecs}
                 sizeName={sizeName}

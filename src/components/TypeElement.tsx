@@ -11,15 +11,14 @@ interface Props {
     i?: number
     content: string
     showValue?: boolean
-    baseSize?: number
-    scaleMethod?: ScaleFormulaType
 }
 
 export default function TypeElement(props: Props) {
+    const [baseScaleUnit] = useRecoilState(baseScaleUnitState);
+    const [baseSize] = useRecoilState(baseSizeState);
+
     const size = props.size;
     const content = props.content ? props.content : 'Ag';
-    const [baseScaleUnit, setBaseScaleUnit] = useRecoilState(baseScaleUnitState);
-    const [baseSize, setBaseSize] = useRecoilState(baseSizeState);
 
     const demoLineHeight = 1.125;
     const margin = props.showValue ? `${size * demoLineHeight - size}px` : '0px';
