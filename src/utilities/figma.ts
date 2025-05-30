@@ -104,14 +104,15 @@ function formatValue(name: string, value: Module) {
 }
 
 
-export default function (tokens: any) {
-
+export default function (tokens: W3cDesignToken) {
+    const exclude = ['fontWeight', 'fontFamily', 'cubicBezier']
     //@ts-ignore
     const variables = Object.entries(tokens).reduce((previous, [_, groups]) => {
         return [
             ...previous,
             //@ts-ignore
             ...Object.entries(groups).reduce((previous, [name, value]) => {
+                if (exclude.includes(value.$type)) return previous;
                 return [
                     ...previous,
                     //@ts-ignore
@@ -127,6 +128,7 @@ export default function (tokens: any) {
             ...previous,
             //@ts-ignore
             ...Object.entries(groups).reduce((previous, [name, value]) => {
+                if (exclude.includes(value.$type)) return previous;
                 return [
                     ...previous,
                     name,

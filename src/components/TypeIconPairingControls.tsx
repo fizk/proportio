@@ -1,6 +1,6 @@
 import React, { FormEvent, MouseEvent } from 'react';
 import capitalize from '../utilities/capitalize';
-import scaleMethodOptions from '../utilities/scaleMethodOptions';
+import scaleMethodOptions, { ScaleMethodType } from '../utilities/scaleMethodOptions';
 
 interface Props {
     textIconGapIndex: number
@@ -8,7 +8,7 @@ interface Props {
     textIconIconSizeIndex: number
     setTextIconIconSizeIndex: (value: number) => void
     textIconGapScaleFormula: string
-    setTextIconGapScaleFormula: (value: string) => void
+    setTextIconGapScaleFormula: (value: ScaleMethodType) => void
 }
 
 export default function TypeIconPairingControls({
@@ -28,7 +28,7 @@ export default function TypeIconPairingControls({
                     name="gap_method"
                     value={method}
                     onClick={(event: MouseEvent<HTMLInputElement>) => (
-                        setTextIconGapScaleFormula(event.currentTarget.value)
+                        setTextIconGapScaleFormula(event.currentTarget.value as ScaleMethodType)
                     )}
                     defaultChecked={method === textIconGapScaleFormula ? true : false}
                 />

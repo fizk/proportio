@@ -1,11 +1,9 @@
-import React, { MouseEvent, ReactNode } from 'react';
-import { useRecoilState } from 'recoil';
-import { baseScaleUnitState } from '../states/base';
-import scaleUnits from '../utilities/scaleUnits';
-import Logo from './Logo';
+import React, { ReactNode } from 'react';
+import scaleUnits, { ScaleUnitTypes } from '../utilities/scaleUnits';
+import Logo from '../elements/Logo';
 import GitHubLogo from '../icons/github';
-import capitalize from '../utilities/capitalize';
 import Dropdown from 'react-dropdown';
+import { useBase } from '../context/BaseContext'
 import '../styles/header.css';
 
 interface Props {
@@ -13,27 +11,9 @@ interface Props {
     setShowModal: (value: boolean) => void
 }
 
-export default function Header(props: Props) {
-    const setShowModal = props.setShowModal;
-    const [baseScaleUnit, setBaseScaleUnit] = useRecoilState(baseScaleUnitState);
+export default function Header({children, setShowModal}: Props) {
 
-    const inputs = scaleUnits.map((unit) => {
-        return (
-            <div className="radioGroup" key={`${unit}`}>
-                <input
-                    type="radio"
-                    id={`scale${unit}`}
-                    name="scale_unit"
-                    value={unit}
-                    onClick={(event: MouseEvent<HTMLInputElement>) => (
-                        setBaseScaleUnit(event.currentTarget.value)
-                    )}
-                    defaultChecked={unit === baseScaleUnit ? true : false}
-                />
-                <label htmlFor={`scale${unit}`}>{capitalize(unit)}</label>
-            </div>
-        );
-    });
+    const {base: {baseScaleUnit}, setBaseScaleUnit} = useBase();
 
     return (
         <header>
@@ -42,7 +22,7 @@ export default function Header(props: Props) {
                     <Logo color="var(--logoColor)" size={32} />
                     <h4 className="logo">Proportio</h4>
                 </div>
-                {props.children}
+                {children}
             </div>
 
             <div className="header--right">
@@ -53,7 +33,7 @@ export default function Header(props: Props) {
                             // ariaLabelledBy="scale_unitLabel"
                             options={scaleUnits}
                             onChange={(e) => {
-                                setBaseScaleUnit(e.value);
+                                setBaseScaleUnit(e.value as ScaleUnitTypes);
                             }}
                             // value={icon}
                             placeholder={baseScaleUnit}

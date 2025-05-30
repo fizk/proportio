@@ -7,7 +7,7 @@ import {
 const getValue = (value: Modules): string => {
     switch (value.$type) {
         case 'cubicBezier': {
-            return value.$value.join(' ')
+            return `cubic-bezier(${value.$value.join(', ')})`
         } break;
         case 'duration': {
             return `${value.$value.value}${value.$value.unit}`

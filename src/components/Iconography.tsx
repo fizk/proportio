@@ -6,22 +6,27 @@ import '../styles/iconography.css';
 
 interface Props {
     baseSize: number
+    baseScaleUnit: string
     iconScale: number
     iconSmallQuantity: number
     iconLargeQuantity: number
     iconScaleFormula: string
-    baseScaleUnit: string
+    iconPadding: number
+    icon: any
+    iconStroke: number
 }
 
 export default function Iconography({
     baseSize,
+    baseScaleUnit,
     iconScale,
     iconSmallQuantity,
     iconLargeQuantity,
     iconScaleFormula,
-    baseScaleUnit,
+    iconPadding,
+    icon,
+    iconStroke,
 }: Props) {
-
     let smallSizeArray = new Array(iconSmallQuantity).fill(0);
     let largeSizeArray = new Array(iconLargeQuantity).fill(0);
 
@@ -38,6 +43,11 @@ export default function Iconography({
                 key={`${iconScale}-neg${i}`}
                 size={size}
                 showValue
+                baseSize={baseSize}
+                baseScaleUnit={baseScaleUnit}
+                iconPadding={iconPadding}
+                icon={icon}
+                iconStroke={iconStroke}
             />
         );
     });
@@ -51,7 +61,16 @@ export default function Iconography({
         const value = baseScaleUnit === 'px' ? size : round(size / baseSize, 3);
 
         return (
-            <IconElement key={`${iconScale}-${i}`} size={size} showValue />
+            <IconElement
+                key={`${iconScale}-${i}`}
+                size={size}
+                baseSize={baseSize}
+                baseScaleUnit={baseScaleUnit}
+                showValue
+                iconPadding={iconPadding}
+                icon={icon}
+                iconStroke={iconStroke}
+            />
         );
     });
 

@@ -11,6 +11,8 @@ interface Props {
     elevationLargeQuantity: number
     elevationScaleFormula: string
     elevationOffsetY: number
+    baseScaleUnit: string
+    baseSize: number
 }
 
 export default function Elevation({
@@ -20,6 +22,8 @@ export default function Elevation({
     elevationLargeQuantity,
     elevationScaleFormula,
     elevationOffsetY,
+    baseScaleUnit,
+    baseSize,
 }: Props) {
     let sizeArray = buildArray(elevationSmallQuantity, elevationLargeQuantity);
     const sizes = sizeArray.map((i) => {
@@ -40,6 +44,8 @@ export default function Elevation({
                 key={`elevation-${i}}`}
                 offsetY={offsets[i]}
                 elevation={size}
+                baseSize={baseSize}
+                baseScaleUnit={baseScaleUnit}
             />
         );
     });

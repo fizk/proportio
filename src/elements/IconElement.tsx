@@ -1,36 +1,39 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
 import createSvgIcon from '../utilities/createSvgIcon';
-import { baseScaleUnitState, baseSizeState } from '../states/base';
-import {
-    iconPaddingState,
-    iconState,
-    iconStrokeState,
-} from '../states/iconography';
 import round from '../utilities/round';
+import { FeatherIconNames } from 'feather-icons';
 
 interface Props {
     size: number
     showValue?: boolean
     textSize?: number
+    baseSize: number
+    baseScaleUnit: string
+    iconPadding: number
+    icon: any
+    iconStroke: number
 }
 
-export default function IconElement (props: Props) {
-    const [baseSize] = useRecoilState(baseSizeState);
-    const [iconPadding] = useRecoilState(iconPaddingState);
-    const [icon] = useRecoilState(iconState);
-    const [iconStroke] = useRecoilState(iconStrokeState);
-    const [baseScaleUnit] = useRecoilState(baseScaleUnitState);
+export default function IconElement ({
+    size,
+    showValue = true,
+    textSize = 16,
+    baseSize,
+    baseScaleUnit,
+    iconPadding,
+    icon,
+    iconStroke,
+}: Props) {
 
-    const size = round(props.size);
+    const roundedSize = round(size);
 
     /* Just to align icon examples with typography */
     const iconLineHeight = 1.35;
     const textLineHeight = 1.25;
 
-    const value = baseScaleUnit === 'px' ? size : round(size / baseSize, 3);
+    const value = baseScaleUnit === 'px' ? roundedSize : round(roundedSize / baseSize, 3);
 
-    const showValue = props.showValue ? (
+    const showValueElement = showValue ? (
         <span className="specs">
             {' '}
             {value}
@@ -39,8 +42,8 @@ export default function IconElement (props: Props) {
     ) : (
         ''
     );
-    const margin = props.showValue ? `${size * iconLineHeight - size}px` : '0px';
-    const minHeight = props.textSize ? props.textSize * textLineHeight : size;
+    const margin = showValue ? `${roundedSize * iconLineHeight - roundedSize}px` : '0px';
+    const minHeight = textSize ? textSize * textLineHeight : roundedSize;
 
     return (
         <div
@@ -49,7 +52,7 @@ export default function IconElement (props: Props) {
                 marginBottom: margin,
             }}
         >
-            {showValue}
+            {showValueElement}
             <div
                 className="icon"
                 style={{
@@ -58,7 +61,7 @@ export default function IconElement (props: Props) {
                     minHeight: `${minHeight}px`,
                 }}
             >
-                {createSvgIcon(size, size, iconPadding, `${icon}`, iconStroke)}
+                {createSvgIcon(size, size, iconPadding, `${icon}` as FeatherIconNames, iconStroke)}
             </div>
         </div>
     );

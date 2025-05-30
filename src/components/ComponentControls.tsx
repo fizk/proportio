@@ -1,6 +1,6 @@
 import React, { FormEvent, MouseEvent } from 'react';
 import capitalize from '../utilities/capitalize';
-import scaleMethodOptions from '../utilities/scaleMethodOptions';
+import scaleMethodOptions, { ScaleMethodType } from '../utilities/scaleMethodOptions';
 
 interface Props {
     baseComponentSizeIndex: number
@@ -12,9 +12,9 @@ interface Props {
     componentLargeQuantity: number
     setComponentLargeQuantity: (value: number) => void
     componentMinHeightMethodOption: string
-    setComponentMinHeightMethodOption: (value: string) => void
+    setComponentMinHeightMethodOption: (value: ScaleMethodType) => void
     componentPaddingMethodOption: string
-    setComponentPaddingMethodOption: (value: string) => void
+    setComponentPaddingMethodOption: (value: ScaleMethodType) => void
     baseComponentPaddingXIndex: number
     setBaseComponentPaddingXIndex: (value: number) => void
     baseComponentPaddingYIndex: number
@@ -68,7 +68,7 @@ export default function ComponentControls({
                     name="componentScale_method"
                     defaultValue={method}
                     onClick={(event: MouseEvent<HTMLInputElement>) => (
-                        setComponentMinHeightMethodOption(event.currentTarget.value)
+                        setComponentMinHeightMethodOption(event.currentTarget.value as ScaleMethodType)
                     )}
                     defaultChecked={
                         method === componentMinHeightMethodOption ? true : false
@@ -87,7 +87,7 @@ export default function ComponentControls({
                     name="componentPaddingScale_method"
                     defaultValue={method}
                     onClick={(event: MouseEvent<HTMLInputElement>) => (
-                        setComponentPaddingMethodOption(event.currentTarget.value)
+                        setComponentPaddingMethodOption(event.currentTarget.value as ScaleMethodType)
                     )}
                     defaultChecked={
                         method === componentPaddingMethodOption ? true : false

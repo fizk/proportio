@@ -10,8 +10,8 @@ import {
 } from '../utilities/names';
 import demoComponents from '../utilities/demoComponents';
 import Sizes from '../elements/Sizes';
-import '../styles/iconography.css';
 import { type ScaleFormulaType } from '../utilities/scaleFormulas';
+import '../styles/iconography.css';
 
 interface Props {
     showSpecs: boolean
@@ -43,6 +43,12 @@ interface Props {
     componentDensitySmallQuantity: number
     componentDensityLargeQuantity: number
     componentDensityScaleFactor: number
+
+    icon: string
+    iconStroke: number
+    baseScaleUnit: string
+    baseSize: number
+    iconScale: number
 }
 
 export default function ComponentSpecs({
@@ -74,7 +80,13 @@ export default function ComponentSpecs({
     textIconGapScaleFormula,
     componentDensitySmallQuantity,
     componentDensityLargeQuantity,
-    componentDensityScaleFactor,}: Props) {
+    componentDensityScaleFactor,
+    icon,
+    iconStroke,
+    baseScaleUnit,
+    baseSize,
+    iconScale,
+}: Props) {
 
     const rowClassName = showSpecs ? 'row row--comfortable' : 'row row--spacious';
 
@@ -224,6 +236,14 @@ export default function ComponentSpecs({
                 gapIndexArray={gapIndexArray}
                 showComponentIcon={showComponentIcon}
                 showComponentText={showComponentText}
+
+                icon={icon}
+                iconStroke={iconStroke}
+                baseScaleUnit={baseScaleUnit}
+                baseSize={baseSize}
+                typeScaleFormula={typeScaleFormula}
+                typeScale={typeScale}
+                iconScale={iconScale}
             />
         );
     });

@@ -32,38 +32,53 @@ interface Props {
     gapIndexArray: number[]
     showComponentIcon: boolean
     showComponentText: boolean
+    icon: any
+    iconStroke: number
+    baseScaleUnit: string
+    baseSize: number
+    typeScaleFormula: string
+    typeScale: number
+    iconScale: number
 }
 
-export default function Sizes (props: Props) {
-    const densityName = props.densityName;
-    const sizeArray = props.sizeArray;
-    const componentPaddingScale = props.componentPaddingScale;
-    const paddingXIndexArray = props.paddingXIndexArray;
-    const componentPaddingMethodFormula = props.componentPaddingMethodFormula;
-    const paddingYIndexArray = props.paddingYIndexArray;
-    const textSizeIndexArray = props.textSizeIndexArray;
-    const iconSizeIndexArray = props.iconSizeIndexArray;
-    const iconScaleFormula = props.iconScaleFormula;
-    const componentScale = props.componentScale;
-    const componentMinHeightIndexArray = props.componentMinHeightIndexArray;
-    const componentScaleMethodFormula = props.componentScaleMethodFormula;
-    const baseRadiusSize = props.baseRadiusSize;
-    const radiusScaleFactor = props.radiusScaleFactor;
-    const componentRadiusIndexArray = props.componentRadiusIndexArray;
-    const radiusScaleFormula = props.radiusScaleFormula;
-    const sizeNamesDecrement = props.sizeNamesDecrement;
-    const sizeNamesIncrement = props.sizeNamesIncrement;
-    const componentLineHeight = props.componentLineHeight;
-    const componentRadiusNewIndexValue = props.componentRadiusNewIndexValue;
-    const scaleComponentRadius = props.scaleComponentRadius;
-    const iconPadding = props.iconPadding;
-    const showSpecs = props.showSpecs;
-    const componentGapScale = props.componentGapScale;
-    const componentGapMethod = props.componentGapMethod;
-    const gapIndexArray = props.gapIndexArray;
+export default function Sizes ({
+    densityName,
+    sizeArray,
+    componentPaddingScale,
+    paddingXIndexArray,
+    componentPaddingMethodFormula,
+    paddingYIndexArray,
+    textSizeIndexArray,
+    iconSizeIndexArray,
+    iconScaleFormula,
+    componentScale,
+    componentMinHeightIndexArray,
+    componentScaleMethodFormula,
+    baseRadiusSize,
+    radiusScaleFactor,
+    componentRadiusIndexArray,
+    radiusScaleFormula,
+    sizeNamesDecrement,
+    sizeNamesIncrement,
+    componentLineHeight,
+    componentRadiusNewIndexValue,
+    scaleComponentRadius,
+    iconPadding,
+    showSpecs,
+    componentGapScale,
+    componentGapMethod,
+    gapIndexArray,
+    showComponentIcon,
+    showComponentText,
+    icon,
+    iconStroke,
+    baseScaleUnit,
+    baseSize,
+    typeScaleFormula,
+    typeScale,
+    iconScale,
 
-    const showComponentIcon = props.showComponentIcon;
-    const showComponentText = props.showComponentText;
+}: Props) {
 
     const sizedComponents = sizeArray.map((size, increment) => {
         const decrementIndex = size * -1 - 1;
@@ -101,6 +116,14 @@ export default function Sizes (props: Props) {
                 componentGapScale={componentGapScale}
                 componentGapMethod={componentGapMethod}
                 gapIndexArray={gapIndexArray}
+
+                icon={icon}
+                iconStroke={iconStroke}
+                baseScaleUnit={baseScaleUnit}
+                baseSize={baseSize}
+                typeScaleFormula={typeScaleFormula}
+                typeScale={typeScale}
+                iconScale={iconScale}
             />
         );
     });

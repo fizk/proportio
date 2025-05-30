@@ -15,11 +15,11 @@ interface Props {
 
 export default function Spacing({
     baseSize,
+    baseScaleUnit,
     spacingScaleFactor,
     spacingSmallQuantity,
     spacingLargeQuantity,
     spacingFormula,
-    baseScaleUnit,
 }: Props) {
 
     let smallSizeArray = new Array(spacingSmallQuantity).fill(0);
@@ -59,6 +59,8 @@ export default function Spacing({
             <SpacingElement
                 key={`spacing-${size}-${i}`}
                 size={size}
+                baseSize={baseSize}
+                baseScaleUnit={baseScaleUnit}
             />
         );
     });

@@ -6,55 +6,23 @@ import RadiusControls from '../components/RadiusControls';
 import Panel from '../elements/Panel';
 import ElevationControls from '../components/ElevationControls';
 import Elevation from '../components/Elevation';
-import { useRecoilState } from 'recoil';
-import {
-    spacingScaleFactorState,
-    spacingSmallQuantityState,
-    spacingLargeQuantityState,
-    spacingFormulaState,
-} from '../states/spacing';
-import {
-    baseRadiusSizeState,
-    radiusScaleFactorState,
-    radiusSmallQuantityState,
-    radiusLargeQuantityState,
-    radiusScaleFormulaState,
-} from '../states/radius';
-import {
-    baseElevationSizeState,
-    elevationScaleFactorState,
-    elevationSmallQuantityState,
-    elevationLargeQuantityState,
-    elevationScaleFormulaState,
-    elevationOffsetYState,
-} from '../states/elevation';
-import { baseScaleUnitState, baseSizeState } from '../states/base';
+import { useBase } from '../context/BaseContext'
 import '../styles/tabs.css';
 import '../styles/toolbar.css';
 
 export default function ShapesView() {
-    const spacerLineHeight = 8;
-
-    const [spacingScaleFactor, setSpacingScaleFactor] = useRecoilState(spacingScaleFactorState,);
-    const [spacingSmallQuantity, setSpacingSmallQuantity] = useRecoilState(spacingSmallQuantityState,);
-    const [spacingLargeQuantity, setSpacingLargeQuantity] = useRecoilState(spacingLargeQuantityState,);
-    const [spacingFormula] = useRecoilState(spacingFormulaState);
-
-    const [baseRadiusSize, setBaseRadiusSize] = useRecoilState(baseRadiusSizeState);
-    const [radiusScaleFactor, setRadiusScaleFactor] = useRecoilState(radiusScaleFactorState,);
-    const [radiusSmallQuantity, setRadiusSmallQuantity] = useRecoilState(radiusSmallQuantityState,);
-    const [radiusLargeQuantity, setRadiusLargeQuantity] = useRecoilState(radiusLargeQuantityState,);
-    const [radiusScaleFormula, setRadiusScaleFormula] = useRecoilState(radiusScaleFormulaState,);
-
-    const [baseElevationSize, setBaseElevationSize] = useRecoilState(baseElevationSizeState,);
-    const [elevationScaleFactor, setElevationScaleFactor] = useRecoilState(elevationScaleFactorState,);
-    const [elevationSmallQuantity, setElevationSmallQuantity] = useRecoilState(elevationSmallQuantityState,);
-    const [elevationLargeQuantity, setElevationLargeQuantity] = useRecoilState(elevationLargeQuantityState,);
-    const [elevationScaleFormula, setElevationScaleFormula] = useRecoilState(elevationScaleFormulaState,);
-    const [elevationOffsetY, setElevationOffsetY] = useRecoilState(elevationOffsetYState,);
-
-    const [baseSize] = useRecoilState(baseSizeState);
-    const [baseScaleUnit] = useRecoilState(baseScaleUnitState);
+    const {
+        base: {
+            spacingScaleFactor, spacingSmallQuantity, spacingLargeQuantity, spacingFormula,
+            baseRadiusSize, radiusScaleFactor, radiusSmallQuantity, radiusLargeQuantity,
+            radiusScaleFormula, baseElevationSize, elevationScaleFactor, elevationSmallQuantity,
+            elevationLargeQuantity, elevationScaleFormula, elevationOffsetY, baseSize, baseScaleUnit
+        },
+        setSpacingScaleFactor, setSpacingSmallQuantity,
+        setSpacingLargeQuantity, setBaseRadiusSize, setRadiusScaleFactor, setRadiusSmallQuantity,
+        setRadiusLargeQuantity, setRadiusScaleFormula, setBaseElevationSize, setElevationScaleFactor,
+        setElevationSmallQuantity, setElevationLargeQuantity, setElevationScaleFormula, setElevationOffsetY
+    } = useBase();
 
     return (
         <div className="splitView">
@@ -98,13 +66,15 @@ export default function ShapesView() {
             <main className="demoRow apply-font-main">
                 <Spacing
                     baseSize={baseSize}
+                    baseScaleUnit={baseScaleUnit}
                     spacingScaleFactor={spacingScaleFactor}
                     spacingSmallQuantity={spacingSmallQuantity}
                     spacingLargeQuantity={spacingLargeQuantity}
                     spacingFormula={spacingFormula}
-                    baseScaleUnit={baseScaleUnit}
                 />
                 <Radius
+                    baseSize={baseSize}
+                    baseScaleUnit={baseScaleUnit}
                     baseRadiusSize={baseRadiusSize}
                     radiusScaleFactor={radiusScaleFactor}
                     radiusSmallQuantity={radiusSmallQuantity}
@@ -118,6 +88,8 @@ export default function ShapesView() {
                     elevationLargeQuantity={elevationLargeQuantity}
                     elevationScaleFormula={elevationScaleFormula}
                     elevationOffsetY={elevationOffsetY}
+                    baseSize={baseSize}
+                    baseScaleUnit={baseScaleUnit}
                 />
             </main>
         </div>

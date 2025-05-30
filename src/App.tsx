@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
-import { RecoilRoot } from 'recoil';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import TypographyView from './views/TypographyView';
 import ShapesView from './views/ShapesView';
 import ComponentsView from './views/ComponentsView';
-import Header from './elements/Header';
+import Header from './views/Header';
 import ExportDialog from './elements/ExportDialog';
 import ContainerView from './views/ContainerView';
 import ColorView from './views/ColorView';
-
+import AliasesView from './views/AliasesView';
+import CubicBezierView from './views/CubicBezierView';
+import { BaseProvider } from './context/BaseContext'
 import './styles/app.css';
 import './styles/formElements.css';
 
 export default function App() {
-
     const [showModal, setShowModal] = useState<boolean>(false);
 
     return (
-        <RecoilRoot>
+        <BaseProvider>
             <div className="App">
                 <ExportDialog showModal={showModal} setShowModal={setShowModal} />
                 <Tabs className="App_tabs">
@@ -28,9 +28,10 @@ export default function App() {
                             <Tab className="App_tab">Components</Tab>
                             <Tab className="App_tab">Containers</Tab>
                             <Tab className="App_tab">Color</Tab>
+                            <Tab className="App_tab">Cubic Bézier</Tab>
+                            <Tab className="App_tab">Aliases</Tab>
                         </TabList>
                     </Header>
-
                     <TabPanel className="App_tabPanel">
                         <TypographyView />
                     </TabPanel>
@@ -46,8 +47,14 @@ export default function App() {
                     <TabPanel className="App_tabPanel">
                         <ColorView />
                     </TabPanel>
+                    <TabPanel className="App_tabPanel">
+                        <CubicBezierView />
+                    </TabPanel>
+                    <TabPanel className="App_tabPanel">
+                        <AliasesView />
+                    </TabPanel>
                 </Tabs>
             </div>
-        </RecoilRoot>
+        </BaseProvider>
     );
 }

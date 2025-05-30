@@ -1,5 +1,5 @@
 import React, { FormEvent, MouseEvent } from 'react';
-import scaleMethodOptions from '../utilities/scaleMethodOptions';
+import scaleMethodOptions, { ScaleMethodType } from '../utilities/scaleMethodOptions';
 import capitalize from '../utilities/capitalize';
 
 interface Props {
@@ -22,7 +22,7 @@ interface Props {
     containerPaddingScaleFactor: number
     setContainerPaddingScaleFactor: (value: number) => void
     containerPaddingMethodOption: string
-    setContainerPaddingMethodOption: (value: string) => void
+    setContainerPaddingMethodOption: (value: ScaleMethodType) => void
 }
 
 export default function ContainerControls ({
@@ -57,7 +57,7 @@ export default function ContainerControls ({
                     name="containerPaddingScale_method"
                     defaultValue={method}
                     onClick={(event: MouseEvent<HTMLInputElement>) => (
-                        setContainerPaddingMethodOption(event.currentTarget.value)
+                        setContainerPaddingMethodOption(event.currentTarget.value as ScaleMethodType)
                     )}
                     defaultChecked={
                         method === containerPaddingMethodOption ? true : false

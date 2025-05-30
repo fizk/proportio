@@ -7,67 +7,25 @@ import Typography from '../components/Typography';
 import Iconography from '../components/Iconography';
 import TypeIconPairing from '../elements/TypeIconPairing';
 import Panel from '../elements/Panel';
-import { useRecoilState } from 'recoil';
-import { baseSizeState, baseScaleUnitState } from '../states/base';
-import {
-    typeScaleFormulaState,
-    typeScaleState,
-    typeSmallQuantityState,
-    typeLargeQuantityState,
-} from '../states/typography';
-import {
-    iconLargeQuantityState,
-    iconScaleState,
-    iconSmallQuantityState,
-} from '../states/iconography';
-import {
-    iconScaleFormulaState,
-    iconState,
-    iconStrokeState,
-} from '../states/iconography';
-import {  } from '../states/base';
-import {
-    textIconGapIndexState,
-    textIconIconSizeIndexState,
-    textIconGapScaleFormulaState,
-} from '../states/textIconPair';
-import {
-    spacingScaleFactorState,
-    spacingFormulaState,
-} from '../states/spacing';
-import { typeFontWeightState } from '../states/typography';
+import { useBase } from '../context/BaseContext';
 import '../styles/tabs.css';
 import '../styles/toolbar.css';
 
 export default function TypographyView () {
     const [sampleText, setSampleText] = useState<string>('Proportio');
 
-    const [baseScaleUnit] = useRecoilState(baseScaleUnitState);
-    const [baseSize, setBaseSize] = useRecoilState(baseSizeState);
-    const [typeScale, setTypeScale] = useRecoilState(typeScaleState);
-    const [typeScaleFormula] = useRecoilState(typeScaleFormulaState,);
-    const [typeSmallQuantity, setTypeSmallQuantity] = useRecoilState(typeSmallQuantityState,);
-    const [typeLargeQuantity, setTypeLargeQuantity] = useRecoilState(typeLargeQuantityState,);
-    const [_, setIconScale] = useRecoilState(iconScaleState);
-    const [__, setIconSmallQuantity] = useRecoilState(iconSmallQuantityState,);
-    const [___, setIconLargeQuantity] = useRecoilState(iconLargeQuantityState,);
-
-    const [typeFontWeight, setTypeFontWeight] = useRecoilState(typeFontWeightState);
-
-    const [iconScaleFormula, setIconScaleFormula] = useRecoilState(iconScaleFormulaState,);
-    const [iconStroke, setIconStroke] = useRecoilState(iconStrokeState);
-    const [icon, setIcon] = useRecoilState(iconState);
-
-    const [textIconGapIndex, setTextIconGapIndex] = useRecoilState(textIconGapIndexState,);
-    const [textIconIconSizeIndex, setTextIconIconSizeIndex] = useRecoilState(textIconIconSizeIndexState,);
-    const [textIconGapScaleFormula, setTextIconGapScaleFormula] = useRecoilState(textIconGapScaleFormulaState,);
-
-    const [iconScale] = useRecoilState(iconScaleState);
-    const [iconSmallQuantity] = useRecoilState(iconSmallQuantityState,);
-    const [iconLargeQuantity] = useRecoilState(iconLargeQuantityState,);
-
-    const [spacingScaleFactor] = useRecoilState(spacingScaleFactorState,);
-    const [spacingFormula] =useRecoilState(spacingFormulaState);
+    const {
+        base: {
+            baseScaleUnit, baseSize, typeScale, typeScaleFormula, typeSmallQuantity,
+            typeLargeQuantity, typeFontWeight, iconPadding, iconScaleFormula,
+            iconStroke, icon, textIconGapIndex, textIconIconSizeIndex, textIconGapScaleFormula,
+            iconScale, iconSmallQuantity, iconLargeQuantity, spacingScaleFactor, spacingFormula
+        },
+        setBaseSize, setTypeScale,
+        setTypeSmallQuantity, setTypeLargeQuantity, setIconScale, setIconSmallQuantity,
+        setIconLargeQuantity, setTypeFontWeight, setIconScaleFormula, setIconStroke,
+        setIcon, setTextIconGapIndex, setTextIconIconSizeIndex, setTextIconGapScaleFormula
+    } = useBase();
 
     return (
         <div className="splitView">
@@ -126,6 +84,9 @@ export default function TypographyView () {
                     iconLargeQuantity={iconLargeQuantity}
                     iconScaleFormula={iconScaleFormula}
                     baseScaleUnit={baseScaleUnit}
+                    iconPadding={iconPadding}
+                    icon={icon}
+                    iconStroke={iconStroke}
                 />
                 <TypeIconPairing
                     sampleText={sampleText}
@@ -142,6 +103,9 @@ export default function TypographyView () {
                     iconScale={iconScale}
                     iconScaleFormula={iconScaleFormula}
                     baseScaleUnit={baseScaleUnit}
+                    iconPadding={iconPadding}
+                    icon={icon}
+                    iconStroke={iconStroke}
                 />
             </main>
         </div>

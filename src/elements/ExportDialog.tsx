@@ -6,8 +6,9 @@ import createCssVariables from '../utilities/createCssVariables';
 import createTokens from '../utilities/createTokens';
 import formatForFigma from '../utilities/figma';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import '../styles/modal.css';
 import { W3cDesignToken } from '../utilities/createTokens';
+import { useBase } from '../context/BaseContext'
+import '../styles/modal.css';
 
 const myTheme = {
     main: 'line-height:1.3;color:var(--Gray400);background:var(--Gray100);overflow:auto;padding:16px;border-radius:8px',
@@ -31,7 +32,8 @@ export default function ExportDialog(props: Props) {
     const ButtonTextTokens = copiedTokens === true ? 'Copied!' : 'Copy';
     const [copiedCssVars, setCopiedCssVars] = useState(false);
     const ButtonTextCssVars = copiedCssVars === true ? 'Copied!' : 'Copy';
-    const tokens: W3cDesignToken = createTokens();
+    const { base } = useBase();
+    const tokens: W3cDesignToken = createTokens(base);
     const CssTokens = createCssVariables(tokens);
 
     return (

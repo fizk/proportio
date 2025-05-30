@@ -44,6 +44,8 @@ export default function Typography ({
                 size={size}
                 content={sampleText}
                 showValue
+                baseScaleUnit={baseScaleUnit}
+                baseSize={baseSize}
             />
         );
     });
@@ -62,6 +64,8 @@ export default function Typography ({
                 size={size}
                 content={sampleText}
                 showValue
+                baseScaleUnit={baseScaleUnit}
+                baseSize={baseSize}
             />
         );
     });

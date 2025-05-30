@@ -19,6 +19,10 @@ const demoComponents = [
         showComponentIcon={true}
         showComponentText={true}
         radius={4}
+        icon={null}
+        iconStroke={1}
+        baseScaleUnit={'px'}
+        baseSize={16}
       />
     ),
   },

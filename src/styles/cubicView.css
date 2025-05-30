@@ -1,0 +1,44 @@
+
+.cubic-item {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    padding: 6px 9px;
+    border-radius: 6px;
+    width: 100%;
+}
+
+.cubic-item--selected {
+    background-color: var(--Gray100);
+}
+
+.cubic-preview__background {
+    fill: var(--selectionIndicatorColor)
+}
+
+.cubic-preview__path {
+    fill: none;
+    stroke: black;
+    stroke-width: 2;
+}
+
+
+.cubic-demonstration {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 16px;
+}
+.cubic-demonstration__track {
+    position: relative;
+    border-radius: 6px;
+    background-color: var(--Gray100);
+}
+
+.cubic-demonstration__duration {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

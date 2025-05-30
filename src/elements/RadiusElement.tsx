@@ -1,15 +1,17 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
-import { baseScaleUnitState, baseSizeState } from '../states/base';
 import round from '../utilities/round';
 
 interface Props {
     radius: number
+    baseSize: number
+    baseScaleUnit: string
 }
 
-export default function RadiusElement({radius}: Props) {
-    const [baseScaleUnit] = useRecoilState(baseScaleUnitState);
-    const [baseSize] = useRecoilState(baseSizeState);
+export default function RadiusElement({
+    radius,
+    baseSize,
+    baseScaleUnit,
+}: Props) {
     const value =
         baseScaleUnit === 'px' ? round(radius) : round(radius / baseSize, 3);
 

@@ -1,82 +1,3 @@
-import { useRecoilState } from 'recoil';
-/** States */
-import {
-    baseSizeState,
-    baseMobileScaleFactorState,
-    baseScaleUnitState,
-} from '../states/base';
-import {
-    baseComponentSizeIndexState,
-    componentLineHeightState,
-    componentSmallQuantityState,
-    componentLargeQuantityState,
-    componentMinHeightMethodOptionState,
-    componentPaddingMethodOptionState,
-    baseComponentTextSizeIndexState,
-    baseComponentPaddingXIndexState,
-    baseComponentPaddingYIndexState,
-    componentDensitySmallQuantityState,
-    componentDensityLargeQuantityState,
-    componentDensityScaleFactorState,
-    scaleComponentRadiusState,
-    baseComponentRadiusState,
-} from '../states/components';
-import {
-    containerSmallSizesState,
-    containerLargeSizesState,
-    containerBasePaddingXIndexState,
-    containerBasePaddingYIndexState,
-    containerBaseElevationIndexState,
-    containerRadiusScaleFactorState,
-    containerPaddingScaleFactorState,
-    containerBaseRadiusIndexState,
-    containerPaddingMethodOptionState,
-} from '../states/containers';
-import {
-    baseElevationSizeState,
-    elevationScaleFactorState,
-    elevationSmallQuantityState,
-    elevationLargeQuantityState,
-    elevationScaleFormulaState,
-    elevationOffsetYState,
-} from '../states/elevation';
-import {
-    iconScaleState,
-    iconSmallQuantityState,
-    iconLargeQuantityState,
-    iconScaleFormulaState,
-    iconPaddingState,
-    iconState,
-    iconStrokeState,
-    iconStrokeScaleState,
-} from '../states/iconography';
-import {
-    baseRadiusSizeState,
-    radiusScaleFactorState,
-    radiusSmallQuantityState,
-    radiusLargeQuantityState,
-    radiusScaleFormulaState,
-} from '../states/radius';
-import {
-    spacingScaleFactorState,
-    spacingSmallQuantityState,
-    spacingLargeQuantityState,
-    spacingFormulaState,
-} from '../states/spacing';
-import {
-    textIconGapIndexState,
-    textIconIconSizeIndexState,
-    textIconGapScaleFormulaState,
-} from '../states/textIconPair';
-import {
-    typeScaleState,
-    typeSmallQuantityState,
-    typeLargeQuantityState,
-    typeScaleFormulaState,
-    typeFontFamilyState,
-    typeFontWeightState,
-} from '../states/typography';
-import { colorState } from '../states/color';
 /** Utilities */
 import {
     sizeNamesIncrement,
@@ -90,71 +11,72 @@ import buildShiftedArray from './buildShiftedArray';
 import { pSBC } from '../utilities/pSBC';
 import { hex2rgb } from '../utilities/color';
 import round from './round';
+import { BaseState } from '../context/BaseContext'
 
-const createTokens = (): W3cDesignToken => {
+const createTokens = (state: BaseState): W3cDesignToken => {
 
-    const [baseSize] = useRecoilState(baseSizeState);
-
-    const [baseMobileScaleFactor] = useRecoilState(baseMobileScaleFactorState,);
-    const [baseScaleUnit] = useRecoilState(baseScaleUnitState);
-    const [baseComponentSizeIndex] = useRecoilState(baseComponentSizeIndexState,);
-    const [componentLineHeight] = useRecoilState(componentLineHeightState,);
-
-    const [componentSmallQuantity] = useRecoilState(componentSmallQuantityState,);
-    const [componentLargeQuantity] = useRecoilState(componentLargeQuantityState,);
-    const [componentMinHeightMethodOption] = useRecoilState(componentMinHeightMethodOptionState);
-    const [componentPaddingMethodOption] = useRecoilState(componentPaddingMethodOptionState);
-    const [baseComponentTextSizeIndex] = useRecoilState(baseComponentTextSizeIndexState);
-    const [baseComponentPaddingXIndex] = useRecoilState(baseComponentPaddingXIndexState);
-    const [baseComponentPaddingYIndex] = useRecoilState(baseComponentPaddingYIndexState);
-    const [componentDensitySmallQuantity] = useRecoilState(componentDensitySmallQuantityState);
-    const [componentDensityLargeQuantity] = useRecoilState(componentDensityLargeQuantityState);
-    const [componentDensityScaleFactor] = useRecoilState(componentDensityScaleFactorState);
-    const [scaleComponentRadius] = useRecoilState(scaleComponentRadiusState,);
-    const [baseComponentRadius] = useRecoilState(baseComponentRadiusState,);
-    const [containerSmallSizes] = useRecoilState(containerSmallSizesState,);
-    const [containerLargeSizes] = useRecoilState(containerLargeSizesState,);
-    const [containerBasePaddingXIndex] = useRecoilState(containerBasePaddingXIndexState);
-    const [containerBasePaddingYIndex] = useRecoilState(containerBasePaddingYIndexState);
-    const [containerBaseElevationIndex] = useRecoilState(containerBaseElevationIndexState);
-    const [containerRadiusScaleFactor] = useRecoilState(containerRadiusScaleFactorState);
-    const [containerPaddingScaleFactor] = useRecoilState(containerPaddingScaleFactorState);
-    const [containerBaseRadiusIndex] = useRecoilState(containerBaseRadiusIndexState);
-    const [containerPaddingMethodOption] = useRecoilState(containerPaddingMethodOptionState);
-    const [baseElevationSize] = useRecoilState(baseElevationSizeState,);
-    const [elevationScaleFactor] = useRecoilState(elevationScaleFactorState,);
-    const [elevationSmallQuantity] = useRecoilState(elevationSmallQuantityState,);
-    const [elevationLargeQuantity] = useRecoilState(elevationLargeQuantityState,);
-    const [elevationScaleFormula] = useRecoilState(elevationScaleFormulaState,);
-    const [elevationOffsetY] = useRecoilState(elevationOffsetYState,);
-    const [iconScale] = useRecoilState(iconScaleState);
-    const [iconSmallQuantity] = useRecoilState(iconSmallQuantityState,);
-    const [iconLargeQuantity] = useRecoilState(iconLargeQuantityState,);
-    const [iconScaleFormula] = useRecoilState(iconScaleFormulaState,);
-    const [iconPadding] = useRecoilState(iconPaddingState);
-    const [icon] = useRecoilState(iconState);
-    const [iconStroke] = useRecoilState(iconStrokeState);
-    const [iconStrokeScale] = useRecoilState(iconStrokeScaleState);
-    const [baseRadiusSize] = useRecoilState(baseRadiusSizeState);
-    const [radiusScaleFactor] = useRecoilState(radiusScaleFactorState,);
-    const [radiusSmallQuantity] = useRecoilState(radiusSmallQuantityState,);
-    const [radiusLargeQuantity] = useRecoilState(radiusLargeQuantityState,);
-    const [radiusScaleFormula] = useRecoilState(radiusScaleFormulaState,);
-    const [spacingScaleFactor] = useRecoilState(spacingScaleFactorState,);
-    const [spacingSmallQuantity] = useRecoilState(spacingSmallQuantityState,);
-    const [spacingLargeQuantity] = useRecoilState(spacingLargeQuantityState,);
-    const [spacingFormula] = useRecoilState(spacingFormulaState);
-    const [textIconGapIndex] = useRecoilState(textIconGapIndexState,);
-    const [textIconIconSizeIndex] = useRecoilState(textIconIconSizeIndexState,);
-    const [textIconGapScaleFormula] = useRecoilState(textIconGapScaleFormulaState,);
-    const [typeScale] = useRecoilState(typeScaleState);
-    const [typeSmallQuantity] = useRecoilState(typeSmallQuantityState,);
-    const [typeLargeQuantity] = useRecoilState(typeLargeQuantityState,);
-    const [typeScaleFormula] = useRecoilState(typeScaleFormulaState,);
-    const [typeFontFamily] = useRecoilState(typeFontFamilyState);
-    const [typeFontWeight] = useRecoilState(typeFontWeightState);
-
-    const [colorArray] = useRecoilState(colorState);
+    const {
+        // baseMobileScaleFactor,
+        baseSize,
+        baseScaleUnit,
+        baseComponentSizeIndex,
+        componentLineHeight,
+        componentSmallQuantity,
+        componentLargeQuantity,
+        componentMinHeightMethodOption,
+        componentPaddingMethodOption,
+        baseComponentTextSizeIndex,
+        baseComponentPaddingXIndex,
+        baseComponentPaddingYIndex,
+        componentDensitySmallQuantity,
+        componentDensityLargeQuantity,
+        componentDensityScaleFactor,
+        scaleComponentRadius,
+        baseComponentRadius,
+        containerSmallSizes,
+        containerLargeSizes,
+        containerBasePaddingXIndex,
+        containerBasePaddingYIndex,
+        containerBaseElevationIndex,
+        containerRadiusScaleFactor,
+        containerPaddingFactorScale,
+        containerBaseRadiusIndex,
+        containerPaddingMethodOption,
+        baseElevationSize,
+        elevationScaleFactor,
+        elevationSmallQuantity,
+        elevationLargeQuantity,
+        elevationScaleFormula,
+        elevationOffsetY,
+        iconScale,
+        iconSmallQuantity,
+        iconLargeQuantity,
+        iconScaleFormula,
+        iconPadding,
+        icon,
+        iconStroke,
+        iconStrokeScale,
+        baseRadiusSize,
+        radiusScaleFactor,
+        radiusSmallQuantity,
+        radiusLargeQuantity,
+        radiusScaleFormula,
+        spacingScaleFactor,
+        spacingSmallQuantity,
+        spacingLargeQuantity,
+        spacingFormula,
+        textIconGapIndex,
+        textIconIconSizeIndex,
+        textIconGapScaleFormula,
+        typeScale,
+        typeSmallQuantity,
+        typeLargeQuantity,
+        typeScaleFormula,
+        typeFontFamily,
+        typeFontWeight,
+        colorArray,
+        cubicArray,
+    } = state;
 
     /** TOKEN KEYS */
     const typeKey = 'typography';
@@ -166,6 +88,7 @@ const createTokens = (): W3cDesignToken => {
     const componentKey = 'component';
     const containerKey = 'container';
     const colorKey = 'color';
+    const cubicBezier = 'cubicBezier';
 
 
     /** TYPOGRAPHY TOKENS */
@@ -795,13 +718,13 @@ const createTokens = (): W3cDesignToken => {
         containerSmallSizes,
         containerLargeSizes,
         containerBasePaddingYIndex,
-        containerPaddingScaleFactor,
+        containerPaddingFactorScale,
     );
     const paddingXIndexArray = buildShiftedArray(
         containerSmallSizes,
         containerLargeSizes,
         containerBasePaddingXIndex,
-        containerPaddingScaleFactor,
+        containerPaddingFactorScale,
     );
 
     const containerPaddingMethodFormula =
@@ -3439,6 +3362,15 @@ const createTokens = (): W3cDesignToken => {
         })
     });
 
+    // cubicArray
+    const cubicBezierObject: {[key: string]: CubicBezierModule} = {};
+    cubicArray.forEach(item => {
+        cubicBezierObject[`cubic-bezier-${item.name}`] = {
+            $type: 'cubicBezier',
+            $value: item.values,
+        }
+    });
+
     return {
         [typeKey]: typographyObject,
         [iconsKey]: iconsObject,
@@ -3449,6 +3381,7 @@ const createTokens = (): W3cDesignToken => {
         [componentKey]: componentsObject,
         [containerKey]: containersObject,
         [colorKey]: colorsObject,
+        [cubicBezier]: cubicBezierObject,
     }
 
 

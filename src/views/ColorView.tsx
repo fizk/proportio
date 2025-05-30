@@ -2,14 +2,20 @@ import React from 'react';
 import Panel from '../elements/Panel';
 import ColorList from '../components/ColorList';
 import ColorControls from '../components/ColorControls';
-import { useRecoilState } from 'recoil';
-import { colorState, colorShadesState } from '../states/color';
 import '../styles/tabs.css';
 import '../styles/toolbar.css';
+import { useBase } from '../context/BaseContext'
 
 export default function ColorView() {
-    const [colorArray, setColorArray] = useRecoilState(colorState);
-    const [colorShades, setColorShades] = useRecoilState(colorShadesState);
+
+    const {
+        base: {
+            colorArray,
+            colorShades
+        },
+        setColorArray,
+        setColorShades
+    } = useBase()
 
     return (
         <div className="splitView">

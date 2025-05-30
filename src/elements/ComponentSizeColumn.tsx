@@ -2,10 +2,6 @@ import React from 'react';
 import calculateScale from '../utilities/calculateScale';
 import capitalize from '../utilities/capitalize';
 import ComponentElement from './ComponentElement';
-import { useRecoilState } from 'recoil';
-import { baseSizeState } from '../states/base';
-import { typeScaleFormulaState, typeScaleState } from '../states/typography';
-import { iconScaleState } from '../states/iconography';
 import demoComponents from '../utilities/demoComponents';
 import { type ScaleFormulaType } from '../utilities/scaleFormulas';
 
@@ -37,46 +33,52 @@ interface Props {
     componentGapScale: number
     componentGapMethod: ScaleFormulaType
     gapIndexArray: number[]
+
+    icon: any
+    iconStroke: number
+    baseScaleUnit: string
+    baseSize: number
+    typeScaleFormula: string
+    typeScale: number
+    iconScale: number
 }
 
-export default function ComponentSizeColumn (props: Props)  {
-    const [baseSize] = useRecoilState(baseSizeState);
-    const [typeScaleFormula] = useRecoilState(typeScaleFormulaState,);
-    const [typeScale] = useRecoilState(typeScaleState);
-    const [iconScale] = useRecoilState(iconScaleState);
-
-    const density = props.density;
-    const sizeName = props.sizeName;
-    const componentPaddingScale = props.componentPaddingScale;
-    const paddingXIndexArray = props.paddingXIndexArray;
-    const increment = props.increment;
-    const paddingYIndexArray = props.paddingYIndexArray;
-    const componentPaddingMethodFormula = props.componentPaddingMethodFormula;
-    const textSizeIndexArray = props.textSizeIndexArray;
-    const iconSizeIndexArray = props.iconSizeIndexArray;
-    const iconScaleFormula = props.iconScaleFormula;
-
-    const componentScale = props.componentScale;
-    const componentMinHeightIndexArray = props.componentMinHeightIndexArray;
-    const componentScaleMethodFormula = props.componentScaleMethodFormula;
-    const baseRadiusSize = props.baseRadiusSize;
-    const radiusScaleFactor = props.radiusScaleFactor;
-    const componentRadiusIndexArray = props.componentRadiusIndexArray;
-    const radiusScaleFormula = props.radiusScaleFormula;
-
-    const componentLineHeight = props.componentLineHeight;
-    const componentRadiusNewIndexValue = props.componentRadiusNewIndexValue;
-    const scaleComponentRadius = props.scaleComponentRadius;
-    const iconPadding = props.iconPadding;
-
-    const showSpecs = props.showSpecs;
-    const showComponentIcon = props.showComponentIcon;
-    const showComponentText = props.showComponentText;
-
-    const componentGapScale = props.componentGapScale;
-    const componentGapMethod = props.componentGapMethod;
-    const gapIndexArray = props.gapIndexArray;
-
+export default function ComponentSizeColumn ({
+    density,
+    sizeName,
+    componentPaddingScale,
+    paddingXIndexArray,
+    increment,
+    paddingYIndexArray,
+    componentPaddingMethodFormula,
+    textSizeIndexArray,
+    iconSizeIndexArray,
+    iconScaleFormula,
+    componentScale,
+    componentMinHeightIndexArray,
+    componentScaleMethodFormula,
+    baseRadiusSize,
+    radiusScaleFactor,
+    componentRadiusIndexArray,
+    radiusScaleFormula,
+    componentLineHeight,
+    componentRadiusNewIndexValue,
+    scaleComponentRadius,
+    iconPadding,
+    showSpecs,
+    showComponentIcon,
+    showComponentText,
+    componentGapScale,
+    componentGapMethod,
+    gapIndexArray,
+    icon,
+    iconStroke,
+    baseScaleUnit,
+    baseSize,
+    typeScaleFormula,
+    typeScale,
+    iconScale,
+}: Props)  {
     const gapSize = calculateScale(
         baseSize,
         componentGapScale,
@@ -151,6 +153,10 @@ export default function ComponentSizeColumn (props: Props)  {
                     showComponentIcon={showComponentIcon}
                     showComponentText={showComponentText}
                     radius={radius}
+                    icon={icon}
+                    iconStroke={iconStroke}
+                    baseScaleUnit={baseScaleUnit}
+                    baseSize={baseSize}
                 />
             ),
         });
@@ -175,6 +181,10 @@ export default function ComponentSizeColumn (props: Props)  {
                 showComponentIcon={showComponentIcon}
                 showComponentText={showComponentText}
                 radius={radius}
+                icon={icon}
+                iconStroke={iconStroke}
+                baseScaleUnit={baseScaleUnit}
+                baseSize={baseSize}
             />
         </div>
     );

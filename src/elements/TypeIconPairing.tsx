@@ -22,6 +22,9 @@ interface Props {
     iconScale: number
     iconScaleFormula: string
     baseScaleUnit: string
+    iconPadding: number
+    icon: any
+    iconStroke: number
 }
 
 export default function TypeIconPairing ({
@@ -39,6 +42,9 @@ export default function TypeIconPairing ({
     iconScale,
     iconScaleFormula,
     baseScaleUnit,
+    iconPadding,
+    icon,
+    iconStroke,
 }: Props) {
 
     let smallSizeArray = new Array(typeSmallQuantity).fill(0);
@@ -104,6 +110,11 @@ export default function TypeIconPairing ({
                     <IconElement
                         key={`typeIcon-icon-${iconScale}-neg${i}`}
                         size={iconSize}
+                        iconPadding={iconPadding}
+                        icon={icon}
+                        iconStroke={iconStroke}
+                        baseSize={baseSize}
+                        baseScaleUnit={baseScaleUnit}
                     />
                     <span
                         style={{
@@ -117,6 +128,8 @@ export default function TypeIconPairing ({
                         key={`typeIcon-text-${typeScale}-neg${i}`}
                         content={sampleText}
                         size={textSize}
+                        baseScaleUnit={baseScaleUnit}
+                        baseSize={baseSize}
                     />
                 </div>
             </div>
@@ -165,6 +178,11 @@ export default function TypeIconPairing ({
                         key={`typeIcon-icon-${iconScale}-${i}`}
                         size={iconSize}
                         textSize={textSize}
+                        iconPadding={iconPadding}
+                        icon={icon}
+                        iconStroke={iconStroke}
+                        baseScaleUnit={baseScaleUnit}
+                        baseSize={baseSize}
                     />
                     <span
                         style={{
@@ -178,6 +196,8 @@ export default function TypeIconPairing ({
                         key={`typeIcon-text-${typeScale}-${i}`}
                         content={sampleText}
                         size={textSize}
+                        baseScaleUnit={baseScaleUnit}
+                        baseSize={baseSize}
                     />
                 </div>
             </div>

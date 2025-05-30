@@ -155,6 +155,8 @@ export default function Containers({
                 spec={showSpecs}
                 sizeName={sizeName}
                 containerElevation={containerElevation}
+                baseScaleUnit={baseScaleUnit}
+                baseSize={baseSize}
             />
         );
     });

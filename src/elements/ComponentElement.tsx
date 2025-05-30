@@ -1,8 +1,5 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
 import createSvgIcon from '../utilities/createSvgIcon';
-import { iconState, iconStrokeState } from '../states/iconography';
-import { baseScaleUnitState, baseSizeState } from '../states/base';
 import round from '../utilities/round';
 import '../styles/component.css';
 
@@ -19,27 +16,32 @@ interface Props {
     showComponentIcon: boolean
     showComponentText: boolean
     radius: number
+    icon: any
+    iconStroke: number
+    baseScaleUnit: string
+    baseSize: number
 }
 
-const ComponentElement = (props: Props) => {
-    const [icon] = useRecoilState(iconState);
-    const [iconStroke] = useRecoilState(iconStrokeState);
-    const [baseScaleUnit] = useRecoilState(baseScaleUnitState);
-    const [baseSize] = useRecoilState(baseSizeState);
+const ComponentElement = ({
+    componentMinHeight,
+    paddingX,
+    paddingY,
+    typeSize,
+    iconSize,
+    gapSize,
+    spec,
+    iconPadding,
+    componentLineHeight,
+    showComponentIcon,
+    showComponentText,
+    radius,
+    icon,
+    iconStroke,
+    baseScaleUnit,
+    baseSize,
+}: Props) => {
 
-    const componentMinHeight = props.componentMinHeight;
-    const paddingX = props.paddingX;
-    const paddingY = props.paddingY;
-    const typeSize = props.typeSize;
-    const iconSize = props.iconSize;
-    const gapSize = props.gapSize;
-    const spec = props.spec;
-    const iconPadding = props.iconPadding;
-    const componentLineHeight = props.componentLineHeight;
     const computedHeight = paddingY * 2 + Number(componentLineHeight) * typeSize;
-
-    const showComponentIcon = props.showComponentIcon;
-    const showComponentText = props.showComponentText;
 
     const componentLabel = showComponentText ? (
         <div className={spec ? 'componentTextSpec' : 'componentText'}>
@@ -85,8 +87,8 @@ const ComponentElement = (props: Props) => {
 
     const biggestHeight =
         computedHeight > componentMinHeight ? computedHeight : componentMinHeight;
-    const radius =
-        props.radius > biggestHeight / 2 ? biggestHeight / 2 : props.radius;
+    const calculatedRadius =
+        radius > biggestHeight / 2 ? biggestHeight / 2 : radius;
 
     const specAnnotations = (
         <>
@@ -154,7 +156,7 @@ const ComponentElement = (props: Props) => {
                         minHeight: `${componentMinHeight}px`,
                         fontSize: `${typeSize}px`,
                         lineHeight: `${componentLineHeight}`,
-                        borderRadius: `${radius}px`,
+                        borderRadius: `${calculatedRadius}px`,
                     }}
                     className="component"
                 >
@@ -191,9 +193,9 @@ const ComponentElement = (props: Props) => {
                     <div
                         className={spec ? 'paddingUnit compRadius' : 'compRadius'}
                         style={{
-                            height: `${radius * 2}px`,
-                            width: `${radius * 2}px`,
-                            borderRadius: `${radius}px`,
+                            height: `${calculatedRadius * 2}px`,
+                            width: `${calculatedRadius * 2}px`,
+                            borderRadius: `${calculatedRadius}px`,
                         }}
                     ></div>
 

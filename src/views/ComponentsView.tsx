@@ -2,76 +2,31 @@ import React, { MouseEvent, useState } from 'react';
 import ComponentControls from '../components/ComponentControls';
 import ComponentSpecs from '../components/ComponentSpecs';
 import Panel from '../elements/Panel';
-import { useRecoilState } from 'recoil';
-import { typeScaleFormulaState, typeScaleState } from '../states/typography';
-import {
-    spacingFormulaState,
-    spacingScaleFactorState,
-} from '../states/spacing';
-import {
-    componentMinHeightMethodOptionState,
-    componentSmallQuantityState,
-    componentLargeQuantityState,
-    baseComponentTextSizeIndexState,
-    baseComponentSizeIndexState,
-    scaleComponentRadiusState,
-    baseComponentRadiusState,
-    componentLineHeightState,
-    componentPaddingMethodOptionState,
-    baseComponentPaddingXIndexState,
-    baseComponentPaddingYIndexState,
-    componentDensitySmallQuantityState,
-    componentDensityLargeQuantityState,
-    componentDensityScaleFactorState,
-} from '../states/components';
-import {
-    baseRadiusSizeState,
-    radiusScaleFormulaState,
-    radiusScaleFactorState,
-} from '../states/radius';
-import { iconScaleFormulaState, iconPaddingState } from '../states/iconography';
-import {
-    textIconGapIndexState,
-    textIconIconSizeIndexState,
-    textIconGapScaleFormulaState,
-} from '../states/textIconPair';
-
 import '../styles/tabs.css';
+
+import { useBase } from '../context/BaseContext'
 
 export default function ComponentsView() {
     const [showSpecs, setShowSpecs] = useState<boolean>(true);
     const [showComponentIcon, setShowComponentIcon] = useState<boolean>(true);
     const [showComponentText, setShowComponentText] = useState<boolean>(true);
 
-    const [baseComponentSizeIndex, setBaseComponentSizeIndex] = useRecoilState(baseComponentSizeIndexState,);
-    const [componentLineHeight, setComponentLineHeight] = useRecoilState(componentLineHeightState,);
-    const [componentSmallQuantity, setComponentSmallQuantity] = useRecoilState(componentSmallQuantityState,);
-    const [componentLargeQuantity, setComponentLargeQuantity] = useRecoilState(componentLargeQuantityState,);
-    const [componentMinHeightMethodOption, setComponentMinHeightMethodOption] = useRecoilState(componentMinHeightMethodOptionState);
-    const [componentPaddingMethodOption, setComponentPaddingMethodOption] = useRecoilState(componentPaddingMethodOptionState);
-    const [baseComponentPaddingXIndex, setBaseComponentPaddingXIndex] = useRecoilState(baseComponentPaddingXIndexState);
-    const [baseComponentPaddingYIndex, setBaseComponentPaddingYIndex] = useRecoilState(baseComponentPaddingYIndexState);
-    const [scaleComponentRadius, setScaleComponentRadius] = useRecoilState(scaleComponentRadiusState,);
-    const [baseComponentRadius, setBaseComponentRadius] = useRecoilState(baseComponentRadiusState,);
-    const [componentDensitySmallQuantity, setComponentDensitySmallQuantity] = useRecoilState(componentDensitySmallQuantityState);
-    const [componentDensityLargeQuantity, setComponentDensityLargeQuantity] = useRecoilState(componentDensityLargeQuantityState);
-    const [componentDensityScaleFactor, setComponentDensityScaleFactor] = useRecoilState(componentDensityScaleFactorState);
-
-    const [typeScale] = useRecoilState(typeScaleState);
-    const [spacingScaleFactor] = useRecoilState(spacingScaleFactorState,);
-    const [spacingFormula] = useRecoilState(spacingFormulaState);
-    const [typeScaleFormula] = useRecoilState(typeScaleFormulaState,);
-    // Should get rid of these two. Customizing adds unnecessary complexity
-    const [baseComponentTextSizeIndex] = useRecoilState(baseComponentTextSizeIndexState);
-
-    const [baseRadiusSize] = useRecoilState(baseRadiusSizeState);
-    const [radiusScaleFormula] = useRecoilState(radiusScaleFormulaState,);
-    const [radiusScaleFactor] = useRecoilState(radiusScaleFactorState,);
-    const [iconScaleFormula] = useRecoilState(iconScaleFormulaState,);
-    const [iconPadding] = useRecoilState(iconPaddingState);
-    const [textIconGapIndex] = useRecoilState(textIconGapIndexState,);
-    const [textIconIconSizeIndex] = useRecoilState(textIconIconSizeIndexState,);
-    const [textIconGapScaleFormula] = useRecoilState(textIconGapScaleFormulaState,);
+    const {
+        base: {
+            baseComponentSizeIndex, componentLineHeight, componentSmallQuantity,
+            componentLargeQuantity, componentMinHeightMethodOption, componentPaddingMethodOption,
+            baseComponentPaddingXIndex, baseComponentPaddingYIndex, scaleComponentRadius,
+            baseComponentRadius, componentDensitySmallQuantity, componentDensityLargeQuantity,
+            componentDensityScaleFactor, typeScale, spacingScaleFactor, spacingFormula, typeScaleFormula,
+            baseComponentTextSizeIndex, baseRadiusSize, radiusScaleFormula, radiusScaleFactor,
+            iconScaleFormula, iconPadding, textIconGapIndex, textIconIconSizeIndex, textIconGapScaleFormula,
+            icon, iconStroke, baseScaleUnit, baseSize, iconScale
+        },
+        setBaseComponentSizeIndex, setComponentLineHeight, setComponentSmallQuantity, setComponentLargeQuantity,
+        setComponentMinHeightMethodOption, setComponentPaddingMethodOption, setBaseComponentPaddingXIndex,
+        setBaseComponentPaddingYIndex, setScaleComponentRadius, setBaseComponentRadius,
+        setComponentDensitySmallQuantity, setComponentDensityLargeQuantity, setComponentDensityScaleFactor
+    } = useBase();
 
     return (
         <div className="splitView">
@@ -178,6 +133,11 @@ export default function ComponentsView() {
                     componentDensitySmallQuantity={componentDensitySmallQuantity}
                     componentDensityLargeQuantity={componentDensityLargeQuantity}
                     componentDensityScaleFactor={componentDensityScaleFactor}
+                    icon={icon}
+                    iconStroke={iconStroke}
+                    baseScaleUnit={baseScaleUnit}
+                    baseSize={baseSize}
+                    iconScale={iconScale}
                 />
             </main>
         </div>

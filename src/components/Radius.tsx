@@ -10,6 +10,8 @@ interface Props {
     radiusSmallQuantity: number
     radiusLargeQuantity: number
     radiusScaleFormula: string
+    baseSize: number
+    baseScaleUnit: string
 }
 
 export default function Radius({
@@ -18,6 +20,8 @@ export default function Radius({
     radiusSmallQuantity,
     radiusLargeQuantity,
     radiusScaleFormula,
+    baseSize,
+    baseScaleUnit,
 }: Props) {
 
     let sizeArray = buildArray(radiusSmallQuantity, radiusLargeQuantity);
@@ -31,7 +35,12 @@ export default function Radius({
     });
 
     const radiusElements = sizes.map((size, i) => {
-        return <RadiusElement key={`radius-${i}}`} radius={size} />;
+        return <RadiusElement
+            key={`radius-${i}}`}
+            radius={size}
+            baseSize={baseSize}
+            baseScaleUnit={baseScaleUnit}
+        />;
     });
 
     return (

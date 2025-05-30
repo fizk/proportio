@@ -1,6 +1,6 @@
 import React, { FormEvent, MouseEvent } from 'react';
 import capitalize from '../utilities/capitalize';
-import scaleMethodOptions from '../utilities/scaleFormulas';
+import scaleMethodOptions, { ScaleFormulaType } from '../utilities/scaleFormulas';
 
 interface Props {
     baseRadiusSize: number
@@ -12,7 +12,7 @@ interface Props {
     radiusLargeQuantity: number
     setRadiusLargeQuantity: (value: number) => void
     radiusScaleFormula: string
-    setRadiusScaleFormula: (value: string) => void
+    setRadiusScaleFormula: (value: ScaleFormulaType) => void
 }
 
 export default function RadiusControls({
@@ -36,7 +36,7 @@ export default function RadiusControls({
                     name="RadiusScale_method"
                     value={method}
                     onClick={(event: MouseEvent<HTMLInputElement>) => (
-                        setRadiusScaleFormula(event.currentTarget.value)
+                        setRadiusScaleFormula(event.currentTarget.value as ScaleFormulaType)
                     )}
                     defaultChecked={method === radiusScaleFormula ? true : false}
                 />

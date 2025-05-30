@@ -1,6 +1,6 @@
 import React, { FormEvent, MouseEvent } from 'react';
 import capitalize from '../utilities/capitalize';
-import scaleMethodOptions from '../utilities/scaleFormulas';
+import scaleMethodOptions, { ScaleFormulaType } from '../utilities/scaleFormulas';
 import Slider from '../elements/Slider';
 
 interface Props {
@@ -13,7 +13,7 @@ interface Props {
     elevationLargeQuantity: number
     setElevationLargeQuantity: (value: number) => void
     elevationScaleFormula: string
-    setElevationScaleFormula: (value: string) => void
+    setElevationScaleFormula: (value: ScaleFormulaType) => void
     elevationOffsetY: number
     setElevationOffsetY: (value: number) => void
 }
@@ -42,7 +42,7 @@ export default function ElevationControls({
                     name="ElevationScale_method"
                     value={method}
                     onClick={(event: MouseEvent<HTMLInputElement>) => (
-                        setElevationScaleFormula(event.currentTarget.value)
+                        setElevationScaleFormula(event.currentTarget.value as ScaleFormulaType)
                     )}
                     defaultChecked={method === elevationScaleFormula ? true : false}
                 />

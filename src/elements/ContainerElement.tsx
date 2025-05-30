@@ -1,6 +1,4 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
-import { baseScaleUnitState, baseSizeState } from '../states/base';
 import round from '../utilities/round';
 import capitalize from '../utilities/capitalize';
 import '../styles/container.css';
@@ -14,20 +12,22 @@ interface Props {
     containerElevation: boolean
     paddingY: number
     paddingX: number
+    baseScaleUnit: string
+    baseSize: number
 }
 
-export default function ContainerElement(props: Props) {
-    const containerElevation = props.containerElevation;
-    const [baseScaleUnit] = useRecoilState(baseScaleUnitState);
-    const [baseSize] = useRecoilState(baseSizeState);
-
-    const elevation = props.elevation;
-    const radius = props.radius;
-    const offsetY = props.offsetY;
-    const spec = props.spec;
-    const sizeName = props.sizeName;
-    const paddingY = props.paddingY;
-    const paddingX = props.paddingX;
+export default function ContainerElement({
+    elevation,
+    radius,
+    offsetY,
+    spec,
+    sizeName,
+    containerElevation,
+    paddingY,
+    paddingX,
+    baseScaleUnit,
+    baseSize,
+}: Props) {
     const margin = elevation > 0 ? elevation : 4;
 
     const elevationSpec = (

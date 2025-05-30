@@ -1,15 +1,17 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
-import { baseScaleUnitState, baseSizeState } from '../states/base';
 import round from '../utilities/round';
 
 interface Props {
     size: number
+    baseScaleUnit: string
+    baseSize: number
 }
 
-export default function SpacingElement({size}: Props) {
-    const [baseScaleUnit] = useRecoilState(baseScaleUnitState);
-    const [baseSize] = useRecoilState(baseSizeState);
+export default function SpacingElement({
+    size,
+    baseScaleUnit,
+    baseSize,
+}: Props) {
     const value =
         baseScaleUnit === 'px' ? round(size) : round(size / baseSize, 3);
 

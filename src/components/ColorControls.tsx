@@ -57,7 +57,7 @@ export default function ColorControls ({
                         <button onClick={handleAddItem}>add</button>
                     </div>
                         {colorArray.map((color, i) => (
-                            <div className="formGroup">
+                            <div className="formGroup" key={`${color}${i}`}>
                                 <input type='color' value={color.color} onChange={event => handleUpdateColor(event.currentTarget.value, i)} />
                                 <input value={color.name} onChange={event => handleUpdateName(event.currentTarget.value, i)} />
                                 <button onClick={() => handleRemoveItem(i)}>remove</button>
@@ -67,7 +67,7 @@ export default function ColorControls ({
             </fieldset>
 
             <fieldset>
-                <legend>Radius</legend>
+                <legend>Shades</legend>
                 <div className="column">
                     <div className="formGroup">
                         <div className="checkboxGroup">

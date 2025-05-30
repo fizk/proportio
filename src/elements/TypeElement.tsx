@@ -1,6 +1,4 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
-import { baseScaleUnitState, baseSizeState } from '../states/base';
 import round from '../utilities/round';
 import '../styles/typography.css';
 
@@ -8,15 +6,17 @@ interface Props {
     size: number
     content?: string
     showValue?: boolean
+    baseScaleUnit: string
+    baseSize: number
 }
 
 export default function TypeElement({
     size,
     content = 'Ag',
     showValue,
+    baseScaleUnit,
+    baseSize,
 }: Props) {
-    const [baseScaleUnit] = useRecoilState(baseScaleUnitState);
-    const [baseSize] = useRecoilState(baseSizeState);
 
     const demoLineHeight = 1.125;
     const margin = showValue ? `${size * demoLineHeight - size}px` : '0px';

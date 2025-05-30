@@ -1,18 +1,19 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
-import { baseScaleUnitState, baseSizeState } from '../states/base';
 import round from '../utilities/round';
 
 interface Props {
     elevation: number
     offsetY: number
+    baseScaleUnit: string
+    baseSize: number
 }
 
-export default function ElevationElement(props: Props) {
-    const elevation = props.elevation;
-    const offsetY = props.offsetY;
-    const [baseScaleUnit] = useRecoilState(baseScaleUnitState);
-    const [baseSize] = useRecoilState(baseSizeState);
+export default function ElevationElement({
+    elevation,
+    offsetY,
+    baseScaleUnit,
+    baseSize
+}: Props) {
 
     const value =
         baseScaleUnit === 'px' ? round(elevation) : round(elevation / baseSize, 3);
